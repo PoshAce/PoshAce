@@ -62,7 +62,8 @@ atlassian*
 !/pub/media/sitemap/.htaccess
 /pub/static/*
 !/pub/static/.htaccess
-
+/pub/media/feed/
+/pub/media/codazon_cache
 /update/*
 /setup/*
 /lib/*
