@@ -1,0 +1,95 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Customer\Block\Account\AuthorizationLink $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<li class="link authorization-link 55555555555555" data-label="<?= $escaper->escapeHtml(__('or')) ?>">
+    <a <?= /* @noEscape */ $block->getLinkAttributes() ?>
+        <?= /* @noEscape */ $dataPostParam ?>><?= $escaper->escapeHtml($block->getLabel()) ?></a>
+</li>
+
+
+
+<script type="text/javascript">
+  require(['jquery', 'Magento_Customer/js/customer-data', 'domReady!'], function ($, customerData) {
+    function updateLoginClass(customer) {
+        if (customer && customer.firstname) {
+            $(".header.links.visible-xs li a").removeClass("ajax-login-link");
+            $('.link.authorization-link.55555555555555 a').removeClass('ajax-login-link');
+        } else {
+            $(".header.links.visible-xs li a").addClass("ajax-login-link");
+        }
+    }
+
+    $(document).ready(function () {
+        var customer = customerData.get('customer')();
+        
+        // Check customer data initially
+        updateLoginClass(customer);
+
+        // Observe changes in customer data
+        customerData.get('customer').subscribe(function (updatedCustomer) {
+            updateLoginClass(updatedCustomer);
+        });
+        var welcomeItems = $('.header.links.visible-xs li.greet.welcome.test123');
+        if (welcomeItems.length > 1) {
+            welcomeItems.not(':first').remove(); // Keep the first and remove duplicates
+        }
+
+        // Move welcome message if it exists, but only once
+        var welcomeItem = $('.header.links.visible-xs li.test123');
+        if (welcomeItem.length && !$('.header.links.visible-xs li.test123').first().hasClass('moved')) {
+            $('.header.links.visible-xs').prepend(welcomeItem);
+            welcomeItem.addClass('moved'); // Mark it to avoid duplication
+        }
+
+        // Avoid adding the same list item multiple times
+        if ($('.header.links.visible-xs li.new-list-item').length === 0) {
+            var newListItem = $('');
+            $('.header.links.visible-xs').prepend(newListItem);
+        }
+    });
+});
+
+
+</script>
+
+<script type="text/javascript">
+ require(['jquery', 'Magento_Customer/js/customer-data'], function ($, customerData) {
+    $(document).ready(function () {
+        function removeAjaxLoginClass() {
+            $('li.item.col-xs-6.btn-wishlist.ajax-login-link').removeClass('ajax-login-link');
+            $('li.item.col-xs-6.btn-account.ajax-login-link').removeClass('ajax-login-link');
+            
+        }
+
+        function checkLoginAndRemove(customer) {
+            if (customer && customer.firstname) {
+                removeAjaxLoginClass();
+            }
+        }
+
+        var customer = customerData.get('customer')();
+        
+        // **Page load time check**
+        checkLoginAndRemove(customer);
+
+        // **Subscribe to customer data changes (for AJAX login)**
+        customerData.get('customer').subscribe(function (updatedCustomer) {
+            checkLoginAndRemove(updatedCustomer);
+        });
+    });
+});
+
+
+</script>

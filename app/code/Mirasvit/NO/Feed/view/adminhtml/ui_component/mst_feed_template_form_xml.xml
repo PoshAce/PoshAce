@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="componentType" xsi:type="string">form</item>
+        </item>
+    </argument>
+
+    <fieldset name="xml">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Content Settings</item>
+                <item name="componentType" xsi:type="string">fieldset</item>
+            </item>
+        </argument>
+
+        <htmlContent name="template_content_xml">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Template\Form\Block\Schema\FormXml</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+    </fieldset>
+</form>

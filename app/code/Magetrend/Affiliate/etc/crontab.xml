@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="index">
+
+        <job name="mtaf_account_update_balance" instance="Magetrend\Affiliate\Cron\Account\UpdateBalance" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+        <job name="mtaf_click_status_new" instance="Magetrend\Affiliate\Cron\Click\StatusNew" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+        <job name="mtaf_order_status_update_amount" instance="Magetrend\Affiliate\Cron\Order\StatusUpdateAmount" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+
+
+        <job name="mtaf_sync_creditmemo" instance="Magetrend\Affiliate\Cron\Sync\Creditmemo" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+        <job name="mtaf_sync_invoice" instance="Magetrend\Affiliate\Cron\Sync\Invoice" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+        <job name="mtaf_sync_order" instance="Magetrend\Affiliate\Cron\Sync\Order" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+
+
+        <job name="mtaf_transaction_status_new" instance="Magetrend\Affiliate\Cron\Transaction\StatusNew" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+        <job name="mtaf_transaction_status_update_balance" instance="Magetrend\Affiliate\Cron\Transaction\StatusUpdateBalance" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+
+
+    </group>
+</config>

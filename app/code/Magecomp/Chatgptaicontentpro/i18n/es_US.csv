@@ -1,0 +1,58 @@
+"Generate AI Content","Generate AI Content"
+"Default scope","Default scope"
+"Current scope","Current scope"
+"Image Alt Text Updated Successfully for ' . . ' Products","Image Alt Text Updated Successfully for ' . . ' Products"
+"Description Updated Successfully for ' . . ' Products","Description Updated Successfully for ' . . ' Products"
+"Meta Description Updated Successfully for ' . . ' Products","Meta Description Updated Successfully for ' . . ' Products"
+"Meta Keywords Updated Successfully for ' . . ' Products","Meta Keywords Updated Successfully for ' . . ' Products"
+"Meta Title Updated Successfully for ' . . ' Products","Meta Title Updated Successfully for ' . . ' Products"
+"Short Description Updated Successfully for ' . . ' Products","Short Description Updated Successfully for ' . . ' Products"
+"Invalid request parameters","Invalid request parameters"
+"API unauthorized. Token could be invalid.","API unauthorized. Token could be invalid."
+"Server error: %1","Server error: %1"
+"%1: %2","%1: %2"
+"No results were returned by the server","No results were returned by the server"
+"Add Video","Add Video"
+"Browse to find or drag image here","Browse to find or drag image here"
+"Delete image in all store views","Delete image in all store views"
+"Delete video","Delete video"
+"Delete image","Delete image"
+Hidden,Hidden
+"Alt Text","Alt Text"
+Role,Role
+"Image Size","Image Size"
+{size},{size}
+"Image Resolution","Image Resolution"
+"{width}^{height} px","{width}^{height} px"
+"Hide from Product Page","Hide from Product Page"
+Title:,Title:
+Uploaded:,Uploaded:
+Uploader:,Uploader:
+Duration:,Duration:
+"Magecomp AI","Magecomp AI"
+Actions,Actions
+"Generate text","Generate text"
+"ChatGPT AI Content Generator PRO","ChatGPT AI Content Generator PRO"
+General,General
+"API Configuration","API Configuration"
+"Base URL","Base URL"
+"API Key","API Key"
+Language,Language
+"GPT Model","GPT Model"
+"Length Of Short Description","Length Of Short Description"
+"Length Of Description","Length Of Description"
+"Prompt For Description","Prompt For Description"
+"Prompt For Short Description","Prompt For Short Description"
+"Page Information","Page Information"
+Content,Content
+"Content Heading","Content Heading"
+"Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or ⌥0 (MacOS)","Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or ⌥0 (MacOS)"
+"Meta Title","Meta Title"
+"Meta Keywords","Meta Keywords"
+"Meta Description","Meta Description"
+"AI Meta Title","AI Meta Title"
+"AI Meta Keywords","AI Meta Keywords"
+"AI Meta Description","AI Meta Description"
+"AI Alt Text","AI Alt Text"
+"AI Description","AI Description"
+"AI Short Description","AI Short Description"

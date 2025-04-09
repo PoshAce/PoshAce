@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.affiliate.formbuilder.container">
+            <block class="Magetrend\Affiliate\Block\Adminhtml\FormBuilder\Grid" name="adminhtml.affiliate.formbuilder.grid" as="grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">formGrid</argument>
+                    <argument name="dataSource" xsi:type="object">Magetrend\Affiliate\Model\ResourceModel\FormBuilder\Form\Collection</argument>
+                    <argument name="default_sort" xsi:type="string">entity_id</argument>
+                    <argument name="default_dir" xsi:type="string">desc</argument>
+                    <argument name="use_ajax" xsi:type="string">1</argument>
+                    <argument name="grid_url" xsi:type="url" path="formBuilder/*/grid">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="adminhtml.newslettrer.subscriber.grid.columnSet" as="grid.columnSet">
+                    <arguments>
+                        <argument name="rowUrl" xsi:type="array">
+                            <item name="path" xsi:type="string">*/*/edit</item>
+                            <item name="extraParamsTemplate" xsi:type="array">
+                                <item name="id" xsi:type="string">getId</item>
+                            </item>
+                        </argument>
+                    </arguments>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="entity_id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">ID</argument>
+                            <argument name="index" xsi:type="string">entity_id</argument>
+
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Name</argument>
+                            <argument name="index" xsi:type="string">name</argument>
+                            <argument name="header_css_class" xsi:type="string">col-name</argument>
+                            <argument name="column_css_class" xsi:type="string">col-name</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

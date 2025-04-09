@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="email_template" resource="default" engine="innodb">
+
+        <column xsi:type="smallint" name="store_id"  default="0" nullable="false" identity="false"
+                comment="Store ID"/>
+
+        <column xsi:type="smallint" name="is_mt_email"  default="0" nullable="false" identity="false"
+                comment="Is mt email"/>
+
+        <column xsi:type="varchar" name="direction" length="3" nullable="true" comment="Direction: LTR OR RTL"/>
+
+        <column xsi:type="varchar" name="locale" length="10" nullable="true" comment="Template Locale"/>
+
+        <column xsi:type="text" name="template_plain_text" nullable="true" comment="Plain Text Version"/>
+
+    </table>
+
+
+    <table name="mt_email_var" resource="default" engine="innodb">
+
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+
+        <column xsi:type="varchar" name="hash" length="32" nullable="true" comment="Variable Hash"/>
+
+        <column xsi:type="int" name="template_id" unsigned="true" nullable="false" identity="false"
+                comment="Template Id"/>
+
+        <column xsi:type="smallint" name="store_id"  default="0" nullable="false" identity="false"
+                comment="Store ID"/>
+
+        <column xsi:type="int" name="block_id" unsigned="true" nullable="false" identity="false"
+                comment="Block ID"/>
+
+        <column xsi:type="varchar" name="block_name" length="50" nullable="true" comment="Block Name"/>
+
+        <column xsi:type="varchar" name="var_key" length="255" nullable="true" comment="Var Key"/>
+
+        <column xsi:type="text" name="var_value" nullable="true" comment="Var Value"/>
+
+        <column xsi:type="tinyint" name="global"  default="0" nullable="false" identity="false" comment="Is Global"/>
+
+        <column xsi:type="tinyint" name="is_system_config"  default="0" nullable="false" identity="false" comment="Is System Config"/>
+
+        <column xsi:type="tinyint" name="is_default"  default="0" nullable="false" identity="false" comment="Is Default"/>
+
+        <column xsi:type="varchar" name="template_code" length="100" nullable="true" comment="Template Code"/>
+
+        <column xsi:type="tinyint" name="tmp"  default="0" nullable="false" identity="false" comment="Is Temporary"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="unique" referenceId="MT_EMAIL_VAR_TEMPLATE_ID_BLOCK_ID_VAR_KEY_STORE_ID">
+            <column name="template_id"/>
+            <column name="block_id"/>
+            <column name="var_key"/>
+            <column name="store_id"/>
+        </constraint>
+
+        <index referenceId="MT_EMAIL_VAR_HASH" indexType="btree">
+            <column name="hash"/>
+        </index>
+
+        <index referenceId="MT_EMAIL_VAR_TEMPLATE_ID" indexType="btree">
+            <column name="template_id"/>
+        </index>
+
+        <index referenceId="MT_EMAIL_VAR_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+
+    </table>
+
+
+</schema>

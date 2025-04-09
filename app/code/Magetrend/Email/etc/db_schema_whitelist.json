@@ -1,0 +1,37 @@
+{
+    "email_template": {
+        "column": {
+            "store_id": true,
+            "is_mt_email": true,
+            "direction": true,
+            "locale": true,
+            "template_plain_text": true
+        }
+    },
+    "mt_email_var": {
+        "column": {
+            "entity_id": true,
+            "hash": true,
+            "template_id": true,
+            "store_id": true,
+            "block_id": true,
+            "block_name": true,
+            "var_key": true,
+            "var_value": true,
+            "global": true,
+            "is_system_config": true,
+            "is_default": true,
+            "template_code": true,
+            "tmp": true
+        },
+        "index": {
+            "MT_EMAIL_VAR_HASH": true,
+            "MT_EMAIL_VAR_TEMPLATE_ID": true,
+            "MT_EMAIL_VAR_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MT_EMAIL_VAR_TEMPLATE_ID_BLOCK_ID_VAR_KEY_STORE_ID": true
+        }
+    }
+}

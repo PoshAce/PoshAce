@@ -1,0 +1,24 @@
+<div class="mst-feed_feed_export">
+    <script type="text/x-magento-init">
+        <?php echo \Mirasvit\Core\Service\SerializeService::encode($block->getJsConfig()) ?>
+    </script>
+    <div data-bind="scope: 'feed_export'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+
+    <script>
+        require([
+            'jquery',
+            'ko'
+        ], function ($,ko) {
+            $('.mst-feed_feed_export').trigger('contentUpdated');
+            if ($.fn.applyBindings != undefined) {
+                ko.cleanNode(document.querySelector('.mst-feed_feed_export'));
+                $('.mst-feed_feed_export').applyBindings();
+            }
+        })
+
+    </script>
+</div>
+
+

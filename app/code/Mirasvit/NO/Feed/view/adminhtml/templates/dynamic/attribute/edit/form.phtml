@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var \Mirasvit\Feed\Helper\Output $outputHelper
+ */
+$outputHelper = $this->helper('Mirasvit\Feed\Helper\Output');
+
+?>
+<fieldset class="fieldset admin__fieldset">
+    <legend class="legend">
+        <span><?php echo $block->escapeHtml(__('Conditions')) ?></span>
+    </legend>
+</fieldset>
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $.attributes = <?= \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getAttributeOptions($block->getCode())) ?>;
+        $.patternTypes = <?= \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getPatternTypeOptions()) ?>;
+        $.attributeUrl = '<?= $block->escapeUrl($this->getUrl('*/*/attribute')) ?>';
+        $('.entry-edit form').trigger('contentUpdated');
+        if ($.fn.applyBindings != undefined) {
+            $('.entry-edit form').applyBindings();
+        }
+    });
+</script>
+
+<script type="text/x-magento-init">
+    <?php echo \Mirasvit\Core\Service\SerializeService::encode($block->getJsConfig()) ?>
+
+
+</script>
+
+<div data-bind="scope: 'dynamic_attribute'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>

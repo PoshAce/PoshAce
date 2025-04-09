@@ -1,0 +1,121 @@
+<?php
+/**
+ * Mirasvit
+ *
+ * This source file is subject to the Mirasvit Software License, which is available at https://mirasvit.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  Mirasvit
+ * @package   mirasvit/module-feed
+ * @version   1.4.6
+ * @copyright Copyright (C) 2024 Mirasvit (https://mirasvit.com/)
+ */
+
+
+declare(strict_types=1);
+
+namespace Mirasvit\Feed\Repository;
+
+use Magento\Framework\EntityManager\EntityManager;
+use Magento\Framework\ObjectManagerInterface;
+use Mirasvit\Feed\Api\Data\ValidationInterface;
+use Mirasvit\Feed\Api\Data\ValidationInterfaceFactory;
+use Mirasvit\Feed\Service\Validation\AbstractSchemaValidation;
+use Mirasvit\Feed\Model\ResourceModel\Validation\CollectionFactory;
+use Mirasvit\Feed\Validator\ValidatorInterface;
+
+class ValidationRepository
+{
+
+    private $entityManager;
+
+    private $feedValidationFactory;
+
+    private $collectionFactory;
+
+    private $validators;
+
+    private $objectManager;
+
+    public function __construct(
+        ObjectManagerInterface     $objectManager,
+        EntityManager              $entityManager,
+        ValidationInterfaceFactory $feedValidationFactory,
+        CollectionFactory          $collectionFactory,
+                                   $validators = []
+    ) {
+        $this->objectManager         = $objectManager;
+        $this->entityManager         = $entityManager;
+        $this->feedValidationFactory = $feedValidationFactory;
+        $this->collectionFactory     = $collectionFactory;
+        $this->validators            = $validators;
+    }
+
+    public function getCollection()
+    {
+        return $this->collectionFactory->create();
+    }
+
+    public function create(): ValidationInterface
+    {
+        return $this->feedValidationFactory->create();
+    }
+
+    public function get(int $id): ?ValidationInterface
+    {
+        if (isset($this->validationRegistry[$id])) {
+            return $this->validationRegistry[$id];
+        }
+
+        $validation = $this->create();
+        $validation = $this->entityManager->load($validation, $id);
+
+        if ($validation->getId()) {
+            $this->validationRegistry[$id] = $validation;
+        } else {
+            return null;
+        }
+
+        return $validation;
+    }
+
+    public function save(ValidationInterface $model): ValidationInterface
+    {
+        return $this->entityManager->save($model);
+    }
+
+    public function delete(ValidationInterface $model): bool
+    {
+        return $this->entityManager->delete($model);
+    }
+
+    public function getValidators(): array
+    {
+        return $this->validators;
+    }
+
+    public function getValidatorByCode(string $code)
+    {
+        if (isset($this->validators[$code])) {
+            return $this->validators[$code];
+        }
+
+        $validator = false;
+        foreach ($this->validators as $validatorInstance) {
+            if ($validatorInstance->getCode() == $code) {
+                $validator               = $validatorInstance;
+                $this->validators[$code] = $validator;
+                break;
+            }
+        }
+
+        return $validator;
+    }
+
+    public function getSchemaValidationService(string $schemaType): AbstractSchemaValidation
+    {
+        return $this->objectManager->get('Mirasvit\Feed\Service\Validation\\' . ucfirst($schemaType) . 'SchemaValidation');
+    }
+}

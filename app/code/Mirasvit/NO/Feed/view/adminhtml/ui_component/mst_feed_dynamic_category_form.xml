@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mst_feed_dynamic_category_form.mst_feed_dynamic_category_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="Mirasvit\Feed\Ui\Dynamic\Category\Form\Control\BackButton"/>
+            <button name="save_and_continue" class="Mirasvit\Feed\Ui\Dynamic\Category\Form\Control\SaveAndContinueButton"/>
+            <button name="save" class="Mirasvit\Feed\Ui\Dynamic\Category\Form\Control\SaveButton"/>
+        </buttons>
+        <namespace>mst_feed_dynamic_category_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mst_feed_dynamic_category_form.mst_feed_dynamic_category_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="mst_feed_dynamic_category_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mst_feed/dynamic_category/save"/>
+        </settings>
+
+        <dataProvider class="Mirasvit\Feed\Ui\Dynamic\Category\Form\DataProvider" name="mst_feed_dynamic_category_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>mapping_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="dynamic_category">
+        <settings>
+            <label>General Information</label>
+        </settings>
+        <field name="mapping_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-no-html-tags" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </field>
+
+        <fieldset name="mapping_serialized">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="additionalClasses" xsi:type="string">mst-feed_category_mapping</item>
+                </item>
+            </argument>
+            <settings>
+                <label/>
+            </settings>
+
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Dynamic\Category\Form\Block\Form</argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="showSpinner" xsi:type="boolean">true</item>
+                        <item name="additionalClasses" xsi:type="string">mst-feed_category_mapping</item>
+                    </item>
+                </argument>
+            </htmlContent>
+        </fieldset>
+    </fieldset>
+</form>

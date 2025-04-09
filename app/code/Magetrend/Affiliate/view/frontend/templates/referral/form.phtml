@@ -1,0 +1,43 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<div class="block block-referral-form">
+    <div class="block-title"><strong><?php echo $block->escapeHtml(__('Generate Link')) ?></strong></div>
+    <div class="block-content">
+        <form action=""
+              method="post"
+              id="form-validate"
+              enctype="multipart/form-data">
+
+            <fieldset class="fieldset">
+                <div class="field taxvat">
+                    <div class="control">
+                        <input type="text" name="url" value="" autocomplete="off"
+                               placeholder="<?php echo $block->escapeHtml(__('Enter url form store')) ?>"
+                               class="input-text" id="affiliate_url">
+                    </div>
+                    <div id="affiliate_link">
+                        <input id="generated_link" name="generated_link" value=""/>
+                        <span class="copy-link"><a href="#" class="copy-to-clipboard">Copy</a></span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "mtafReferralForm": <?php echo $block->getJsonConfig(); ?>
+        }
+    }
+</script>

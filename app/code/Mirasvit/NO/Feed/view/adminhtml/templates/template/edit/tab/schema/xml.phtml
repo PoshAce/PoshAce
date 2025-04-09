@@ -1,0 +1,41 @@
+<?php
+//@codingStandardsIgnoreFile
+
+/** @var \Mirasvit\Feed\Helper\Output $outputHelper */
+$outputHelper = $this->helper('Mirasvit\Feed\Helper\Output');
+
+$libraryInit = [
+    'FeedLibrary' => [
+        'url' => $this->getUrl('mst_feed/feed/library')
+    ]
+];
+?>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+
+        $.attributes = <?php echo \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getAttributeOptions()) ?>;
+        $.modifiers = <?php echo \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getFilterOptions()) ?>;
+        $.patternTypes = <?php echo \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getPatternTypeOptions()) ?>;
+        jQuery('.schema_xml').trigger('contentUpdated');
+        if (jQuery.fn.applyBindings != undefined) {
+            jQuery('.schema_xml').applyBindings();
+        }
+    });
+</script>
+
+<button data-mage-init='<?= \Mirasvit\Core\Service\SerializeService::encode($libraryInit) ?>'
+        class="feed__library-button"
+        onclick="return false;"><i class="fa fa-graduation-cap"></i> Library of patterns
+</button>
+
+
+<div data-bind="scope: 'schema_xml'" class="schema_xml">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+        <?= \Mirasvit\Core\Service\SerializeService::encode($block->getJsConfig()) ?>
+</script>
+

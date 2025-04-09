@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="search_engine_optimization" sortOrder="30">
+        <container name="meta_title_button_container" sortOrder="135">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Category\Edit\Categorybutton</argument>
+            </htmlContent>
+        </container>
+         <container name="meta_keyword_button_container" sortOrder="145">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Category\Edit\Categorykeywordbutton</argument>
+            </htmlContent>
+        </container>
+         <container name="meta_discription_button_container" sortOrder="155">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Category\Edit\Categorydiscriptionbutton</argument>
+            </htmlContent>
+        </container>
+    </fieldset>  
+    <fieldset name="content" sortOrder="10">
+         <container name="discription_button_container" sortOrder="51">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Category\Edit\Categorycontentdiscriptionbutton</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

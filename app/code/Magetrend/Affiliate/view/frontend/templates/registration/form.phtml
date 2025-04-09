@@ -1,0 +1,56 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<?php
+/**
+ * @var \Magetrend\Affiliate\Block\Registration\Form $block
+ */
+?>
+<?php $fields = $block->getFields(); ?>
+<form id="affiliate_application"
+      class="form create account form-create-account"
+      action="<?php echo $block->escapeUrl($block->getPostActionUrl()) ?>"
+      method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+    <input type="hidden" name="back_url" value="<?php echo $block->getBackUrl(); ?>" />
+    <input type="hidden" name="store_id" value="<?php echo $block->getStoreId(); ?>" />
+    <?php echo /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+
+    <fieldset class="fieldset create account"
+              data-hasrequired="<?php echo $block->escapeHtml(__('* Required Fields')) ?>">
+        <legend class="legend"><span><?php echo $block->escapeHtml(__('Affiliate Registration Form')) ?></span></legend>
+        <br>
+        <?php if (!empty($fields)) : ?>
+            <?php foreach ($fields as $name => $field) : ?>
+                <?php echo $block->getFieldHtml($field); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit"
+                    class="action submit primary"
+                    title="<?php echo $block->escapeHtml(__('Send Application')) ?>">
+                <span><?php echo $block->escapeHtml(__('Send Application')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<div id="mtaf_box_subscribe_response_error"></div>
+<div id="mtaf_box_subscribe_response_success"></div>
+
+<script type="text/x-magento-init">
+    {
+        "#affiliate_application": {
+            "validation": {}
+        }
+    }
+</script>

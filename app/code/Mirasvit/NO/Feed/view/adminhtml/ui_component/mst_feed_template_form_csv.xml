@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="componentType" xsi:type="string">form</item>
+        </item>
+    </argument>
+
+    <fieldset name="csv">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Content Settings</item>
+                <item name="componentType" xsi:type="string">fieldset</item>
+            </item>
+        </argument>
+
+
+        <field name="delimiter">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mirasvit\Feed\Model\Config\Source\DelimiterSource</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Fields Delimiter</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="enclosure">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mirasvit\Feed\Model\Config\Source\EnclosureSource</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Fields Enclosure</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+
+
+        <field name="include_header">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Include Header</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="extra_header">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Extra Header</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-no-html-tags" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <htmlContent name="template_content_csv">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Template\Form\Block\Schema\FormCsv</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="additionalClasses" xsi:type="string">mst-feed_template_csv</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+    </fieldset>
+</form>

@@ -1,0 +1,45 @@
+<div class="admin__field magecomp-ai-field magecomp-ai-field10" data-bind="css: $data.additionalClasses, attr: {'data-index': index}, visible: visible">
+    <div class="admin__field-control magecomp-ai-field2">
+        <?php
+		    $controller = $block->getCustomUrl();
+		    echo $block->getButtonHtml();
+		?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(["jquery","mage/mage","mage/loader"],function($,loader) {
+        $("body").on("click",".chatgptcsmmetatitle",function() {
+            $('body').trigger('processStart');
+        if(jQuery("input[name='title']").val()==''){
+            alert('Please Save The Cms Page');
+        }
+
+            var data = new FormData();
+            var type = 'meta_title';
+            var promp1 = jQuery("input[name='title']").val();
+            var promp2 = 'cmspage';
+
+            var payload ={
+                  'form_key': FORM_KEY,
+                  'prompt': promp1 +','+promp2,
+                  'type': type,
+                   'storeid': <?php /* @noEscape */ echo $block->getCurrentUrl(); ?>
+                };
+                
+           var result = true;
+
+             jQuery.ajax({ url: jQuery('#openai_url').val(),data: payload,type: 'POST',}).done(
+                    function (response) {
+                        jQuery("input[name='meta_title']").val(response.result).trigger('change');
+                         $('body').trigger('processStop');   
+                }
+                ).fail(
+                    function (response) {
+                        errorProcessor.process(response);
+                    }
+                );          
+        });
+    });
+</script>
+

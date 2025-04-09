@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © 2017 Codazon, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see \Magento\Customer\Block\Form\Login
+ * @var $block \Magento\Customer\Block\Form\Login
+ */
+?>
+<!-- login style default - wishlist -->
+<?php
+$uniqid = uniqid();
+?>
+<div class="account-info-summary">
+    <div class="info-summary-top">
+       <button type="button" class="action login primary ajax-login-link" name="send" id="send2-67bc465fb55af"><span>Login with OTP</span></button>
+    </div>
+    <div class="info-summary-bottom">
+        <p class="secondary"><span class="create-account-question"><?php echo __('New customer?') ?></span> <a class="create-account-link ajax-register-link" href="#<?php //echo $block->getUrl('customer/account/create'); ?>"><?php echo __('Start Here.') ?></a></p>
+    </div>
+</div>
+
+<script>
+require([
+    'jquery',
+], function($){
+    if ($('#msp-recaptcha-<?= $uniqid ?>-container').length && ($.fn.applyBindings != undefined)) {
+        $('#msp-recaptcha-<?= $uniqid ?>-container').applyBindings();
+    }
+});
+</script>

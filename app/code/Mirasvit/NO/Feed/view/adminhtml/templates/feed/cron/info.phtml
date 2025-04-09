@@ -1,0 +1,16 @@
+<div class="note-feed">
+    <table>
+        <tr>
+            <th align="left">Current Time </th>
+            <td><?php echo $block->escapeHtml($block->getTimeNow()) ?></td>
+        </tr>
+        <tr>
+            <th align="left">Cron Status</th>
+            <td><?php echo $block->escapeHtml($block->getCronStatus()) ?></td>
+        </tr>
+        <tr>
+            <th>Last Feed Cron Run&nbsp;</th>
+            <td><?php echo $block->escapeHtml($block->getLastFeedCron()) ?></td>
+        </tr>
+    </table>
+</div>

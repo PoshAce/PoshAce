@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="mc_pagenotfound" resource="default" engine="innodb" comment="PagenotFound">
+      <column xsi:type="int" name="mc_pagenotfound_id" identity="true" unsigned="true" nullable="false" comment="Entity ID"/>
+      <column xsi:type="int" name="store_id" unsigned="true" nullable="false" comment="Store Id"/>
+      <column xsi:type="text" name="url" comment="URL"/>
+      <column xsi:type="text" name="client_ip" comment="Client Ip"/>
+      <column xsi:type="timestamp" name="creation_date" default="CURRENT_TIMESTAMP" comment="Creation Date"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="mc_pagenotfound_id"/>
+      </constraint>
+   </table>
+</schema>

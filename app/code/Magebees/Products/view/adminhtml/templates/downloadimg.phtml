@@ -1,0 +1,117 @@
+<div id="imgresult"></div>
+<div id="messages"><div class="messages"><div class="message message-notice notice"><div>
+<?php echo __('<b>Note :</b> Generated CSV file is store in <b>"var/import"</b> folder and Images are store in <b>"pub/media/import"</b> folder.')?>
+<br/>
+<?php echo __('Make sure that data encoding in the file is consistent and saved in CSV (comma separated only) with supported encodings (UTF-8 or ANSI).')?>
+</div></div></div></div>
+
+<div id="imguploadPage" class="imguploadPage">
+    <form action="<?php //echo $block->getUrl('*/*/uploadimg') ?>" method="post" id="uploadimg" name="uploadimg" enctype="multipart/form-data">
+        <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+        <div class="headingLabel"><b><?php echo __("Upload File") ?></b></div>
+            <table height="100">
+            <tr>
+                <td width="55%">
+                    <label for="downloadimg"><?php echo __("Select your CSV (Comma Delimited) File : ") ?></label>
+                </td>
+                <td width="55%">
+                    <input type="file" class="required-entry required-entry" id="filename" name="filename"  />
+                </td>
+            </tr>
+            <tr>
+                <td width="55%"></td>
+                <td width="55%">
+                    <button style="width:100%" id="uploadimgbtn" name="uploadimgbtn" class="scalable save primary" type="button" title="Run Profile in Popup" ><span><?php echo __("Download Images and Generate CSV") ?></span></button>
+                </td>
+            </tr>
+            </table>
+    </form>
+    <div id="sample_csv_content">
+        <div class="sample-csv-item">
+            <div class="headingLabel"><b><?php echo __("Sample CSV for Download Images from Live URL") ?></b></div>
+                <a href="https://www.magebees.com/media/mconnect_uploadfiles/import-export-products-magento-2-csv/download_images_sample.csv"> <?php echo __("Download Sample CSV File") ?> </a>
+                
+        </div>
+    </div>
+</div>
+<div id="downloadimg_content" style="text-align:center;"></div>
+<?php $import_url = $block->getUrl('*/*/uploadimg'); ?>
+<script type="text/javascript">
+    require([
+        'jquery',
+		'Magento_Ui/js/modal/modal'
+    ],
+    function(jQuery,modal) {
+		
+		var options = {
+			type: 'popup',
+			responsive: true,
+			innerScroll: true,
+			title: 'Download Images',
+			buttons: [{
+				text: jQuery.mage.__('Close'),
+				class: '',
+				click: function () {
+					this.closeModal();
+					window.location= "<?php echo $this->getUrl('*/*/index') ?>";	
+				}
+			}],
+			
+		};	
+		
+        jQuery('#uploadimg').on('click', '#uploadimgbtn', function(event){
+			
+			//var filename = document.getElementById("filename");
+			var filename = jQuery('#filename').val();
+			if(filename) {
+				var popup = modal(options, jQuery('#downloadimg_content')); //initialize popup
+				jQuery('#downloadimg_content').modal('openModal');
+				jQuery(".action-close").hide();
+				
+				jQuery('#downloadimg_content').html('<img src="<?php echo $this->getViewFileUrl("Magebees_Products::images/loader-1.gif"); ?>" /><br\> Import Process Starts.');
+				
+				importRecursive(1,0,1);
+				
+			}else{
+                alert("Please Upload CSV File");
+            }
+		})
+    });		
+	
+	function importRecursive(next,imported,flag){
+		
+		var importurl = "<?php echo $import_url ?>";
+		var file = document.getElementById("filename");
+		var formData = new FormData();
+		formData.append("filename", file.files[0]);
+		formData.append('form_key', FORM_KEY);
+		formData.append('pointer_next', next);
+		formData.append('flag', flag);
+		var filename = jQuery('#filename').val();
+	
+		jQuery.ajax({
+			url : importurl,
+			showLoader:false,
+			contentType: false,
+			processData: false,
+			data: formData,                         
+			type: 'post',
+			success: function(response){
+
+				var pointer_next = response.pointer_last;
+				imported = imported + response.count;
+					if(response.fail){
+						window.location= "<?php echo $this->getUrl("*/*/index"); ?>";	
+					}else if(!response.no_more){
+						jQuery('#downloadimg_content').html('<img src="<?php echo $this->getViewFileUrl("Magebees_Products::images/loader-1.gif"); ?>" /><br\>'+imported+' <span style="font-size:14px;">Images are Downloaded.</span>');	
+						importRecursive(pointer_next,imported,2);
+					}else{
+						jQuery('#downloadimg_content').html('<p style="font-size:14px;">Images Downloaded Successfully.</p>');
+						setTimeout(function(){jQuery('#downloadimg_content').modal('closeModal');
+						window.location='$this->getUrl("*/*/index")'; }, 5000);
+							
+					}			
+			  }
+		});
+   	}
+</script>

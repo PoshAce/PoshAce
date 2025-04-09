@@ -1,0 +1,45 @@
+<?php
+declare(strict_types=1);
+use Mirasvit\Feed\Service\Feed\StatisticsService;
+
+/**
+ * @var $block \Mirasvit\Feed\Block\Adminhtml\Feed\Edit\Tab\General\Statistics
+ */
+
+$intervals = [7, 14, 30, 50*365];
+?>
+<div class="admin__field field field-statistics " style="margin-left: 8%">
+    <label for="statistics" class="label admin__field-label label-statistic"
+           data-ui-id="adminhtml-feed-edit-tab-general-0-fieldset-element-note-feed-label">
+        <span>Statistics</span>
+    </label>
+    <div class="admin__field-control control">
+        <div id="statistics" class="control-value admin__field-value">
+            <div class="mst-feed_statistics">
+                <table class="admin__table-secondary">
+                    <thead>
+                    <tr>
+                        <th class="text"><?= $block->escapeHtml(__('Period')) ?></th>
+                        <th class="number"><?= $block->escapeHtml(__('Clicks')) ?></th>
+                        <th class="number"><?= $block->escapeHtml(__('Orders')) ?></th>
+                        <th class="number"><?= $block->escapeHtml(__('Revenue')) ?></th>
+                        <th class="number"><?= $block->escapeHtml(__('Revenue per Click')) ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($intervals as $days): ?>
+                        <?php $stats = $block->getStatistics($days); ?>
+                        <tr>
+                            <td class="text"><?= $days == 50*365 ? $block->escapeHtml(__('Lifetime')) : $block->escapeHtml(__(sprintf('Last %s days', $days))) ?></td>
+                            <td class="number"><?= $block->escapeHtml($stats->getData(StatisticsService::CLICKS)) ?></td>
+                            <td class="number"><?= $block->escapeHtml($stats->getData(StatisticsService::ORDERS)) ?></td>
+                            <td class="number money"><?= $block->escapeHtml($block->formatCurrency($stats->getData(StatisticsService::REVENUE))) ?></td>
+                            <td class="number money"><?= $block->escapeHtml($block->formatCurrency($stats->getData(StatisticsService::REVENUE_PER_CLICK))) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mst_feed_import_form.mst_feed_import_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Template Information</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="Mirasvit\Feed\Ui\Template\Form\Control\BackButton"/>
+        </buttons>
+        <namespace>mst_feed_import_form</namespace>
+        <dataScope>data</dataScope>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <deps>
+            <dep>mst_feed_import_form.mst_feed_import_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="mst_feed_import_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mst_feed/import/importAction"/>
+        </settings>
+
+        <dataProvider class="Mirasvit\Feed\Ui\Import\Form\DataProvider" name="mst_feed_import_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="import">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="additionalClasses" xsi:type="string">mst-feed_import</item>
+                <item name="label" xsi:type="string" translate="true">Import Data</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+
+        <field name="import_data" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Select Data to Import</label>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>template</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.import.import.template</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.import.import.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>rule</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.import.import.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.import.import.rule</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="2">
+                            <value>dynamic_attribute</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.import.import.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.import.import.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_attribute</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="3">
+                            <value>dynamic_category</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.import.import.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.import.import.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_category</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="4">
+                            <value>dynamic_variable</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.import.import.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.import.import.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.import.import.dynamic_variable</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\ImportEntitiesSource"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="template" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Templates</label>
+                <notice translate="true">Templates import path: [Magento root dir]/vendor/mirasvit/module-feed/src/Feed/Setup/data/template</notice>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\TemplateSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="rule" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Filters</label>
+                <notice translate="true">Filters import path: [Magento root dir]/pub/media/feed/rule</notice>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\RuleSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="dynamic_attribute" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dynamic Attribute</label>
+                <notice translate="true">Dynamic Attributes import path: [Magento root dir]/pub/media/feed/dynamic/attribute</notice>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\Dynamic\AttributeSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="dynamic_category" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dynamic Categories</label>
+                <notice translate="true">Dynamic Categories import path: [Magento root dir]/pub/media/feed/dynamic/category</notice>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\Dynamic\CategorySource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="dynamic_variable" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dynamic Variables</label>
+                <notice translate="true">Dynamic Variables import path: [Magento root dir]/pub/media/feed/dynamic/variable</notice>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\Dynamic\VariableSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <button name="import_button" component="Mirasvit_Feed/js/import/button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="buttonClasses" xsi:type="string">mst_feed_import_button</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.ns }</item>
+                            <item name="params" xsi:type="array">
+                                <item name="path" xsi:type="url" path="*/*/importAction"/>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <displayAsLink>false</displayAsLink>
+                <title translate="true">Import Data</title>
+            </settings>
+        </button>
+
+    </fieldset>
+
+    <fieldset name="export">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="additionalClasses" xsi:type="string">mst-feed_import</item>
+                <item name="label" xsi:type="string" translate="true">Export Data</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+
+        <field name="export_data" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Select Data to Export</label>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>template</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.export.export.template</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.export.export.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>rule</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.export.export.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.export.export.rule</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="2">
+                            <value>dynamic_attribute</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.export.export.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.export.export.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_attribute</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="3">
+                            <value>dynamic_category</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.export.export.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.export.export.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_category</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_variable</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="4">
+                            <value>dynamic_variable</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mst_feed_import_form.areas.export.export.template</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mst_feed_import_form.areas.export.export.rule</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_attribute</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_category</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>mst_feed_import_form.areas.export.export.dynamic_variable</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\ImportEntitiesSource"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="template" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Templates</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\TemplateCollectionSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="rule" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Filters</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\ResourceModel\Rule\Collection"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="dynamic_attribute" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dynamic Attribute</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\ResourceModel\Dynamic\Attribute\Collection"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="dynamic_category" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dynamic Categories</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\ResourceModel\Dynamic\Category\Collection"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="dynamic_variable" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Dynamic Variables</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\ResourceModel\Dynamic\Variable\Collection"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <button name="export_button" component="Mirasvit_Feed/js/import/button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="buttonClasses" xsi:type="string">mst_feed_import_button</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.ns }</item>
+                            <item name="params" xsi:type="array">
+                                <item name="path" xsi:type="url" path="*/*/exportAction"/>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <displayAsLink>false</displayAsLink>
+                <title translate="true">Export Data</title>
+            </settings>
+        </button>
+    </fieldset>
+</form>

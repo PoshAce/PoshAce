@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mst_feed_template_form.mst_feed_template_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Template Information</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="Mirasvit\Feed\Ui\Template\Form\Control\SaveAndContinueButton"/>
+            <button name="save" class="Mirasvit\Feed\Ui\Template\Form\Control\SaveButton"/>
+            <button name="export" class="Mirasvit\Feed\Ui\Template\Form\Control\ExportButton"/>
+            <button name="delete" class="Mirasvit\Feed\Ui\Template\Form\Control\DeleteButton"/>
+            <button name="back" class="Mirasvit\Feed\Ui\Template\Form\Control\BackButton"/>
+        </buttons>
+        <namespace>mst_feed_template_form</namespace>
+        <dataScope>data</dataScope>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <deps>
+            <dep>mst_feed_template_form.mst_feed_template_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="mst_feed_template_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mst_feed/template/save"/>
+        </settings>
+
+        <dataProvider class="Mirasvit\Feed\Ui\Template\Form\DataProvider" name="mst_feed_template_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>template_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Template Information</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="template_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+
+        <field name="name" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="type" sortOrder="50" formElement="select">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <imports>
+                    <link name="disabled">${ $.provider }:data.general.type_disabled</link>
+                </imports>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\TypeSource"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

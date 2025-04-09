@@ -1,0 +1,22 @@
+<!--@subject {{trans "Registration Confirmation "}} @-->
+<!--@vars {
+
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">Hello {{trans "%affiliate_firstname," affiliate_firstname=$affiliate.getFirstname()}}</p>
+<p>
+    {{trans "Thank you for joining to our %store_name affiliate program." store_name=$store.getFrontendName()}}
+    {{trans "We have received your request and will review it soon."}}
+</p>
+<p>
+    {{trans "Once your request form will be reviewed, we will send you an email with the instruction how to finish to create an affiliate account."}}
+</p>
+<p>
+    {{trans 'If you have questions, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}{{depend store_phone}} {{trans 'or call us at <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}{{/depend}}.
+    {{depend store_hours}}
+    {{trans 'Our hours are <span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}
+    {{/depend}}
+</p>
+
+{{template config_path="design/email/footer_template"}}

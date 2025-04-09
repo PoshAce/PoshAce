@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="formkey"/>
+    <update handle="affiliate_account_block"/>
+    <head>
+        <css src="Magetrend_Affiliate::css/adminhtml.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magetrend\Affiliate\Block\Adminhtml\Account" name="adminhtml.affiliate.account.container"/>
+            <block class="Magetrend\Affiliate\Block\Adminhtml\Widget\Slide" name="affiliate_account_view_form" template="Magetrend_Affiliate::widget/slide.phtml">
+                <arguments>
+                    <argument name="title" xsi:type="string">New Affiliate Application</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+
+            <block class="Magetrend\Affiliate\Block\Customer\Delimiter"
+                   name="customer-account-navigation-delimiter-4"
+                   after="customer-account-navigation-delimiter-3"
+                   template="Magetrend_Affiliate::customer/delimiter.phtml"
+                   before="demo-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">-900</argument>
+                </arguments>
+            </block>
+
+            <block class="Magetrend\Affiliate\Block\Customer\Link" name="affiliate.menu.dashboard" as="affiliate-dashboard">
+                <arguments>
+                    <argument name="path" xsi:type="string">affiliate/account</argument>
+                    <argument name="label" xsi:type="string">Affiliate Dashboard</argument>
+                    <argument name="sortOrder" xsi:type="number">-910</argument>
+                </arguments>
+            </block>
+
+            <block class="Magetrend\Affiliate\Block\Customer\Link" name="affiliate.menu.balance" as="affiliate-balance-index">
+                <arguments>
+                    <argument name="path" xsi:type="string">affiliate/balance</argument>
+                    <argument name="label" xsi:type="string">Balance</argument>
+                    <argument name="sortOrder" xsi:type="number">-915</argument>
+                </arguments>
+            </block>
+
+            <block class="Magetrend\Affiliate\Block\Customer\Link" name="affiliate.menu.withdrawal" as="affiliate-withdrawal-index">
+                <arguments>
+                    <argument name="path" xsi:type="string">affiliate/withdrawal</argument>
+                    <argument name="label" xsi:type="string">Withdrawals</argument>
+                    <argument name="sortOrder" xsi:type="number">-930</argument>
+                </arguments>
+            </block>
+
+            <block class="Magetrend\Affiliate\Block\Customer\Link" name="affiliate.menu.report.order" as="affiliate-order-report">
+                <arguments>
+                    <argument name="path" xsi:type="string">affiliate/report/order</argument>
+                    <argument name="label" xsi:type="string">Orders Report</argument>
+                    <argument name="sortOrder" xsi:type="number">-935</argument>
+                </arguments>
+            </block>
+
+            <block class="Magetrend\Affiliate\Block\Customer\Link" name="affiliate.menu.report.click" as="affiliate-click-report">
+                <arguments>
+                    <argument name="path" xsi:type="string">affiliate/report/click</argument>
+                    <argument name="label" xsi:type="string">Clicks Report</argument>
+                    <argument name="sortOrder" xsi:type="number">-940</argument>
+                </arguments>
+            </block>
+
+            <block class="Magetrend\Affiliate\Block\Customer\Link" name="affiliate.menu.settings" as="affiliate-settings">
+                <arguments>
+                    <argument name="path" xsi:type="string">affiliate/account/settings</argument>
+                    <argument name="label" xsi:type="string">Affiliate Settings</argument>
+                    <argument name="sortOrder" xsi:type="number">-950</argument>
+                </arguments>
+            </block>
+
+
+        </referenceBlock>
+    </body>
+</page>

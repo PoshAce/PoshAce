@@ -1,0 +1,24 @@
+Magecomp,Magecomp
+Pagenotfound,Pagenotfound
+"404 Notifications","404 Notifications"
+"Hello Admin","Hello Admin"
+"You have got one more 404 page with following details:","You have got one more 404 page with following details:"
+"Requested URL : ","Requested URL : "
+"Client IP : ","Client IP : "
+"Requested Date : ","Requested Date : "
+"Send Emails To","Send Emails To"
+"Email Sender","Email Sender"
+"Email Template","Email Template"
+"Home Page Redirect Settings","Home Page Redirect Settings"
+"Home Page Redirect","Home Page Redirect"
+"CMS No Route Page","CMS No Route Page"
+20,20
+30,30
+50,50
+100,100
+200,200
+ID,ID
+"Store View","Store View"
+URL,URL
+"Client IP","Client IP"
+Date,Date

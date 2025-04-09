@@ -1,0 +1,37 @@
+{
+    "name": "magentiz/module-advanced-smtp",
+    "description": "Magentiz_AdvancedSmtp Extension, advanced-smtp for magento 2",
+    "require": {
+        "php": "~5.6.5 || >=7.0",
+        "mageplaza/module-smtp": "@stable"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+          "name": "Magentiz",
+          "email": "info@magentiz.com",
+          "homepage": "https://magentiz.com",
+          "role": "Technical Support"
+        }
+    ],
+    "keywords": [
+      "magento 2",
+      "magento 2 advanced-smtp",
+      "magento advanced-smtp",
+      "advanced-smt",
+      "awsses",
+      "magentiz",
+      "magentiz_advancedsmtp"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Magentiz\\AdvancedSmtp\\": ""
+        }
+    }
+}

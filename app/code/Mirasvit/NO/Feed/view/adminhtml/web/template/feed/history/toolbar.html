@@ -1,0 +1,14 @@
+<div class="admin__data-grid-header" afterRender="$data.setToolbarNode">
+    <div class="admin__data-grid-header-row">
+        <div class="admin__data-grid-actions-wrap" each="getRegion('dataGridActions')" render=""></div>
+        <each args="getRegion('dataGridFilters')" render=""></each>
+    </div>
+    <div class="admin__data-grid-header-row row">
+        <div class="row" ko-scope="requestChild('listing_paging')">
+            <div class="" render="totalTmpl"></div>
+            <div class="feed__pager" render=""></div>
+        </div>
+    </div>
+</div>
+
+<render args="stickyTmpl" if="$data.sticky"></render>

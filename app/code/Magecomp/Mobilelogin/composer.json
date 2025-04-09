@@ -1,0 +1,29 @@
+{
+    "name": "magecomp/magento-2-mobile-otp-login",
+    "description": "Magento 2 Mobile OTP Login Extension",
+    "require": {
+        "php": "~5.5.0||~5.6.0||~7.0.0||~7.1.0||~7.2.0||~7.3.0||~7.4.0||~8.1.0",
+        "magecomp/module-mobileloginmsg91":  ">=1.0.1",
+        "magecomp/module-mobilelogintwilio": ">=1.0.1"
+    },
+    "type": "magento2-module",
+    "version": "3.0.9",
+    "license": [
+        "Commercial"
+    ],
+    "authors": [
+        {
+            "name": "Magecomp",
+            "email": "support@magecomp.com",
+            "homepage": "https://magecomp.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magecomp\\Mobilelogin\\": ""
+        }
+    }
+}

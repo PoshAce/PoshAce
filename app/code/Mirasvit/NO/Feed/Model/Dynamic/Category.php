@@ -1,0 +1,162 @@
+<?php
+/**
+ * Mirasvit
+ *
+ * This source file is subject to the Mirasvit Software License, which is available at https://mirasvit.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  Mirasvit
+ * @package   mirasvit/module-feed
+ * @version   1.4.6
+ * @copyright Copyright (C) 2024 Mirasvit (https://mirasvit.com/)
+ */
+
+
+declare(strict_types=1);
+
+namespace Mirasvit\Feed\Model\Dynamic;
+
+use Magento\Catalog\Model\CategoryFactory as CatalogCategoryFactory;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
+
+/**
+ * @method string getName()
+ * @method string getCode()
+ */
+class Category extends AbstractModel
+{
+    protected $mapping;
+
+    protected $assocMapping;
+
+    protected $categoryFactory;
+
+    public function __construct(
+        CatalogCategoryFactory $categoryFactory,
+        Context                $context,
+        Registry               $registry
+    ) {
+        $this->categoryFactory = $categoryFactory;
+
+        parent::__construct($context, $registry);
+    }
+
+    protected function _construct()
+    {
+        $this->_init('Mirasvit\Feed\Model\ResourceModel\Dynamic\Category');
+    }
+
+    public function getMapping(): ?array
+    {
+        if ($this->mapping == null) {
+            $this->buildMapping();
+        }
+
+        return $this->mapping;
+    }
+
+    public function getAssocMapping(): ?array
+    {
+        if ($this->assocMapping == null) {
+            foreach ($this->getMapping() as $map) {
+                $this->assocMapping[$map['category_id']] = $map;
+            }
+        }
+
+        return $this->assocMapping;
+    }
+
+    /**
+     * Build mapping
+     *
+     * @param int $parentId
+     *
+     * @return void
+     */
+    protected function buildMapping(int $parentId = 0)
+    {
+        $userMapping = $this->getData('mapping');
+
+        $collection = $this->categoryFactory->create()
+            ->getCollection()
+            ->addAttributeToSelect('name')
+            ->addAttributeToSelect('children_count')
+            ->addAttributeToFilter('parent_id', $parentId)
+            ->setOrder('position', 'asc')
+            ->load();
+
+        /** @var \Magento\Catalog\Model\Category $category */
+        foreach ($collection as $category) {
+            $categoryId = $category->getId();
+
+            if (isset($userMapping[$categoryId])) {
+                $map = $userMapping[$categoryId];
+            } else {
+                $map = '';
+            }
+
+            if ($category->getName() || $category->getLevel() == 0) {
+                $this->mapping[] = [
+                    'category_id' => (int)$categoryId,
+                    'name'        => $category->getName() ? $category->getName() : __('Root Category')->__toString(),
+                    'map'         => $map,
+                    'level'       => $category->getLevel(),
+                    'path'        => $category->getPath(),
+                    'parent_id'   => $category->getParentId(),
+                    'has_childs'  => $category->getChildrenCount() ? true : false,
+                ];
+            }
+
+            if ($category->getChildrenCount()) {
+                $this->buildMapping((int)$category->getId());
+            }
+        }
+    }
+
+    public function getMappingValue(int $categoryId): string
+    {
+        $result = '';
+
+        $mapping = $this->getAssocMapping();
+
+        if (isset($mapping[$categoryId])) {
+            $map = $mapping[$categoryId];
+
+            if ($map['map'] != '') {
+                $result = $map['map'];
+            } else {
+                $path = explode('/', $map['path']);
+                $path = array_reverse($path);
+                foreach ($path as $id) {
+                    if (isset($mapping[$id])) {
+                        $parentMap = $mapping[$id];
+
+                        if ($parentMap['map'] != '') {
+
+                            $result = $parentMap['map'];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    public function getRowsToExport(): array
+    {
+        $array = [
+            'name',
+            'type',
+            'mapping_serialized',
+            'mapping',
+        ];
+
+        return $array;
+    }
+}

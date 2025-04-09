@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mst_feed_feed_history_listing.mst_feed_feed_history_listing_data_source</item>
+        </item>
+    </argument>
+
+    <settings>
+        <spinner>history_columns</spinner>
+        <deps>
+            <dep>mst_feed_feed_history_listing.mst_feed_feed_history_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="mst_feed_feed_history_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">history_id</param>
+            </storageConfig>
+        </settings>
+        <dataProvider class="Mirasvit\Feed\Ui\Feed\Form\History\DataProvider" name="mst_feed_feed_history_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>history_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top" template="Mirasvit_Feed/feed/history/toolbar">
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"  template="Mirasvit_Feed/feed/history/filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="history_columns">
+        <column name="created_at" sortOrder="130">
+            <settings>
+                <filter>dateRange</filter>
+                <label translate="true">Created At</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="type" sortOrder="170">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Type</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+
+        <column name="title" sortOrder="165">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+            </settings>
+        </column>
+
+        <column name="message" sortOrder="180">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Message</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

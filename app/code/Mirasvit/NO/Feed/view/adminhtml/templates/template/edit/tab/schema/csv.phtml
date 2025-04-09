@@ -1,0 +1,44 @@
+<?php
+//@codingStandardsIgnoreFile
+
+/** @var \Mirasvit\Feed\Helper\Output $outputHelper */
+$outputHelper = $this->helper('Mirasvit\Feed\Helper\Output');
+
+$libraryInit = [
+    'FeedLibrary' => [
+        'url' => $this->getUrl('mst_feed/feed/library')
+    ]
+];
+
+$attributes = $outputHelper->getAttributeOptions();
+$attributesCount = $outputHelper->getAttributesCount($attributes);
+?>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $.attributes = <?php echo \Mirasvit\Core\Service\SerializeService::encode($attributes) ?>;
+        $.attributesCount = <?php echo $attributesCount ?>;
+        $.modifiers = <?php echo \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getFilterOptions()) ?>;
+        $.validators = <?php echo \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getValidatorOptions()) ?>;
+        $.patternTypes = <?php echo \Mirasvit\Core\Service\SerializeService::encode($outputHelper->getPatternTypeOptions()) ?>;
+        jQuery('.schema_csv').trigger('contentUpdated');
+        if (jQuery.fn.applyBindings != undefined) {
+            jQuery('.schema_csv').applyBindings();
+        }
+    });
+</script>
+
+
+<button data-mage-init=' <?= \Mirasvit\Core\Service\SerializeService::encode($libraryInit) ?>'
+        class="feed__library-button"
+        onclick="return false;"><i class="fa fa-graduation-cap"></i> Library of patterns
+</button>
+<div data-bind="scope:'schema_csv'" class="schema_csv">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    <?= \Mirasvit\Core\Service\SerializeService::encode($block->getJsConfig()) ?>
+</script>
+

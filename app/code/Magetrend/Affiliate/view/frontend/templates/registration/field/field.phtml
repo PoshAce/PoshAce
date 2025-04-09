@@ -1,0 +1,33 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<div class="field<?php echo $block->getIsRequire()?' required':'';?>">
+    <label for="mtaf_field_<?php echo (int)$block->getName();?>" class="label">
+        <span><?php echo $block->getLabel(); ?></span>
+    </label>
+    <div class="control">
+        <input
+
+                name="<?php echo $block->escapeHtml($block->getName());?>"
+                type="text"
+                data-field-name="<?php echo $block->escapeHtml($block->getLabel())?>"
+                value=""
+                class="<?php echo $block->getClass();?>"
+                <?php if ($block->getName() == 'email' && $block->getIsRequire()) : ?>
+                    data-validate="{required:true, 'validate-email':true}"
+                <?php endif; ?>
+                <?php if ($block->getName() != 'email' && $block->getIsRequire()) : ?>
+                    data-validate="{required:true}"
+                <?php endif; ?>
+                id="mtaf_field_<?php echo $block->getName();?>" />
+    </div>
+</div>
+

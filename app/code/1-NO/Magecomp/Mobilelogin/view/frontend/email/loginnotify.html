@@ -1,0 +1,14 @@
+<!--@subject {{var subject|raw }}@-->
+<!--@vars
+{"var ip":"ip",
+"var datetime":"datetime",
+"var email":"email",
+"var browser":"browser",
+}
+@-->
+{{template config_path="design/email/header_template"}}
+<p>Ip: {{var ip}}</p>
+<p>Email {{var email}}</p>
+<p>Datetime {{var datetime}}</p>
+<p>Browser {{var browser}}</p>
+{{template config_path="design/email/footer_template"}}

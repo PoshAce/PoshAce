@@ -1,0 +1,63 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<?php
+$account = $block->getAccount();
+?>
+<form class="form form-edit-account referral-account"
+      action="<?php echo $block->escapeUrl($block->getUrl('affiliate/account/settingsPost')) ?>"
+      method="post" id="form-validate"
+      enctype="multipart/form-data"
+      data-hasrequired="<?php echo $block->escapeHtml(__('* Required Fields')) ?>" autocomplete="off">
+    <fieldset class="fieldset info">
+        <?php echo $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span><?php echo $block->escapeHtml(__('Payment Settings')) ?></span></legend><br>
+        <div class="field info required">
+            <label class="label" for="paypal_account_email">
+                <span><?php echo $block->escapeHtml(__('Paypal Account Email')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text"
+                       id="paypal_account_email" 
+                       name="account[paypal_account_email]"
+                       value="<?php echo $account->getPaypalAccountEmail(); ?>"
+                       title="<?php echo $block->escapeHtml(__('Paypal Account Email')) ?>"
+                       class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action save primary" title="<?php echo $block->escapeHtml(__('Save')) ?>">
+                <span><?php echo $block->escapeHtml(__('Save')) ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>">
+                <span><?php echo $block->escapeHtml(__('Go back')) ?></span>
+            </a>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    require([
+        "jquery",
+        "mage/mage"
+    ], function($){
+        var dataForm = $('#form-validate');
+        dataForm.mage('validation', {
+            ignore: ':hidden'
+        });
+    });
+</script>
+

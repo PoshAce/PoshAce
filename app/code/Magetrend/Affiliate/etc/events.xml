@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="checkout_submit_all_after">
+        <observer name="mtaf_checkout_submit_all_after" instance="Magetrend\Affiliate\Observer\RecordNewOrder" />
+    </event>
+
+    <event name="sales_order_save_after">
+        <observer name="mtaf_sales_order_save_after" instance="Magetrend\Affiliate\Observer\Sales\Model\Order\SaveAfter" />
+    </event>
+
+    <event name="sales_order_invoice_save_after">
+        <observer name="mtaf_sales_order_invoice_save_after" instance="Magetrend\Affiliate\Observer\Sales\Model\Invoice\SaveAfter" />
+    </event>
+
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="mtaf_sales_order_creditmemo_save_after" instance="Magetrend\Affiliate\Observer\Sales\Model\Creditmemo\SaveAfter" />
+    </event>
+
+
+</config>

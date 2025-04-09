@@ -1,0 +1,17 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<input name="<?php echo $block->escapeHtml($block->getName());?>"
+        type="hidden"
+        data-field-name="<?php echo $block->escapeHtml($block->getLabel())?>"
+        value="<?php echo $block->getValue();?>"
+        class="<?php echo $block->getClass();?>"
+        id="mtaf_field_<?php echo $block->getName();?>" />

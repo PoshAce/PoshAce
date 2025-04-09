@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction"
+                    component="Magento_Ui/js/grid/tree-massactions"
+                    class="\Magento\Catalog\Ui\Component\Product\MassAction">
+            <action name="metatitle">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">additem</item>
+                    <item name="label" xsi:type="string" translate="true">AI Meta Title</item>
+                <item name="url" xsi:type="url" path="chatgptaicontentpro/generate/Bulkmetatitle"/>
+                  </item>
+            </argument>
+            </action>
+            <action name="metakeywords">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">additem1</item>
+                    <item name="label" xsi:type="string" translate="true">AI Meta Keywords</item>
+                <item name="url" xsi:type="url" path="chatgptaicontentpro/generate/Bulkmetakeywords"/>
+                  </item>
+            </argument>
+            </action>
+            <action name="metadiscription">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">additem2</item>
+                    <item name="label" xsi:type="string" translate="true">AI Meta Description</item>
+                <item name="url" xsi:type="url" path="chatgptaicontentpro/generate/Bulkmetadiscription"/>
+                  </item>
+            </argument>
+            </action>
+            <action name="alttext">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">additem3</item>
+                    <item name="label" xsi:type="string" translate="true">AI Alt Text</item>
+                <item name="url" xsi:type="url" path="chatgptaicontentpro/generate/Bulkalttext"/>
+                  </item>
+            </argument>
+            </action>
+               <action name="discription">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">additem4</item>
+                    <item name="label" xsi:type="string" translate="true">AI Description</item>
+                <item name="url" xsi:type="url" path="chatgptaicontentpro/generate/Bulkdiscription"/>
+                  </item>
+            </argument>
+            </action>
+               <action name="shortdiscription">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="type" xsi:type="string">additem5</item>
+                    <item name="label" xsi:type="string" translate="true">AI Short Description</item>
+                <item name="url" xsi:type="url" path="chatgptaicontentpro/generate/Bulkshortdiscription"/>
+                  </item>
+            </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+</listing>

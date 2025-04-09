@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magecomp_pagenotfound_grid_data_source" xsi:type="string">Magecomp\Pagenotfound\Model\ResourceModel\Pagenotfound\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magecomp\Pagenotfound\Model\ResourceModel\Pagenotfound\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mc_pagenotfound</argument>
+            <argument name="resourceModel" xsi:type="string">Magecomp\Pagenotfound\Model\ResourceModel\Pagenotfound</argument>
+        </arguments>
+    </virtualType>
+</config>

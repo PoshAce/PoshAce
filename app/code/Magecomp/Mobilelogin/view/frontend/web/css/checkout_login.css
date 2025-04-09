@@ -1,0 +1,11 @@
+.customer-login-popup.ultimate .modal-inner-wrap {
+
+	width: 800px !important;
+}
+.checkout-index-index .modal-popup:not(.agreements-modal):not(.popup-authentication) .modal-inner-wrap {
+max-width:792px !important;
+}
+.modals-overlay
+{
+z-index: 900 !important;
+}

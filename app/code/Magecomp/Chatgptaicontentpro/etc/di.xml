@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magecomp\Chatgptaicontentpro\Model\CompletionConfig">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="0" xsi:type="object">Magecomp\Chatgptaicontentpro\Model\CompletionRequest\MetaDescription</item>
+                <item name="1" xsi:type="object">Magecomp\Chatgptaicontentpro\Model\CompletionRequest\MetaKeywords</item>
+                <item name="2" xsi:type="object">Magecomp\Chatgptaicontentpro\Model\CompletionRequest\MetaTitle</item>
+                <item name="3" xsi:type="object">Magecomp\Chatgptaicontentpro\Model\CompletionRequest\ShortDescription</item>
+                <item name="4" xsi:type="object">Magecomp\Chatgptaicontentpro\Model\CompletionRequest\Description</item>
+                <item name="5" xsi:type="object">Magecomp\Chatgptaicontentpro\Model\CompletionRequest\Alttages</item>
+            </argument>
+        </arguments>
+        </type>
+</config>

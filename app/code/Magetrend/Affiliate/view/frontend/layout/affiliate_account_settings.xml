@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>Affiliate Dashboard</title>
+        <css src="Magetrend_Affiliate::css/affiliate.css"/>
+    </head>
+
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Affiliate Settings</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magetrend\Affiliate\Block\Account\Settings"
+                   name="affiliate_settings_edit"
+                   template="Magetrend_Affiliate::account/settings.phtml"
+                   cacheable="false">
+                <container name="form.additional.info" as="form_additional_info"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

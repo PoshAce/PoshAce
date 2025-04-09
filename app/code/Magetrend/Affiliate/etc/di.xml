@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magetrend\Affiliate\Api\RecordInterface"
+                type="Magetrend\Affiliate\Model\Api\Record" />
+
+    <preference for="Magetrend\Affiliate\Api\AccountInterface"
+                type="Magetrend\Affiliate\Model\Api\Account" />
+
+    <type name="Magento\Customer\Model\EmailNotification">
+        <plugin name="magetrend-customer-email-notification" type="Magetrend\Affiliate\Plugin\Customer\Model\EmailNotification" sortOrder="10"/>
+    </type>
+</config>

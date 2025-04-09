@@ -1,0 +1,24 @@
+<?php
+$ftpValidator = [
+        'ftpValidator' => [
+            'url' => $this->getUrl('mst_feed/feed/validateFtp')
+    ]
+];
+?>
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $('.feed__ftp-button').trigger('contentUpdated');
+        if ($.fn.applyBindings != undefined) {
+            $('.feed__ftp-button').applyBindings();
+        }
+    });
+</script>
+<?= $block->getBlockHtml('formkey')?>
+<button data-mage-init=' <?= \Mirasvit\Core\Service\SerializeService::encode($ftpValidator) ?>'
+        class="feed__ftp-button action-default scalable secondary central" style=" margin: 0 auto;
+  display: block;"
+        onclick="return false;">Test connection
+</button>

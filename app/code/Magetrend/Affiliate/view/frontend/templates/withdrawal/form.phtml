@@ -1,0 +1,45 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<?php
+/**
+ * @var \Magetrend\Affiliate\Block\Account\Info $block
+ */
+?>
+<div class="block block-referral-form">
+    <div class="block-title"><strong><?php echo $block->escapeHtml(__('Request Withdrawal')) ?></strong></div>
+    <div class="block-content">
+        <form action="<?php echo $block->getUrl('affiliate/withdrawal/post'); ?>"
+              method="post"
+              id="withdrawal_form"
+              enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+
+            <fieldset class="fieldset mtaf-request-payout">
+                <div class="field amount ">
+                    <div class="control">
+                        <input type="text" name="amount" value="" autocomplete="off"
+                               placeholder="<?php echo $block->escapeHtml(__('Enter Amount')) ?>"
+                               class="input-text" id="withdrawal_amount"  data-validate='{"required":true}'>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit"
+                                title="<?php echo $block->escapeHtml(__('Send Request')) ?>"
+                                class="action save primary">
+                            <span><?php echo $block->escapeHtml(__('Send Request')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

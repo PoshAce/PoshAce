@@ -1,0 +1,34 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+
+
+
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();        
+ 
+$categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+ 
+//$appState = $objectManager->get('\Magento\Framework\App\State');
+//$appState->setAreaCode('frontend');
+ 
+//$productId = 10001; // YOUR PRODUCT ID
+//$product = $productRepository->getById($productId);
+ 
+$categoryIds = $product->getCategoryIds();
+ 
+$categories = $categoryCollection->create()
+                                 ->addAttributeToSelect('*')
+                                 ->addIdFilter($categoryIds);
+ 
+foreach ($categories as $category) {
+    echo '<i class="fa fa-star"></i><a href="'.$category->getUrl().'" style="padding:0px 5px 0px 5px">'.$category->getName().'</a>';
+}
+
+/*foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category->getId());
+    echo '<a href="'.$cat->getUrl().'">'.$cat->getName().'</a><i class="fa fa-star"></i>';
+    }*/
+
+?><br>

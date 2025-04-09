@@ -1,0 +1,92 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<?php
+/**
+ * @var \Magetrend\Affiliate\Block\Account\Recent\Click $block
+ */
+?>
+<div class="block block-dashboard-orders">
+    <?php
+    $collection = $block->getCollection();
+    $count = count($collection);
+    ?>
+    <div class="block-title order">
+        <strong><?php echo  /* @escapeNotVerified */ $block->getTitle(); ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if ($count > 0) : ?>
+            <div class="table-wrapper orders-recent">
+                <table class="data table table-order-items recent" id="my-orders-table">
+                    <caption class="table-caption"><?php echo /* @escapeNotVerified */ $block->getTitle(); ?></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col type">
+                            <?php echo  /* @escapeNotVerified */ __('Type') ?>
+                        </th>
+                        <th scope="col" class="col name">
+                            <?php echo  /* @escapeNotVerified */ __('Program Name') ?>
+                        </th>
+                        <th scope="col" class="col descripton">
+                            <?php echo  /* @escapeNotVerified */ __('Description') ?>
+                        </th>
+                        <th scope="col" class="col commissions">
+                            <?php echo  /* @escapeNotVerified */ __('Commissions') ?>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($collection as $record) : ?>
+                        <tr>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Type')) ?>" class="col type">
+                                <?php echo  /* @escapeNotVerified */ $block->getProgramTypeLabel($record->getType()) ?>
+                            </td>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Program Name')) ?>" class="col name">
+                                <?php echo  /* @escapeNotVerified */ $record->getName() ?>
+                            </td>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Description')) ?>" class="col description">
+                                <?php echo  /* @escapeNotVerified */ $record->getDescription() ?>
+                            </td>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Commissions')) ?>" class="col url">
+                                <?php $commission = $block->getCommission($record);  ?>
+                                <?php if (!empty($commission)
+                                    && $record->getType() == \Magetrend\Affiliate\Model\Program::TYPE_PAY_PER_SALE) : ?>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td><b><?php echo __('Tier'); ?></b></td>
+                                            <td><b><?php echo __('Type'); ?></b></td>
+                                            <td><b><?php echo __('Rate'); ?></b></td>
+                                        </tr>
+                                        <?php foreach ($commission as $tier) : ?>
+                                            <tr>
+                                                <td><?php echo $tier['tier']; ?></td>
+                                                <td><?php echo $block->getCommissionTypeLabel($tier['type']); ?></td>
+                                                <td><?php echo $tier['rate']; ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </table>
+                                <?php endif; ?>
+                                <?php if ($record->getType() == \Magetrend\Affiliate\Model\Program::TYPE_PAY_PER_CLICK) : ?>
+                                    <?php echo __('Fixed amount: %1', $block->formatAmount($record->getFixedCommission())); ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else : ?>
+            <div class="message info empty">
+                <span><?php echo  /* @escapeNotVerified */ __('Referral program is not assigned yet.') ?></span>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>Balance</title>
+        <css src="Magetrend_Affiliate::css/affiliate.css"/>
+    </head>
+
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magetrend\Affiliate\Block\Balance\Balance"
+                   name="affiliate.account.info"
+                   as="account-balance"
+                   template="Magetrend_Affiliate::balance/balance.phtml" cacheable="false"/>
+
+            <block class="Magetrend\Affiliate\Block\Balance\Report"
+                   name="content.affiliate.withdrawal.record"
+                   as="account-withdrawal-record"
+                   template="Magetrend_Affiliate::balance/report.phtml" cacheable="false">
+
+                <arguments>
+                    <argument name="title" xsi:type="string">Balance History</argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>
+    </body>
+</page>

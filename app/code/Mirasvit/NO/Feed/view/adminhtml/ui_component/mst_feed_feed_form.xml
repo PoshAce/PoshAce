@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mst_feed_feed_form.mst_feed_feed_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Feed Information</item>
+    </argument>
+
+    <settings>
+        <namespace>mst_feed_feed_form</namespace>
+        <dataScope>data</dataScope>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <buttons>
+            <button name="delivery" class="Mirasvit\Feed\Ui\Feed\Form\Control\DeliveryButton"/>
+            <button name="preview" class="Mirasvit\Feed\Ui\Feed\Form\Control\PreviewButton"/>
+            <button name="generate" class="Mirasvit\Feed\Ui\Feed\Form\Control\GenerateButton"/>
+            <button name="save_and_continue" class="Mirasvit\Feed\Ui\Feed\Form\Control\SaveAndContinueButton"/>
+            <button name="save" class="Mirasvit\Feed\Ui\Feed\Form\Control\SaveButton"/>
+            <button name="delete" class="Mirasvit\Feed\Ui\Feed\Form\Control\DeleteButton"/>
+            <button name="back" class="Mirasvit\Feed\Ui\Feed\Form\Control\BackButton"/>
+        </buttons>
+        <deps>
+            <dep>mst_feed_feed_form.mst_feed_feed_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="mst_feed_feed_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mst_feed/feed/save"/>
+        </settings>
+
+        <dataProvider class="Mirasvit\Feed\Ui\Feed\Form\DataProvider" name="mst_feed_feed_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>feed_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Feed Information</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="feed_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="name" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="filename" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Filename</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="type" sortOrder="50" formElement="select">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <imports>
+                    <link name="disabled">${ $.provider }:data.general.type_disabled</link>
+                </imports>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\TypeSource"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Mirasvit\Feed\Model\Config\Source\StoreSource</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Is Active</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+        <htmlContent name="html_info">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Feed\Form\Block\Info</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+        <htmlContent name="html_statistic">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Feed\Form\Block\Statistics</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+        <htmlContent name="html_export">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Feed\Form\Block\Export</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+    </fieldset>
+</form>

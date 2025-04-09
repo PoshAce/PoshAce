@@ -1,0 +1,35 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<?php $buttons = $block->getButtons(); ?>
+<?php if (!empty($buttons)) : ?>
+    <?php foreach ($buttons as $buttonId => $button) : ?>
+        <?php if (isset($button['url'])) : ?>
+            <a class="<?php echo $button['class'] ?>"
+               href="<?php echo $button['url'] ?>"
+               style="margin-right: 20px">
+                <?php echo $button['label'] ?>
+            </a>
+        <?php endif; ?>
+
+        <?php if (!isset($button['url'])) : ?>
+            <input id="<?php echo $buttonId; ?>"
+                   name="<?php echo $button['name'] ?>"
+                   data-ui-id="adminhtml-account-view-fieldset-element-button-<?php echo $button['name'] ?>"
+                   value="<?php echo $button['label'] ?>"
+                   title="<?php echo $button['label'] ?>"
+                   class="<?php echo $button['class'] ?>"
+                   style="margin-right: 20px"
+                   type="button"/>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+

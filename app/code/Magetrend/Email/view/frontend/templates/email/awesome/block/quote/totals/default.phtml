@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © 2016 MB Vienas bitas. All rights reserved.
+ * @website    www.magetrend.com
+ * @package    MT Email for M2
+ * @author     Edvinas Stulpinas <edwin@magetrend.com>
+ */
+
+//@codingStandardsIgnoreFile
+?>
+<?php $var = $block->getVarModel(); ?>
+<?php $totals = $block->getTotals();  ?>
+
+<?php foreach ($totals as $_code => $_total) : ?>
+    <?php $label = (string)$_total->getTitle();?>
+    <?php $code = $_total->getCode();?>
+    <?php if ($_total->getValue() == 0): continue; endif;?>
+        <tr class="total-<?php echo $code; ?>">
+            <td>&nbsp;</td>
+            <td align="right" <?php echo $var->getHtmlAttribute('style', 'order_totals_table_label_style'.$code, 'text-align: right; padding-right: 10px; padding-bottom: 10px;'); ?>
+                <?php echo $var->getTextEditAttribute('order_totals_table_label_'.$code);?>
+                class="mteditor-color total-color">
+                <?php if ($code == 'discount') : ?>
+                    <?php echo $block->escapeHtml($label);?>
+                <?php else : ?>
+                    <?php echo $var->getValue('order_totals_table_label_'.$code, $block->escapeHtml($label), false);?>
+                <?php endif;?>
+            </td>
+
+            <td align="left" <?php echo $var->getHtmlAttribute('style', 'order_totals_table_value_style'.$code, 'text-align: right; padding-bottom: 10px;'); ?>
+                class="mteditor-color total-color">
+                <?php echo $block->formatValue($_total->getValue()) ?>
+            </td>
+        </tr>
+<?php endforeach?>

@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="componentType" xsi:type="string">form</item>
+        </item>
+    </argument>
+    <settings>
+        <namespace>mst_feed_feed_form</namespace>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+    </settings>
+    <fieldset name="filter">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Filters</item>
+                <item name="componentType" xsi:type="string">fieldset</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="rule_ids" formElement="checkboxset" template="Mirasvit_Feed/feed/checkbox-set">
+            <settings>
+                <dataType>array</dataType>
+                <label translate="true">Filters</label>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <checkboxset>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\ResourceModel\Rule\Collection"/>
+                    </settings>
+                </checkboxset>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <fieldset name="ga">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Google Analytics</item>
+                <item name="componentType" xsi:type="string">fieldset</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="ga_source" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Campaign Source</label>
+                <componentType>field</componentType>
+                <notice translate="true">Required. Referrer: google, newsletter4</notice>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ga_medium" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Campaign Medium</label>
+                <componentType>field</componentType>
+                <notice translate="true">Required. Marketing Medium: cpc, banner, email</notice>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ga_name" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Campaign Name</label>
+                <componentType>field</componentType>
+                <notice translate="true">Required. Product, promo code, or slogan</notice>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ga_term" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Campaign Term</label>
+                <componentType>field</componentType>
+                <notice translate="true">Identify the paid keywords</notice>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ga_content" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Campaign Content</label>
+                <componentType>field</componentType>
+                <notice translate="true">Use to differentiate ads</notice>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="cron">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Scheduled Task</item>
+                <item name="componentType" xsi:type="string">fieldset</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="cron">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Is Active</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="notice" xsi:type="string" translate="true">If enabled, the extension will generate a feed by schedule. To generate feed by schedule, magento cron must be configured.</item>
+                </item>
+            </argument>
+        </field>
+        <field name="cron_day" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Days of the week</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\DaySource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="cron_time" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Time of the day</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\TimeSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <htmlContent name="html_cron">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Feed\Form\Block\Cron</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+    </fieldset>
+
+    <fieldset name="ftp">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">FTP Settings</item>
+                <item name="componentType" xsi:type="string">fieldset</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="ftp">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enabled</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+        <field name="ftp_protocol" sortOrder="50" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Protocol</label>
+                <componentType>field</componentType>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\FtpProtocolSource"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="ftp_host" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Host Name</label>
+                <componentType>field</componentType>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftp_user" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">User Name</label>
+                <componentType>field</componentType>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftp_password" formElement="input">
+            <settings>
+                <elementTmpl>Mirasvit_Feed/feed/password</elementTmpl>
+                <dataType>password</dataType>
+                <label translate="true">Password</label>
+                <componentType>field</componentType>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftp_path" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Path</label>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="ftp_passive_mode">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Passive mode</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                </item>
+            </argument>
+        </field>
+        <htmlContent name="html_ftp_button">
+            <argument name="block" xsi:type="object">Mirasvit\Feed\Ui\Feed\Form\Block\Button</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">htmlContent</item>
+                    <item name="additionalClasses" xsi:type="string">mst-feed_template_csv</item>
+                    <item name="showSpinner" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </htmlContent>
+    </fieldset>
+
+    <fieldset name="email">
+        <settings>
+            <label>Email Notifications</label>
+            <componentType>fieldset</componentType>
+        </settings>
+        <field name="notification_emails" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Email</label>
+                <notice translate="true">Separate emails by commas</notice>
+                <validation>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="notification_events" sortOrder="50" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <componentType>field</componentType>
+                <label translate="true">Notification Events</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Mirasvit\Feed\Model\Config\Source\EmailEventSource"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <fieldset name="report">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="componentType" xsi:type="string">fieldset</item>
+                <item name="label" xsi:type="string" translate="true">Reports Configuration</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="report_enabled">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enable Reports</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="notice" xsi:type="string" translate="true">If enabled, the extension appends two special arguments (ff=, fp=) to product url for track clicks and orders</item>
+                </item>
+            </argument>
+        </field>
+        <field name="fb_metadata_enabled">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enable Facebook Metadata</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="notice" xsi:type="string" translate="true">If enabled, the extension appends some metadata to Google and Facebook Shopping feeds</item>
+                </item>
+            </argument>
+        </field>
+        <field name="filter_fastmode_enabled">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Enable Fast Mode Filtering</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="notice" xsi:type="string" translate="true">If enabled, the speed of the feed filtration process can be significantly increased. May not work with some conditions combinations.</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+
+    <fieldset name="history">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="componentType" xsi:type="string">fieldset</item>
+                <item name="label" xsi:type="string" translate="true">History</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+
+        <insertListing name="history_listing">
+            <settings>
+                <externalProvider>mst_feed_feed_history_listing.mst_feed_feed_history_listing_data_source</externalProvider>
+                <autoRender>true</autoRender>
+                <dataScope>mst_feed_feed_history_listing</dataScope>
+                <ns>mst_feed_feed_history_listing</ns>
+                <realTimeLink>false</realTimeLink>
+                <componentType>insertListing</componentType>
+                <externalFilterMode>true</externalFilterMode>
+                <imports>
+                    <link name="params.feed_id">${ $.provider }:data.general.feed_id</link>
+                    <link name="feed_id">${ $.provider }:data.general.feed_id</link>
+                </imports>
+                <exports>
+                    <link name="feed_id">${ $.externalProvider }:params.feed_id</link>
+                </exports>
+            </settings>
+        </insertListing>
+    </fieldset>
+
+</form>
+

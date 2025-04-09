@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/pub/
+RewriteCond %{REQUEST_URI} !^/setup/
+RewriteCond %{REQUEST_URI} !^/update/
+RewriteCond %{REQUEST_URI} !^/dev/
+RewriteRule .* /pub/$0 [L]
+DirectoryIndex index.php
+
+<FilesMatch \.php$>
+        SetHandler proxy:fcgi://poshaceco-php82
+</FilesMatch>
+AddType application/x-httpd-php82 .php

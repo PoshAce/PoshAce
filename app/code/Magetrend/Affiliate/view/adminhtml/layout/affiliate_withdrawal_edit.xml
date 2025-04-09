@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/layout_generic.xsd">
+    <update handle="formkey"/>
+    <container name="root">
+        <block class="Magetrend\Affiliate\Block\Adminhtml\Withdrawal\Edit" name="affiliate_withdrawal_edit_form"/>
+        <block class="Magetrend\Affiliate\Block\Adminhtml\Withdrawal\Edit\Accordion" name="affiliate_withdrawal_edit_form_accordion"/>
+        <block class="Magento\Backend\Block\Template" name="affiliate_withdrawal_edit_form_accordion_js" template="Magetrend_Affiliate::withdrawal/js.phtml"/>
+    </container>
+</layout>
+       

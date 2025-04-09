@@ -1,0 +1,68 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * PHP version 5.3 or later
+ *
+ * @category MageTrend
+ * @package  Magetend/AbandonedCart
+ * @author   Edvinas Stulpinas <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     https://www.magetrend.com/magento-2-abandoned-cart
+ */
+// @codingStandardsIgnoreFile
+?>
+<table
+    width="100%"
+    style="width:100% !important;"
+    cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td style="font-size: 15px; line-height: 26px; color: #707582;">
+
+            <table width="100%" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;width:100% !important;" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td style="font-size: 15px; line-height: 26px; color: #707582;" >
+
+                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+
+                                <td>
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+
+                                            <td>
+                                                <table width="100%" border="0" cellpadding="0" cellspacing="0"  style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 26px; color: #707582;">
+                                                    <tr>
+                                                        <td align="center" height="135px" valign="bottom">
+                                                            <a href="<?php echo $block->getProductUrl(); ?>">
+                                                                <img width="100%" style="max-width: 180px" src="<?php echo $block->getProductImage(); ?>"/>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center">
+                                                            <b><?php /* @escapeNotVerified */ echo $block->getProductName(); ?></b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center">
+                                                            <?php echo $block->getProductPrice(); ?>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>

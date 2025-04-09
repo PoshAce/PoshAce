@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magecomp" translate="label" sortOrder="100" class="magecomp-logo">
+            <label><![CDATA[]]></label>
+        </tab>
+        <section id="chatgptaicontentpro" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <tab>magecomp</tab>
+            <label>ChatGPT AI Content Generator PRO</label>
+            <resource>Magecomp_Chatgptaicontentpro::chatgptaicontentpro</resource>
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ChatGPT AI Content Generator PRO</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>API Configuration</label>
+                <field id="base_url" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Base URL</label>
+                </field>
+                <field id="token" translate="label" type="obscure" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="chatgptlanguage" translate="label" type="select"
+                        sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Language</label>
+                        <source_model>Magecomp\Chatgptaicontentpro\Model\Config\Language</source_model>
+                </field>
+                <field id="model" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GPT Model</label>
+                    <comment><![CDATA[<a href="https://platform.openai.com/docs/models/model-endpoint-compatibility" target="_blank">https://platform.openai.com/docs/models/model-endpoint-compatibility</a>]]></comment>
+                   <source_model>Magecomp\Chatgptaicontentpro\Model\Config\Modeltype</source_model>
+                   </field>
+                 <field id="shortdis" translate="label" type="text" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Length Of Short Description</label>
+                </field>
+                 <field id="dis" translate="label" type="text" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Length Of Description</label>
+                </field>
+                 <field id="dispromt" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Prompt For Description</label>
+                    <comment><![CDATA[ You can use below variables for the prompt.[Product Name],[Product Category] ]]></comment>
+                </field>
+                <field id="shortdispromt" translate="label" type="textarea" sortOrder="60" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Prompt For Short Description</label>
+                    <comment><![CDATA[ You can use below variables for the prompt.[Product Name],[Product Category] ]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

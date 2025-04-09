@@ -1,0 +1,74 @@
+<?php
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+?>
+<?php
+/**
+ * @var \Magetrend\Affiliate\Block\Account\Recent\Click $block
+ */
+?>
+<div class="block block-dashboard-orders">
+    <?php
+    $collection = $block->getCollection();
+    $viewAll = $block->getViewAll();
+    $count = count($collection);
+    ?>
+    <div class="block-title order">
+        <strong><?php echo  /* @escapeNotVerified */ $block->getTitle(); ?></strong>
+        <?php if ($count > 0 && !empty($viewAll)) : ?>
+            <a class="action view" href="<?php echo  /* @escapeNotVerified */ $block->getUrl($viewAll) ?>">
+                <span><?php echo  /* @escapeNotVerified */ __('View All') ?></span>
+            </a>
+        <?php endif; ?>
+    </div>
+    <div class="block-content">
+        <?php if ($count > 0) : ?>
+            <div class="table-wrapper orders-recent">
+                <table class="data table table-order-items recent" id="my-orders-table">
+                    <caption class="table-caption"><?php echo /* @escapeNotVerified */ $block->getTitle(); ?></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?php echo  /* @escapeNotVerified */ __('ID #') ?></th>
+                        <th scope="col" class="col date"><?php echo  /* @escapeNotVerified */ __('Date') ?></th>
+                        <th scope="col" class="col ip"><?php echo  /* @escapeNotVerified */ __('Ip') ?></th>
+                        <th scope="col" class="col url"><?php echo  /* @escapeNotVerified */ __('Url') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($collection as $record) : ?>
+                        <tr>
+                            <td data-th="<?php echo  $block->escapeHtml(__('ID #')) ?>" class="col id">
+                                <?php echo $record->getId() ?>
+                            </td>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Date')) ?>" class="col date">
+                                <?php echo $block->formatDate($record->getDate(), \IntlDateFormatter::MEDIUM, true) ?>
+                            </td>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Ip')) ?>" class="col ip">
+                                <?php echo  $block->escapeHtml($record->getIp())?>
+                            </td>
+                            <td data-th="<?php echo  $block->escapeHtml(__('Url')) ?>" class="col url">
+                                <?php echo  $record->getUrl() ?>
+                            </td>
+                            
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if ($block->getPagerHtml()) : ?>
+                <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml() ?></div>
+            <?php endif ?>
+        <?php else : ?>
+            <div class="message info empty">
+                <span><?php echo  /* @escapeNotVerified */ __('There are no any clicks.') ?></span>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

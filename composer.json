@@ -1,0 +1,109 @@
+{
+    "name": "magento/project-community-edition",
+    "description": "eCommerce Platform for Growth (Community Edition)",
+    "type": "project",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "laminas/laminas-dependency-plugin": true,
+            "magento/*": true,
+            "php-http/discovery": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "version": "2.4.7-p1",
+    "require": {
+        "aitoc/smtp": "^1.0",
+        "facebook/php-business-sdk": "^21.0",
+        "kunalvarma05/dropbox-php-sdk": "^0.5.0",
+        "magento/composer-dependency-version-audit-plugin": "~0.1",
+        "magento/composer-root-update-plugin": "^2.0.4",
+        "magento/product-community-edition": "2.4.7-p2",
+        "mageplaza/module-better-maintenance": "^4.0",
+        "mageplaza/module-core": "^1.5",
+        "mageplaza/module-google-recaptcha": "^4.0",
+        "mirasvit/module-feed": "*",
+        "razorpay/magento": "^4.1",
+        "razorpay/razorpay": "^2.9",
+        "rmccue/requests": "^2.0",
+        "stripe/stripe-php": "^15.10",
+        "swissup/module-search-mysql-legacy": "^1.1",
+        "twilio/sdk": "^8.3",
+        "yireo/magento2-backend-reindexer": "dev-master",
+        "yireo/magento2-disable-csp": "^1.0",
+        "zf1/zend-exception": "*",
+        "zf1/zend-reflection": "^1.12"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
+        ],
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "psr-0": {
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
+        },
+        "psr-4": {
+            "Magento\\Setup\\": "setup/src/Magento/Setup/"
+        }
+    },
+    "require-dev": {
+        "allure-framework/allure-phpunit": "^2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || ^1.0",
+        "dg/bypass-finals": "^1.4",
+        "friendsofphp/php-cs-fixer": "^3.22",
+        "lusitanian/oauth": "^0.8",
+        "magento/magento-coding-standard": "*",
+        "magento/magento2-functional-testing-framework": "^4.7",
+        "pdepend/pdepend": "^2.10",
+        "phpmd/phpmd": "^2.12",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^9.5",
+        "sebastian/phpcpd": "^6.0",
+        "symfony/finder": "^6.4"
+    },
+    "conflict": {
+        "colinmollenhour/php-redis-session-abstract": "1.6.0",
+        "gene/bluefoot": "*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\PhpStan\\": "dev/tests/static/framework/Magento/PhpStan/",
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": {
+        "magento2-fast-product-images": {
+            "type": "git",
+            "url": "git@github.com:xumulus/magento2-fast-product-images.git"
+        },
+        "mirasvit-pfe2": {
+            "type": "composer",
+            "url": "https://35449:2JISFTXOZ5@packages.mirasvit.com/35449:2JISFTXOZ5/"
+        },
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    },
+    "extra": {
+        "magento-force": "override"
+    }
+}

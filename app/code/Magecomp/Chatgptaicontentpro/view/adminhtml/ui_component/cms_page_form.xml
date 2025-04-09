@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">cms_page_form.page_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Page Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <fieldset name="content" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Content</label>
+        </settings>
+        <field name="content_heading" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Content Heading</label>
+                <dataScope>content_heading</dataScope>
+            </settings>
+        </field>
+        <field name="content" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <label/>
+                <notice translate="true">Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or &#x2325;0 (MacOS)</notice>
+                <dataScope>content</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+        <container name="cms_description_button_container" sortOrder="13">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Cms\Edit\Cmscontentdiscriptionbutton</argument>
+            </htmlContent>
+        </container> 
+    </fieldset>
+    <fieldset name="search_engine_optimisation" sortOrder="20">
+         <field name="meta_title" formElement="input" sortOrder="21">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Title</label>
+                <dataScope>meta_title</dataScope>
+            </settings>
+        </field>
+            <container name="cms_meta_title_button_container" sortOrder="22">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Cms\Edit\Cmsbutton</argument>
+            </htmlContent>
+        </container> 
+         <field name="meta_keywords" formElement="textarea" sortOrder="23">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Keywords</label>
+                <dataScope>meta_keywords</dataScope>
+            </settings>
+        </field>
+        <container name="cms_meta_keywords_button_container" sortOrder="24">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Cms\Edit\Cmskeywordbutton</argument>
+            </htmlContent>
+        </container> 
+      <field name="meta_description" formElement="textarea" sortOrder="25">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Meta Description</label>
+                <dataScope>meta_description</dataScope>
+            </settings>
+        </field>
+        <container name="cms_meta_description_button_container" sortOrder="26">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magecomp\Chatgptaicontentpro\Block\Adminhtml\Cms\Edit\Cmsdiscriptionbutton</argument>
+            </htmlContent>
+        </container> 
+    </fieldset>
+</form>

@@ -1,0 +1,75 @@
+<?php /* @var $block \Creatuity\CustomMaintenance\Block\Adminhtml\Maintenance\Page */ ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title><?php echo $block->getTitle() ?></title>
+    <meta http-equiv="refresh" content="120"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="robots" content="*"/>
+    <meta name="robots" content="noindex, nofollow"/>
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0"/>
+    <link rel="stylesheet" href="<?php echo $block->defaultsUrl('css/styles.css'); ?>" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo $block->defaultsUrl('css/font-awesome.min.css'); ?>"/>
+    <link rel="icon" href="<?php echo $block->defaultsUrl('images/favicon.png'); ?>" type="image/x-icon"/>
+    <link rel="shortcut icon" href="<?php echo $block->defaultsUrl('images/favicon.png'); ?>" type="image/x-icon"/>
+    <script src="<?php echo $block->defaultsUrl('js/countdown.js') ?>"></script>
+</head>
+<body <?php if ($block->getFooterAndHeaderBackgroundColor()): ?><?php echo "style=" . "\"background:" . $block->getFooterAndHeaderBackgroundColor() . "\"" ?><?php endif; ?>>
+<div class="wrapper">
+    <div class="page">
+        <div class="main-container" style="background: #fff;">
+            <div class="main col1-layout" <?php if ($block->getBackgroundColor()): ?><?php echo "style=" . "\"background:" . $block->getBackgroundColor() . "\"" ?><?php endif; ?>>
+                <div id="main" class="col-main">
+                    <div class="logo-container">
+                        <?php if ($block->getLogo()): ?>
+                            <a href="<?php echo $block->url('/'); ?>" title="Magento Commerce" class="logo"><img
+                                        src="<?php echo $block->defaultsUrl('images/'); ?><?php echo $block->getLogo() ?>"
+                                        alt="Magento Commerce"/></a>
+                        <?php endif; ?>
+                    </div>
+                    <?php if ($block->getTitle()): ?>
+                        <div class="page-title <?php if ($block->isTitleAnimationEnabled()): ?><?php echo ' top-down-animation' ?><?php endif; ?>">
+                            <h1 <?php if ($block->getTitleFontColor()): ?><?php echo "style=" . "\"color:" . $block->getTitleFontColor() . "\"" ?><?php endif; ?>><?php echo $block->getTitle() ?></h1>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($block->getNotification()): ?>
+                        <p <?php if ($block->getNotificationFontColor()): ?><?php echo "style=" . "\"color:" . $block->getNotificationFontColor() . "\"" ?><?php endif; ?>><?php echo $block->getNotification() ?></p>
+                    <?php endif; ?>
+                    <div class="counter<?php if ($block->isCounterAnimationEnabled()): ?><?php echo ' animation' ?><?php endif; ?>">
+                        <script src="<?php echo $block->url('/', ['creatuity_maintenance_countdown_data' => '1',]); ?>"
+                                type="text/javascript"></script>
+                    </div>
+                    <?php if ($block->getEmail()): ?>
+                        <div class="contact-us">
+                            <?php if ($block->areTooltipsEnabled() && $block->getEmailTooltip()): ?>
+                                <div class="tooltip"><?php echo $block->getEmailTooltip() ?></div>
+                            <?php endif; ?>
+                            <i class="fa fa-envelope"></i> <a
+                                    href="mailto:<?php echo $block->getEmail() ?>"><?php echo $block->getEmail() ?></a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($block->getPhoneNumber()): ?>
+                        <div class="call-us">
+                            <?php if ($block->areTooltipsEnabled() && $block->getPhoneTooltip()): ?>
+                                <div class="tooltip"><?php echo $block->getPhoneTooltip() ?></div>
+                            <?php endif; ?>
+                            <i class="fa fa-phone"></i><a
+                                    href="tel:<?php echo $block->getPhoneNumber() ?>"><?php echo $block->getPhoneNumber() ?></a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <div class="footer-container">
+            <div class="footer">
+                <?php if ($block->getCopyright()): ?>
+                    <address
+                            class="copyright" <?php if ($block->getCopyrightFontColor()): ?><?php echo "style=" . "\"color:" . $block->getCopyrightFontColor() . "\"" ?><?php endif; ?>><?php echo $block->getCopyright() ?></address>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

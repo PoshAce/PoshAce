@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mobilelogin_otp" resource="default" engine="innodb" comment="Magecomp mobilelogin">
+        <column xsi:type="int" name="id" identity="true" unsigned="true" nullable="false" comment="Code ID"/>
+        <column xsi:type="int" name="website_id" nullable="false" comment="Website Id"/>
+        <column xsi:type="text" name="type" nullable="false" comment="Code Type"/>
+        <column xsi:type="text" name="random_code" nullable="false" comment="Random Code"/>
+        <column xsi:type="text" name="mobile" nullable="false" comment="Mobile Number"/>
+        <column xsi:type="smallint" name="is_verify" nullable="false" default="0" comment="Is verify" />
+        <column xsi:type="timestamp" name="created_time" nullable="false" default="CURRENT_TIMESTAMP" comment="Created Time"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="sms_register_otp" resource="default" engine="innodb" comment="Magecomp mobilelogin registerotp">
+        <column xsi:type="int" name="id" identity="true" unsigned="true" nullable="false" comment="Code ID"/>
+        <column xsi:type="text" name="random_code" comment="Random Code"/>
+        <column xsi:type="date" name="created_time" comment="Created Time"/>
+        <column xsi:type="text" name="mobile" comment="Mobile Number"/>
+        <column xsi:type="int" name="is_verify" comment="Is verify" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="sms_login_otp" resource="default" engine="innodb" comment="Magecomp mobilelogin loginotp">
+        <column xsi:type="int" name="id" identity="true" unsigned="true" nullable="false" comment="Code ID"/>
+        <column xsi:type="text" name="random_code" comment="Random Code"/>
+        <column xsi:type="date" name="created_time" comment="Created Time"/>
+        <column xsi:type="text" name="mobile" comment="Mobile Number"/>
+        <column xsi:type="int" name="is_verify" comment="Is verify" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="sms_forgot_otp" resource="default" engine="innodb" comment="Magecomp mobilelogin forgot otp">
+        <column xsi:type="int" name="id" identity="true" unsigned="true" nullable="false" comment="Code ID"/>
+        <column xsi:type="date" name="created_time" comment="Created Time"/>
+        <column xsi:type="text" name="mobile" comment="Mobile Number"/>
+        <column xsi:type="text" name="email" comment="Customer Email"/>
+        <column xsi:type="text" name="ipaddress" comment="IP Address"/>
+        <column xsi:type="text" name="random_code" comment="Random Code"/>
+        <column xsi:type="int" name="is_verify" comment="Is verify" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,36 @@
+<script>
+    require([
+        'jquery',
+        'prototype',
+    ], function ($) {
+        function function_name() {
+            new Ajax.Request('<?php echo $block->getAjaxUrl(); ?>', {
+                loaderArea: false,
+                asynchronous: true,
+                onCreate: function() {
+                    $('body').loader('show');
+                },
+                onSuccess: function (response) {
+                    $('body').loader('hide');
+                    $(".response_message").addClass('success');
+                    setTimeout(function () {
+                        $('.response_message').removeClass('success');
+                    }, 3000);
+                    if (response.status == 200) {
+                       $(".response_message").text('Mobile numbers are updated !');
+                    }
+                    else {
+                        $(".response_message").text('Something Went Wrong');
+                    }
+                }
+            });
+        }
+
+        $('#update').click(function () {
+            function_name();
+        });
+    });
+</script>
+
+<?php echo $block->getButtonHtml() ?>
+<div class="response_message" style="float: left;width: 100%;"></div>

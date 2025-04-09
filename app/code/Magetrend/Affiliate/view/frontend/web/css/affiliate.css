@@ -1,0 +1,87 @@
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+
+.affiliate-account-index .copy-link {
+    padding-left: 10px;
+}
+
+#affiliate_link {
+    display: none;
+    padding-top: 5px;
+    position: relative;
+}
+
+#generated_link {
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    font-size: 12px;
+}
+
+.block-referral-form input#affiliate_url:focus,
+.block-referral-form input#generated_link:focus {
+    outline: 0;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+#affiliate_link .copy-to-clipboard {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+}
+
+.block-referral-form .box.box-affiliate-account-info {
+    width: 33.333% !important;
+    float: left  !important;;
+    clear: none  !important;;
+}
+
+.mtaf-copy {
+    font-size: 12px;
+}
+
+.account .block .box.box-affiliate-4 {
+    width: 33% !important;
+    float: left !important;
+    clear: none !important;
+}
+
+.mtaf-request-payout .field.amount {
+
+}
+.mtaf-request-payout .field.amount,
+.mtaf-request-payout .actions-toolbar {
+    width: 50%;
+    float: left;
+    clear: none;
+    max-width: 170px;
+    box-sizing: border-box;
+    padding-right: 20px;
+}
+
+.green {
+    color: #00aa00;
+}
+
+.red {
+    color: red;
+}
+.referral-account .actions-toolbar {
+    clear: both;
+}
+
+.limiter {
+    display: inline-block;
+    float: right;
+}

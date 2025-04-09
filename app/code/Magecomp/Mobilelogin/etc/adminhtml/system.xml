@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+        <system>
+            <tab id="magecomp" translate="label" sortOrder="100" class="my-tab">
+                <label><![CDATA[]]></label>
+            </tab>
+            <section id="mobilelogin" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Mobile Login</label>
+                <tab>magecomp</tab>
+                <resource>Magecomp_Mobilelogin::config</resource>
+                <group id="moduleoption" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configuration</label>
+                    <field id="enable" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Mobile Login</label>
+                        <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    </field>
+               </group>
+               <group id="smsgatways" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                <label>SMS Gateway</label>
+                <field id="gateway" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    <label>SMS Gateway</label>
+                    <source_model>Magecomp\Mobilelogin\Model\Config\Gateways</source_model>
+                    <config_path>mobilelogin/smsgatways/gateway</config_path>
+                </field>
+             </group>
+                <group id="generalsettings" translate="label" type="text" sortOrder="20" showInDefault="1"     showInWebsite="1" showInStore="1">
+                    <label>General Settings</label>
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                     <field id="otp" translate="label" type="select"
+                        sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>OTP String Length</label>
+                        <comment><![CDATA[Specify character length for OTP string.]]></comment>
+                         <validate>validate-not-negative-number validate-greater-than-zero required-entry</validate>
+                         <source_model>Magecomp\Mobilelogin\Model\Config\Otplength</source_model>
+                     </field>
+                    <field id="otptype" translate="label" type="select"
+                        sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>OTP String Type</label>
+                        <source_model>Magecomp\Mobilelogin\Model\Config\Otptype</source_model>
+                    </field>
+                    <field id="loginnotify" translate="label" type="select"
+                        sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Send Login Notification Email To User</label>
+                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                     <field id="adminemailtemplate" translate="label" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                      <label>Email Template</label>
+                      <comment>Template for Email you receive</comment>
+                      <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="adminemailsender" translate="label" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                      <label>Email Sender</label>
+                      <comment>Select sender for Email</comment>
+                      <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    </field>
+                </group>
+
+                <group id="testapi" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <depends>
+                        <field id="mobilelogin/moduleoption/enable">1</field>
+                    </depends>
+                    <label>Test SMS API</label>
+                    <field id="testmobile" translate="label" type="text" sortOrder="10" showInDefault="1"
+                           showInWebsite="1" showInStore="1">
+                        <label>Test Mobile Number</label>
+                         <validate>validate-digits</validate>
+                        <comment>
+                            <![CDATA[Put Mobile Number With Country Code. ]]></comment>
+                    </field>
+                    <field id="testmessage" translate="label" type="textarea"
+                           sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Test SMS Text</label>
+                        <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    </field>
+                    <field id="testdltid" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Test DLT Template ID</label>
+                         <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                 <field id="mobilelogin/smsgatways/whichapiusing">dlt</field>
+                        </depends>
+                    </field>
+                     <field id="testcompignid" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Test Campaign ID</label>
+                         <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                <field id="mobilelogin/smsgatways/whichapiusing">campaign</field>
+                        </depends>
+                    </field>
+                    <field id="send" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                           showInStore="0">
+                        <label></label>
+                        <frontend_model>Magecomp\Mobilelogin\Block\Adminhtml\System\Config\Testapi</frontend_model>
+                        <comment>
+                            <![CDATA[Before Test API, you Must Save All Configuration. ]]></comment>
+                    </field>
+                </group>
+                <group id="updateoldcustomer" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <depends>
+                        <field id="mobilelogin/moduleoption/enable">1</field>
+                    </depends>
+                    <label>Copy Phone Numbers</label>
+
+                    <field id="update" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                           showInStore="0">
+                        <label></label>
+                        <frontend_model>Magecomp\Mobilelogin\Block\Adminhtml\System\Config\Update</frontend_model>
+                        <comment>
+                            <![CDATA[This will copy the customer's Numbers from Default Magento Phone Number Field to Our Extension Mobile Number Field. ]]></comment>
+                </field>
+                </group>
+                <group id="otpsend" translate="label" type="text" sortOrder="30" showInDefault="1"     showInWebsite="1" showInStore="1">
+                    <label>OTP at Registration </label>
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    <field id="message" translate="label" type="textarea"
+                        sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Registration OTP Text</label>
+                        <comment><![CDATA[You can make use of {{shop_name}},{{shop_url}},{{random_code}} variables in your SMS notification text]]></comment>
+                        <validate>required-entry</validate>
+                        <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    </field>
+                    <field id="msg91dltidreg" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Registration OTP DLT Template ID</label>
+                        <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                <field id="mobilelogin/smsgatways/whichapiusing">dlt</field>
+                        </depends>
+                        <validate>required-entry</validate>
+                    </field>
+                    <field id="tmp_idreg" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Registration OTP Campaign Name</label>
+                    <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                <field id="mobilelogin/smsgatways/whichapiusing">campaign</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                </field>
+                </group>
+                <group id="forgototpsend" translate="label" type="text" sortOrder="40" showInDefault="1"     showInWebsite="1" showInStore="1">
+                    <label>OTP at Forgot Password </label>
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    <field id="message" translate="label" type="textarea"
+                        sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Forgot Password OTP Text</label>
+                        <comment><![CDATA[You can make use of {{shop_name}},{{shop_url}},{{random_code}} variables in your SMS notification text]]></comment>
+                        <validate>required-entry</validate>
+                        <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    </field>
+                    <field id="msg91dltidforgot" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Forgot Password OTP DLT Template ID</label>
+                        <depends>
+                                 <field id="mobilelogin/moduleoption/enable">1</field>
+                                 <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                 <field id="mobilelogin/smsgatways/whichapiusing">dlt</field>
+                        </depends>
+                        <validate>required-entry</validate>
+                    </field>
+                    <field id="tmp_idforgot" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Forgot Password OTP Campaign Name</label>
+                    <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                <field id="mobilelogin/smsgatways/whichapiusing">campaign</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                    </field>
+                </group>
+                <group id="loginotpsend" translate="label" type="text" sortOrder="50" showInDefault="1"     showInWebsite="1" showInStore="1">
+                    <label>OTP at Login </label>
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    <field id="message" translate="label" type="textarea"
+                        sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Login OTP Text</label>
+                        <comment><![CDATA[You can make use of {{shop_name}},{{shop_url}},{{random_code}} variables in your SMS notification text]]></comment>
+                        <validate>required-entry</validate>
+                        <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    </field>
+                    <field id="msg91dltidlogin" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Login OTP DLT Template ID</label>
+                        <depends>
+                              <field id="mobilelogin/moduleoption/enable">1</field>
+                              <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                               <field id="mobilelogin/smsgatways/whichapiusing">dlt</field>
+                        </depends>
+                        <validate>required-entry</validate>
+                    </field>
+                    <field id="tmp_idlogin" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Login OTP Campaign Name</label>
+                    <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                <field id="mobilelogin/smsgatways/whichapiusing">campaign</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                     </field>
+                </group>
+                <group id="updateotpsend" translate="label" type="text" sortOrder="30" showInDefault="1"     showInWebsite="1" showInStore="1">
+                    <label>OTP at Update Password</label>
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    <field id="message" translate="label" type="textarea"
+                           sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Update OTP Text</label>
+                        <comment><![CDATA[You can make use of {{shop_name}},{{shop_url}},{{random_code}} variables in your SMS notification text]]></comment>
+                        <validate>required-entry</validate>
+                        <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    </field>
+                    <field id="msg91dltidupdate" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Update OTP DLT Template ID</label>
+                        <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                 <field id="mobilelogin/smsgatways/whichapiusing">dlt</field>
+                        </depends>
+                        <validate>required-entry</validate>
+                    </field>
+                    <field id="tmp_idupdate" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Update OTP Campaign Name</label>
+                    <depends>
+                                <field id="mobilelogin/moduleoption/enable">1</field>
+                                <field id="mobilelogin/smsgatways/gateway">msg91</field>
+                                <field id="mobilelogin/smsgatways/whichapiusing">campaign</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                     </field>
+                </group>
+                <group id="design" translate="label" type="text" sortOrder="50" showInDefault="1"     showInWebsite="1" showInStore="1">
+                    <label>Layout</label>
+                    <depends><field id="mobilelogin/moduleoption/enable">1</field></depends>
+                    <field id="mainlayout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Design</label>
+                        <source_model>Magecomp\Mobilelogin\Model\Config\Design</source_model>
+                    </field>
+                    <field id="layout" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Layout</label>
+                        <source_model>Magecomp\Mobilelogin\Model\Config\Layout</source_model>
+                        <depends>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="imagereg" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Upload Image For Registration</label>
+                        <comment><![CDATA[Allowed file types:PNG, GIF, JPG, JPEG.<br/> Maximum File size Allowed:100KB]]></comment>
+                        <backend_model>Magecomp\Mobilelogin\Model\Config\Image</backend_model>
+                        <base_url type="media" scope_info="1">mobilelogin/image</base_url>
+                        <depends>
+                            <field id="layout">image</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="imagelogin" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Upload Image For Login</label>
+                         <comment><![CDATA[Allowed file types:PNG, GIF, JPG, JPEG.<br/> Maximum File size Allowed:100KB]]></comment>
+                        <backend_model>Magecomp\Mobilelogin\Model\Config\Image</backend_model>
+                        <base_url type="media" scope_info="1">mobilelogin/image</base_url>
+                        <depends>
+                            <field id="layout">image</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="imageforgot" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Upload Image For Forgot Password</label>
+                         <comment><![CDATA[Allowed file types:PNG, GIF, JPG, JPEG.<br/> Maximum File size Allowed:100KB]]></comment>
+                        <backend_model>Magecomp\Mobilelogin\Model\Config\Image</backend_model>
+                        <base_url type="media" scope_info="1">mobilelogin/image</base_url>
+                        <depends>
+                            <field id="layout">image</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="templatereg" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Template For Registration</label>
+                         <source_model>Magecomp\Mobilelogin\Model\Config\Template</source_model>
+                        <depends>
+                            <field id="layout">template</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="templatelogin" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Template For Login</label>
+                         <source_model>Magecomp\Mobilelogin\Model\Config\Template</source_model>
+                        <depends>
+                            <field id="layout">template</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="templateforgot" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Template For Forgot password</label>
+                         <source_model>Magecomp\Mobilelogin\Model\Config\Template</source_model>
+                        <depends>
+                            <field id="layout">template</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                    <field id="templates" translate="label comment" type="button" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <frontend_model>Magecomp\Mobilelogin\Block\Adminhtml\Collect</frontend_model>
+                        <label>Demo Templates</label>
+                        <depends>
+                            <field id="layout">template</field>
+                            <field id="mainlayout">ultimatelayout</field>
+                        </depends>
+                    </field>
+                </group>
+            </section>
+        </system>
+    </config>

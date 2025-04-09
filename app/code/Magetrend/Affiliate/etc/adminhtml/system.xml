@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category MageTrend
+ * @package  Magetend/Affiliate
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-affiliate
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="magetrend" translate="label" sortOrder="200">
+            <label>Magetrend Extensions</label>
+        </tab>
+        <section id="affiliate" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Affiliate</label>
+            <tab>magetrend</tab>
+            <resource>Magetrend_Affiliate::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="is_active" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="referral_code_length" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Code Length</label>
+                </field>
+            </group>
+
+            <group id="withdrawal" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Withdrawal Settings</label>
+
+                <field id="minimum_amount" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum withdraw amount</label>
+                </field>
+
+
+                <field id="time_on_hold" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hold money for X days</label>
+                </field>
+            </group>
+
+            <group id="registration" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Registration Settings</label>
+
+                <field id="form" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Registration Form</label>
+                    <source_model>Magetrend\Affiliate\Model\Config\FormBuilder</source_model>
+                    <comment>To add or edit form, go to: Marketing >> Affiliate >> Registration Form</comment>
+                </field>
+
+                <field id="default_program" translate="label" type="multiselect" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Affiliate Program</label>
+                    <source_model>Magetrend\Affiliate\Model\Config\AffiliateProgram</source_model>
+                </field>
+
+                <field id="skip_review" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Create account automatically</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Skip application review and create account automatically.</comment>
+                </field>
+
+                <field id="confirmation_email" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Confirmation Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="confirmation_email_copy_to" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send a Copy of Confirmation Email to</label>
+                </field>
+
+                <field id="welcome_email" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Welcome Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>The template will be used if affiliate already has customer account</comment>
+                </field>
+
+                <field id="create_password" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Create Account Password</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>The template will be used if affiliate hasn't account on store</comment>
+                </field>
+            </group>
+
+            <group id="email" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Settings</label>
+                <field id="sender_name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Name</label>
+                </field>
+                <field id="sender_email" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email</label>
+                </field>
+            </group>
+
+            <group id="license" translate="label" type="text" sortOrder="9999" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label><![CDATA[Information & License]]></label>
+                <field id="key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>License Key</label>
+                    <comment><![CDATA[
+                    If you don't know the license key, please follow this article
+                    <a target="_blank" href="http://wiki2.magetrend.com/licensing/">
+                    http://wiki2.magetrend.com/licensing/</a>
+                    ]]></comment>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="1002" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Magetrend\Affiliate\Block\Adminhtml\Config\System\Config\Info</frontend_model>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>
