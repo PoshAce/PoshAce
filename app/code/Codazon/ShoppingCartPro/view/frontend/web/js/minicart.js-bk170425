@@ -44,6 +44,7 @@ define([
     var sidebarInitialized = false,
         addToCartCalls = 0,
         miniCart = $('[data-block=\'minicartpro\']');
+
     function prepeareFooterCart() {
         if ($('#cdz-footer-minicart').length) {
             var $ftrCart = $('#cdz-footer-minicart');
@@ -68,9 +69,8 @@ define([
                 $ftrCart.find('[data-role=cart-processing]').hide();
             });
         }
-                    
-    };
-    
+    }
+
     function prepareInformedPopup() {
         if ($('#cdz-minicart-popup').length) {
             var $popupCart = $('#cdz-minicart-popup');
@@ -89,7 +89,7 @@ define([
             });
         }
     }
-    
+
     function prepeareSidebarCart() {
         if ($('#cdz-sidebar-minicart').length) {
             var $sidebarCart = $('#cdz-sidebar-minicart');
@@ -107,20 +107,7 @@ define([
             }
         }
     }
-    function consolevala() {
-        var $minicartWrapper = $('#minicartpro-content-wrapper');
-                var $popup = $('#cdz-minicart-popup')
-                var $minicartContent = $minicartWrapper.find('.block-content.block-minicart');
 
-                
-                if ($popup.length && $popup.is(':visible')) {
-                    
-                
-                if ($minicartWrapper.length && $minicartContent.length === 0) {
-                    location.reload();
-                }
-                    }
-    }
     function initSidebar() {
         if (miniCart.data('mageSidebar')) {
             miniCart.sidebar('update');
@@ -172,26 +159,34 @@ define([
         miniCart.find('[data-action="closeInformedPopup"]').off('click').on('click', function() {
             miniCart.modal('closeModal');
         });
-        prepareInformedPopup();
-        prepeareFooterCart();
+         prepeareFooterCart();
         prepeareSidebarCart();
+          /** 
+             * ✅ Added setTimeout to ensure initSidebar runs after content is updated
+             */
+            setTimeout(function() {
+        prepareInformedPopup();
+       
+    },5000);
         miniCart.trigger('cartLoaded');
-        consolevala();
+
     }
-    
+  /** 
+             * ✅ Added setTimeout to ensure initSidebar runs after content is updated
+             */
+            setTimeout(function() {
     prepareInformedPopup();
+      },5000);
     prepeareFooterCart();
     prepeareSidebarCart();
-    
+
     miniCart.on('dropdowndialogopen', function () {
         initSidebar();
     });
 
     return Component.extend({
-        
-                
         shoppingCartUrl: window.checkout.shoppingCartUrl,
-        maxItemsToDisplay: 100,//window.checkout.maxItemsToDisplay,
+        maxItemsToDisplay: 100,
         cart: {},
         crosssell: {},
         initialize: function () {
@@ -200,6 +195,10 @@ define([
                 crosssellData = customerData.get('crosssell');
             this.update(cartData());
             this.updateCrosssell(crosssellData());
+
+            initSidebar();
+          
+
             cartData.subscribe(function (updatedCart) {
                 addToCartCalls--;
                 this.isLoading(addToCartCalls > 0);
@@ -208,11 +207,12 @@ define([
                 this.update(updatedCart);
                 initSidebar();
             }, this);
+
             crosssellData.subscribe(function(crosssell) {
                 this.updateCrosssell(crosssell);
                 initSidebar();
             }, this);
-            
+
             $('[data-block="minicartpro"]').on('contentLoading', function () {
                 addToCartCalls++;
                 self.isLoading(true);
@@ -231,7 +231,6 @@ define([
         },
         closeSidebar: function () {
             var minicart = $('[data-block="minicartpro"]');
-
             minicart.on('click', '[data-action="close"]', function (event) {
                 event.stopPropagation();
                 minicart.find('[data-role="dropdownDialog"]').dropdownDialog('close');
@@ -275,7 +274,6 @@ define([
         },
         getCartItems: function () {
             var items = this.getCartParam('items') || [];
-            //items = items.slice(parseInt(-this.maxItemsToDisplay, 10));
             return items;
         },
         getNewestItem: function () {
@@ -311,3 +309,4 @@ define([
         }
     });
 });
+
