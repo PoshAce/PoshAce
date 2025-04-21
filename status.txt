@@ -1,0 +1,34 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.htaccess
+	CHANGELOG.md
+	COPYING.txt
+	Gruntfile.js.sample
+	LICENSE.txt
+	LICENSE_AFL.txt
+	PoshAce/
+	SECURITY.md
+	app/
+	auth.json.sample
+	bin/
+	composer-setup.php
+	composer.json
+	composer.lock
+	composer.phar
+	dev/
+	error_log
+	grunt-config.json.sample
+	info.php
+	nginx.conf.sample
+	package.json.sample
+	php.ini
+	phpserver/
+	pub/
+	status.txt
+	var/
+	vendor/
+
+nothing added to commit but untracked files present (use "git add" to track)
