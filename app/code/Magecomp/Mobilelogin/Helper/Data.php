@@ -710,15 +710,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getAfterLoginRedirect()
     {
-        $redirectOption = $this->scopeConfig->getValue(
-            "customer/startup/redirect_dashboard",
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
-        if ($redirectOption == 1) {
-            return $this->urlFactory->create()->getUrl('customer/account/');
-        }
-
-        return "";
+return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
     }
 
     /**
