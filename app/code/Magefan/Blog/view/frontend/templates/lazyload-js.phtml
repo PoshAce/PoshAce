@@ -7,21 +7,31 @@
  */
 ?>
 <?php
-/** @var $block \Magento\Framework\View\Element\Template */
+/**
+ * @var $block \Magento\Framework\View\Element\Template
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
+ * @var $mfHyvaThemeDetection \Magefan\Community\Api\HyvaThemeDetectionInterface
+ */
 ?>
 <?php
 $helper = $this->helper(\Magefan\Blog\Helper\Data::class);
 ?>
 
 <?php if (!$helper->isOriginMfLazyLoadEnable()) { ?>
-    <script <?= $this->helper(\Codazon\Core\Helper\Data::class)->generateNonce() ?>>
-        if (window.require) {
-            require(['jquery', 'Magefan_Blog/js/lib/mfblogunveil', 'domReady!'], function($){
-                $('.mfblogunveil').mfblogunveil();
+    <?php if (!$mfHyvaThemeDetection->execute()) { ?>
+        <?php $script = "
+            require(['jquery', 'domReady!'], function($){
+                if ($('.mfblogunveil').length) {
+                    require(['Magefan_Blog/js/lib/mfblogunveil'], function(){
+                        $('.mfblogunveil').mfblogunveil();
+                    });
+                }
             });
-        } else {
+        "; ?>
+    <?php } else { ?>
+        <?php $script = "
             /* e.g. hyva theme */
-            document.addEventListener("DOMContentLoaded", function(){
+            document.addEventListener('DOMContentLoaded', function(){
                 var items =  document.getElementsByClassName('mfblogunveil');
                 var el, url;
                 if (items.length) {
@@ -30,16 +40,16 @@ $helper = $this->helper(\Magefan\Blog\Helper\Data::class);
                         url = el.getAttribute('data-original');
                         if (!url) {
                             continue;
-                        }
+                        };
                         if ('IMG' == el.tagName) {
                             el.src = url;
                         } else {
-                            el.style.backgroundImage = "url('" + url  + "')";
+                            el.style.backgroundImage = \"url('\" + url  + \"')\";
                         }
                     }
                 }
             });
-        }
-    </script>
+        "; ?>
+    <?php } ?>
+    <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
 <?php } ?>
-

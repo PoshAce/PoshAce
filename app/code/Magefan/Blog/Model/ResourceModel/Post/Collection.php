@@ -14,6 +14,21 @@ namespace Magefan\Blog\Model\ResourceModel\Post;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     /**
+     * @inheritDoc
+     */
+    protected $_idFieldName = 'post_id';
+
+    /**
+     * @inheritDoc
+     */
+    protected $_eventPrefix = 'mfblog_post_collection';
+
+    /**
+     * @inheritDoc
+     */
+    protected $_eventObject = 'blog_post_collection';
+
+    /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $_storeManager;
@@ -37,7 +52,10 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      * @var \Magefan\Blog\Api\CategoryRepositoryInterface|null
      */
     protected $categoryRepository;
-    
+
+    /**
+     * @var bool
+     */
     protected $_previewFlag;
 
     /**
@@ -85,6 +103,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         $this->_map['fields']['store'] = 'store_table.store_id';
         $this->_map['fields']['category'] = 'category_table.category_id';
         $this->_map['fields']['tag'] = 'tag_table.tag_id';
+        $this->_map['fields']['tag'] = 'tag_table.tag_id';
         $this->_map['fields']['relatedproduct'] = 'relatedproduct_table.related_id';
     }
 
@@ -131,6 +150,10 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
                 $condition = array_shift($condition);
             }
             return $this->addSearchFilter($condition);
+        }
+
+        if ($field == 'authors') {
+            return parent::addFieldToFilter('author_id', $condition);
         }
 
         return parent::addFieldToFilter($field, $condition);
@@ -263,13 +286,36 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
                     }
                 }
             } else {
+                $allIsNumeric = true;
+                foreach ($categories as $k => $id) {
+                    if (!is_numeric($id)) {
+                        if (is_array($id)) {
+                            foreach ($id as $_id) {
+                                if (!is_numeric($_id)) {
+                                    $allIsNumeric = false;
+                                    break 2;
+                                }
+                            }
+                        } else {
+                            $allIsNumeric = false;
+                            break;
+                        }
+                    }
+                }
                 $select = $connection->select()
-                    ->from(['t' => $tableName], 'category_id')
-                    ->where(
+                    ->from(['t' => $tableName], 'category_id');
+
+                if ($allIsNumeric) {
+                    $select->where(
+                        $connection->prepareSqlCondition('t.category_id', $categories)
+                    );
+                } else {
+                    $select->where(
                         $connection->prepareSqlCondition('t.identifier', $categories)
                         . ' OR ' .
                         $connection->prepareSqlCondition('t.category_id', $categories)
                     );
+                }
 
                 $categories = [];
                 foreach ($connection->fetchAll($select) as $item) {
@@ -303,8 +349,11 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     public function addArchiveFilter($year, $month)
     {
         $this->getSelect()
-            ->where('YEAR(publish_time) = ?', $year)
-            ->where('MONTH(publish_time) = ?', $month);
+            ->where('YEAR(publish_time) = ?', $year);
+        if ($month) {
+            $this->getSelect()->where('MONTH(publish_time) = ?', $month);
+        }
+
         return $this;
     }
 
@@ -419,13 +468,36 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
                     }
                 }
             } else {
+                $allIsNumeric = true;
+                foreach ($tag as $k => $id) {
+                    if (!is_numeric($id)) {
+                        if (is_array($id)) {
+                            foreach ($id as $_id) {
+                                if (!is_numeric($_id)) {
+                                    $allIsNumeric = false;
+                                    break 2;
+                                }
+                            }
+                        } else {
+                            $allIsNumeric = false;
+                            break;
+                        }
+                    }
+                }
                 $select = $connection->select()
-                    ->from(['t' => $tableName], 'tag_id')
-                    ->where(
+                    ->from(['t' => $tableName], 'tag_id');
+
+                if ($allIsNumeric) {
+                    $select->where(
+                        $connection->prepareSqlCondition('t.tag_id', $tag)
+                    );
+                } else {
+                    $select->where(
                         $connection->prepareSqlCondition('t.identifier', $tag)
                         . ' OR ' .
                         $connection->prepareSqlCondition('t.tag_id', $tag)
                     );
+                }
 
                 $tag = [];
                 foreach ($connection->fetchAll($select) as $item) {
@@ -477,7 +549,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
                 }
             }
 
-            $this->addFilter('author_id', ['in' => $author], 'public');
+            //$this->addFilter('author_id', ['in' => $author], 'public');
+            $this->addFieldToFilter('authors', ['in' => $author]);
             $this->setFlag('author_filter_added', 1);
         }
         return $this;

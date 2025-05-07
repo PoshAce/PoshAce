@@ -34,6 +34,12 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Category
         );
     }
 
+    protected function _beforeSave($model, $request)
+    {
+        /* Prepare images */
+        $this->prepareImagesBeforeSave($model, ['category_img']);
+    }
+
     /**
      * Filter request params
      * @param  array $data
@@ -50,20 +56,12 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Category
                 $filterRules[$dateField] = $dateFilter;
             }
         }
-        
-        if (class_exists('\Magento\Framework\Filter\FilterInput')) {
-            $inputFilter = new \Magento\Framework\Filter\FilterInput(
-                $filterRules,
-                [],
-                $data
-            );
-        } else {
-            $inputFilter = new \Zend_Filter_Input(
-                $filterRules,
-                [],
-                $data
-            );
-        }
+
+        $inputFilter = $this->getFilterInput(
+            $filterRules,
+            [],
+            $data
+        );
 
         $data = $inputFilter->getUnescaped();
 

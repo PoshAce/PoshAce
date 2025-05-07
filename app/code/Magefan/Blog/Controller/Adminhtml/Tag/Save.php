@@ -35,22 +35,25 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Tag
             }
         }
 
-        if (class_exists('\Zend_Filter_Input')) {
-            $inputFilter = new \Zend_Filter_Input(
-                $filterRules,
-                [],
-                $data
-            );
-        } else {
-            $inputFilter = new \Magento\Framework\Filter\FilterInput(
-                $filterRules,
-                [],
-                $data
-            );
-        }
+        $inputFilter = $this->getFilterInput(
+            $filterRules,
+            [],
+            $data
+        );
 
         $data = $inputFilter->getUnescaped();
 
         return $data;
+    }
+
+    /**
+     * @param $model
+     * @param $request
+     * @return void
+     */
+    protected function _beforeSave($model, $request)
+    {
+        /* Prepare images */
+        $this->prepareImagesBeforeSave($model, ['tag_img']);
     }
 }

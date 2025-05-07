@@ -3,7 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/magefan/module-blog-graph-ql/downloads)](https://packagist.org/packages/magefan/module-blog-graph-ql)
 [![Latest Stable Version](https://poser.pugx.org/magefan/module-blog-graph-ql/v/stable)](https://packagist.org/packages/magefan/module-blog-graph-ql)
 
-<a href="https://www.comebackalive.in.ua/donate"><img width="830" height="208" src="https://cm.magefan.com/blog/support-ukraine.png"></a>
+<a href="https://savelife.in.ua/en/donate-en/#donate-army-card-monthly"><img width="830" height="208" src="https://cm.magefan.com/blog/support-ukraine.png"></a>
 
 <img width="150" height="100" src="https://magefan.com/media/wysiwyg/made_in_ukraine.jpg">
 
@@ -80,6 +80,8 @@ The code is licensed under [EULA](https://magefan.com/end-user-license-agreement
   * [Magento 2 Better Order Grid Extension](https://magefan.com/magento-2-better-order-grid-extension)
   * [Magento 2 Extended Product Grid](https://magefan.com/magento-2-product-grid-inline-editor)
   * [Magento 2 Google Shopping Feed](https://magefan.com/magento-2-google-shopping-feed-extension)
+  * [Magento 2 Google Tag Manager](https://magefan.com/magento-2-google-tag-manager)
+  * [Magento 2 Product Tabs Extension](https://magefan.com/magento-2/extensions/product-tabs)
   * [Magento 2 Admin View Extension](https://magefan.com/magento-2-admin-view-extension)
   * [Magento 2 Zero Downtime Deployment](https://magefan.com/blog/magento-2-zero-downtime-deployment)
   * [Magento 2 Admin Email Notifications](https://magefan.com/magento-2-admin-email-notifications)
@@ -93,6 +95,7 @@ The code is licensed under [EULA](https://magefan.com/end-user-license-agreement
   * [Magento 2 YouTube Widget Extension](https://magefan.com/magento2-youtube-extension)
   * [Magento 2 CLI Extension](https://magefan.com/magento2-cli-extension)
   * [Magento 2 Facebook Pixel Extension](https://magefan.com/magento-2-facebook-pixel-extension)
+  * [Magento 2 Price History](https://magefan.com/magento-2-price-history)
 
 ### [Magento 2 Blog Extensions](https://magefan.com/magento-2-extensions/blog-extensions)
 
@@ -114,7 +117,8 @@ The code is licensed under [EULA](https://magefan.com/end-user-license-agreement
   * [Magento 2 Twitter Cards Extension](https://magefan.com/magento-2-twitter-cards-extension)
   * [Magento 2 Facebook Open Graph Extension](https://magefan.com/magento-2-open-graph-extension-og-tags)
   * [Magento 2 Hreflang Tags Extension](https://magefan.com/magento2-alternate-hreflang-extension)
-
+  * [Magento 2 Google Analytics 4 Extension](https://magefan.com/magento-2-google-analytics-4)
+  
 ### [Magento 2 Cart Extensions](https://magefan.com/magento-2-extensions/cart-extensions)
 
   * [Better Magento 2 Checkout Extension](https://magefan.com/better-magento-2-checkout-extension)
@@ -136,3 +140,14 @@ The code is licensed under [EULA](https://magefan.com/end-user-license-agreement
 
   ### Magento 2 Point of Sale
   * [Magento 2 POS System](https://magefan.com/magento-pos-system)
+  
+  ### Shopware Extensions
+  * [Shopware WebP Extension](https://magefan.com/shopware/extensions/webp)
+  * [Shopware Blog Extension](https://magefan.com/shopware/extensions/blog)
+   
+  ### Shopify Apps
+  * [Shopify Login As Customer](https://apps.shopify.com/login-as-customer)
+  * [Shopify Blog](https://apps.shopify.com/magefan-blog)
+  
+  ### Magento 2 Theme
+  * [Optimized Magento 2 Theme](https://magefan.com/optimized-magento-2-theme)

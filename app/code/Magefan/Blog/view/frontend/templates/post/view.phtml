@@ -22,14 +22,24 @@ $_postName = $block->escapeHtml($_post->getTitle(), null);
     <div class="post-holder post-holder-<?= (int)$_post->getId() ?>">
 
         <?php if ($block->displayAddThisToolbox()) : ?>
-          <div class="post-header">
-              <div class="addthis_toolbox addthis_default_style" addthis:url="<?= $block->escapeUrl($_postUrl) ?>">
-                  <a class="addthis_button_facebook"></a>
-                  <a class="addthis_button_twitter"></a>
-                  <a class="addthis_button_compact"></a>
-              </div>
-              <?= $block->getInfoHtml() ?>
-          </div>
+            <div class="post-header">
+
+                <!-- Post Sharing -->
+                <div class="post-sharing post-sharing-top old-post-view">
+                    <div class="share-elements">
+                        <?php foreach ($block->getAllowedSocialNetworks() as $network) { ?>
+                            <div class="icon-wrapper icon-<?= strtolower($network) ?>" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', '<?= strtolower($network) ?>')">
+                                <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', $network == 'Twitter' ? "X" : $network)) ?>">
+                                    <img src="<?= $this->getViewFileUrl('Magefan_Blog::images/social/' . strtolower($network) . '.svg') ?>" alt="<?= $block->escapeHtml(__('Share on %1', $network == 'Twitter' ? "X" : $network)) ?>">
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <!-- END Post Sharing -->
+
+                <?= $block->getInfoHtml() ?>
+            </div>
         <?php endif; ?>
 
         <div class="post-content">

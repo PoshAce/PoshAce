@@ -29,18 +29,21 @@ $_postName = $block->escapeHtml($_post->getTitle());
                 </a>
             </h2>
 
-          <?php if ($block->displayAddThisToolbox()) : ?>
-              <div class="addthis_toolbox addthis_default_style"
-                   addthis:url="<?= /*@noEscape*/ $_postUrl ?>"
-                   addthis:title="<?= /*@noEscape*/ $_postName ?>"
-                  <?php if ($firstImage = $_post->getFirstImage()) { ?>
-                      addthis:media="<?= $block->escapeHtml($firstImage) ?>"
-                  <?php } ?>>
-                  <a class="addthis_button_facebook"></a>
-                  <a class="addthis_button_twitter"></a>
-                  <a class="addthis_button_compact"></a>
-              </div>
-          <?php endif; ?>
+            <?php if ($block->displayAddThisToolbox()) : ?>
+            <!-- Post Sharing -->
+            <div class="post-sharing post-sharing-top old-post-list-item">
+                <div class="share-elements">
+                    <?php foreach ($block->getAllowedSocialNetworks() as $network) { ?>
+                        <div class="icon-wrapper icon-<?= strtolower($network) ?>" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', '<?= strtolower($network) ?>')">
+                            <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', $network == 'Twitter' ? "X" : $network)) ?>">
+                                <img src="<?= $this->getViewFileUrl('Magefan_Blog::images/social/' . strtolower($network) . '.svg') ?>" alt="<?= $block->escapeHtml(__('Share on %1', $network == 'Twitter' ? "X" : $network)) ?>">
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <!-- END Post Sharing -->
+            <?php endif; ?>
 
         </div>
 
@@ -66,7 +69,7 @@ $_postName = $block->escapeHtml($_post->getTitle());
                 </div>
             <?php } ?>
             <div class="post-text-hld clearfix">
-                <?= /*@noEscape*/ $block->getShorContent() ?>
+                <?= /*@noEscape*/ $block->getShortFilteredContentWithoutImages() ?>
             </div>
             <a class="post-read-more"
                href="<?= /*@noEscape*/ $_postUrl ?>"

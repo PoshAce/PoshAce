@@ -801,6 +801,137 @@ class UpgradeSchema implements UpgradeSchemaInterface
             }
         }
 
+        if (version_compare($version, '2.11.1') < 0) {
+            $connection->addColumn(
+                $setup->getTable('magefan_blog_post'),
+                'structure_data_type',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                    null,
+                    'nullable' => false,
+                    'default' => '0',
+                    'comment' => 'Rich Snippet / Structured Data',
+                    'after' => 'meta_description'
+                ]
+            );
+
+            /* Add reading time to posts table */
+            $connection->addColumn(
+                $setup->getTable('magefan_blog_post'),
+                'reading_time',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                    'length' => 20,
+                    'nullable' => true,
+                    'comment' => 'Post Reading Time',
+                    'after' => 'views_count'
+                ]
+            );
+        }
+
+        if (version_compare($version, '2.11.3') < 0) {
+            if ($connection->isTableExists($setup->getTable('magefan_blog_category'))) {
+                $connection->addIndex(
+                    $setup->getTable('magefan_blog_category'),
+                    $setup->getIdxName(
+                        $setup->getTable('magefan_blog_category'),
+                        ['is_active']
+                    ),
+                    ['is_active']
+                );
+            }
+
+            if ($connection->isTableExists($setup->getTable('magefan_blog_post'))) {
+                $connection->addIndex(
+                    $setup->getTable('magefan_blog_post'),
+                    $setup->getIdxName(
+                        $setup->getTable('magefan_blog_post'),
+                        ['is_active']
+                    ),
+                    ['is_active']
+                );
+
+                $connection->addIndex(
+                    $setup->getTable('magefan_blog_post'),
+                    $setup->getIdxName(
+                        $setup->getTable('magefan_blog_post'),
+                        ['include_in_recent']
+                    ),
+                    ['include_in_recent']
+                );
+
+                $connection->addIndex(
+                    $setup->getTable('magefan_blog_post'),
+                    $setup->getIdxName(
+                        $setup->getTable('magefan_blog_post'),
+                        ['publish_time']
+                    ),
+                    ['publish_time']
+                );
+            }
+        }
+
+        if (version_compare($version, '2.12.1') < 0) {
+            $connection->addColumn(
+                $setup->getTable('magefan_blog_post'),
+                'meta_robots',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'nullable' => true,
+                    'comment' => 'Default Robots',
+                    'after' => 'meta_description'
+                ]
+            );
+            $connection->addColumn(
+                $setup->getTable('magefan_blog_category'),
+                'meta_robots',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'nullable' => true,
+                    'comment' => 'Default Robots',
+                    'after' => 'meta_description'
+                ]
+            );
+
+            $connection->addColumn(
+                $setup->getTable('magefan_blog_category'),
+                'include_in_sidebar_tree',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'nullable' => true,
+                    'default' => '1',
+                    'comment' => 'Category In Sidebar Tree',
+                    'after' => 'include_in_menu'
+                ]
+            );
+
+            $connection->addIndex(
+                $setup->getTable('magefan_blog_category'),
+                $setup->getIdxName(
+                    'magefan_blog_category',
+                    ['include_in_sidebar_tree'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX
+                ),
+                ['include_in_sidebar_tree'],
+                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX
+            );
+
+        }
+        if (version_compare($version, '2.12.3') < 0) {
+            $connection->addColumn(
+                $setup->getTable('magefan_blog_post'),
+                'custom_css',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'nullable' => true,
+                    'comment' => 'Custom CSS',
+                    'after' => 'layout_update_xml'
+                ]
+            );
+        }
         $setup->endSetup();
     }
 }

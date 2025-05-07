@@ -37,19 +37,11 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Comment
             }
         }
 
-        if (class_exists('\Zend_Filter_Input')) {
-            $inputFilter = new \Zend_Filter_Input(
-                $filterRules,
-                [],
-                $data
-            );
-        } else {
-            $inputFilter = new \Magento\Framework\Filter\FilterInput(
-                $filterRules,
-                [],
-                $data
-            );
-        }
+        $inputFilter = $this->getFilterInput(
+            $filterRules,
+            [],
+            $data
+        );
 
         $data = $inputFilter->getUnescaped();
 

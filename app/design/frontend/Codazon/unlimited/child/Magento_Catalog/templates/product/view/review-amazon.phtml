@@ -1,0 +1,35 @@
+<?php
+$product = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Magento\Framework\Registry::class)
+    ->registry('current_product');
+
+$amazonReviewUrl = $product ? $product->getData('review_amazon_in') : null;
+
+if ($amazonReviewUrl): ?>
+    <div class="amazon-review-button" >
+        <a href="<?= $amazonReviewUrl ?>" target="_blank" class="action primary">Review Amazon.in
+        </a>
+    </div>
+<?php endif; ?>
+
+<style>
+    .product-info-price,
+.product-info-stock-sku {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.amazon-review-button a {
+  background: #FEA81F !important;
+  border-color: #FEA81F !important;
+  color: #583C11 !important;
+}
+
+.amazon-review-button a:hover {
+  background: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+}
+
+    </style>
