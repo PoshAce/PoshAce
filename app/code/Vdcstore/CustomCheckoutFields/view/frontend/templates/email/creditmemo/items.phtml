@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+
+<?php
+$order = $block->getOrder(); // Get the order object
+$helper = $this->helper(\Vdcstore\CustomCheckoutFields\Helper\Data::class);
+$values1 = $helper->getCustomFieldValue('title_field_1');
+$showCustomField1 = $helper->isCustomFieldVisible1();
+$customFieldValue = $order ? $order->getCustomField() : '';
+?>
+
+<?php if ($order && $showCustomField1 && !empty($customFieldValue)) : ?>
+    <section class="admin__page-section order-additional-information">
+        <div class="admin__page-section-title">
+            <strong class="title"><?= $escaper->escapeHtml(__('Buyer Order Information')) ?></strong>
+        </div>
+
+        <div class="admin__page-section-content order-additional-information-container">
+            <div class="admin__page-section-item order-information">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                        <tr>
+                            <th><?= $escaper->escapeHtml($values1) ?></th>
+                            <td><?= $escaper->escapeHtml($customFieldValue) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
+                        
+<?php $_creditmemo = $block->getCreditmemo() ?>
+<?php $_order      = $block->getOrder() ?>
+<?php if ($_creditmemo && $_order): ?>
+    <table class="email-items">
+        <thead>
+        <tr>
+            <th class="item-info">
+                <?= $escaper->escapeHtml(__('Items')) ?>
+            </th>
+            <th class="item-qty">
+                <?= $escaper->escapeHtml(__('Qty')) ?>
+            </th>
+            <th class="item-subtotal">
+                <?= $escaper->escapeHtml(__('Subtotal')) ?>
+            </th>
+        </tr>
+        </thead>
+        <?php foreach ($_creditmemo->getAllItems() as $_item): ?>
+            <?php if (!$_item->getOrderItem()->getParentItem()): ?>
+                <tbody>
+                <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <tfoot class="order-totals">
+        <?= $block->getChildHtml('creditmemo_totals') ?>
+        </tfoot>
+    </table>
+<?php endif; ?>
+

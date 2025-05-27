@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="billing_method">
+            <block class="Vdcstore\CustomCheckoutFields\Block\Adminhtml\Fieldconfig"
+                   template="Vdcstore_CustomCheckoutFields::order/create/customfields.phtml"
+                   name="custom_fields" as="custom_fields" after="-" ifconfig="custom_checkout/general/enable"/>
+        </referenceBlock>
+    </body>
+</page>

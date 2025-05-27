@@ -1,0 +1,27 @@
+{
+    "name": "vdcstore/module-customcheckoutfields",
+    "description": "Magento 2 Vdcstore Custom Checkout Fields.",
+    "require": {
+        "php": "~7.4.0|~8.0.0|~8.1.0|~8.2.0|~8.3.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.3",
+    "license": [
+        "OSL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "VDC Team",
+            "email": "help@vdcstore.com",
+            "homepage": "https://www.vdcstore.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Vdcstore\\AbandonedCart\\": ""
+        }
+    }
+}

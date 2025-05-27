@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="vdcstore" translate="label" sortOrder="10" class="vdcstore-extensions">
+            <label></label>
+        </tab>
+        <section id="custom_checkout" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Custom Checkout</label>
+            <tab>vdcstore</tab>
+            <resource>Vdcstore_CustomCheckoutFields::CustomCheckoutFieldsnumber_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Checkout Custom Form</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <!-- add_custom_field_1 -->
+            <group id="add_custom_field_1" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Add Custom Field 1</label>
+                 <depends>
+                    <field id="custom_checkout/general/enable">1</field>
+                 </depends>
+                <field id="show_custom_field_1" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Want to show Custom Field 1</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title_field_1" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Title For Custom Field 1</label>
+                    <depends>
+                        <field id="show_custom_field_1">1</field>
+                    </depends>
+                </field>
+
+                <field id="sort_order_1" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Sort Order for Custom Field 1</label>
+                    <depends>
+                        <field id="show_custom_field_1">1</field>
+                    </depends>
+                    <frontend_class>validate-number validate-greater-than-zero</frontend_class>
+                    <validate>validate-digits-range digits-range-1-100</validate>
+                </field>
+            </group>
+
+            <!-- Repeat for other custom fields -->
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,24 @@
+<?php /** @var \Vdcstore\CustomCheckoutFields\Block\Adminhtml\CustomCheckoutFieldsNumber $block */ ?>
+<!-- Custom Field -->
+<?php               
+$helper = $this->helper(\Vdcstore\CustomCheckoutFields\Helper\Data::class);
+if($showCustomField1 = $helper->isCustomFieldVisible1())
+{ 
+?>
+    <div class="admin__field field-comment">
+    
+    <label for="custom_field" class="admin__field-label">
+        <span><?= $escaper->escapeHtml(__('Custom Field')) ?></span>
+    </label>
+    <div class="admin__field-control">
+        <input
+            id="custom_field"
+            name="custom_field"
+            class="admin__control-input"
+            value="<?= $escaper->escapeHtml($block->getCustomField()) ?>"
+        >
+    </div>
+</div>
+<?php
+}
+?>

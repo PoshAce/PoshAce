@@ -1,0 +1,125 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+//phpcs:disable Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace
+//phpcs:disable Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore
+//phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+//phpcs:disable Magento2.Files.LineLength.MaxExceeded
+?>
+<?php /** @var  $block \Magento\Shipping\Block\Items */ ?>
+<?php  $_order = $block->getOrder() ?>
+<div class="actions-toolbar">
+    <?php if ($_order->getTracksCollection()->count()): ?>
+        <?= $block->getChildHtml('track-all-link') ?>
+    <?php endif; ?>
+    <a href="<?= $escaper->escapeUrl($block->getPrintAllShipmentsUrl($_order)) ?>"
+       class="action print"
+       target="_blank"
+       rel="noopener">
+        <span><?= $escaper->escapeHtml(__('Print All Shipments')) ?></span>
+    </a>
+</div>
+<?php foreach ($_order->getShipmentsCollection() as $_shipment): ?>
+    <div class="order-title">
+        <strong><?= $escaper->escapeHtml(__('Shipment #')) ?>
+            <?= $escaper->escapeHtml($_shipment->getIncrementId()) ?></strong>
+        <a href="<?= $escaper->escapeUrl($block->getPrintShipmentUrl($_shipment)) ?>"
+           class="action print"
+           target="_blank"
+           rel="noopener">
+            <span><?= $escaper->escapeHtml(__('Print Shipment')) ?></span>
+        </a>
+        <a href="#"
+           data-mage-init='{"popupWindow": {"windowURL":"
+           <?= $escaper->escapeUrl($this->helper(\Magento\Shipping\Helper\Data::class)
+               ->getTrackingPopupUrlBySalesModel($_shipment)) ?>","windowName":"trackshipment",
+               "width":800,"height":600,"top":0,"left":0,"resizable":1,"scrollbars":1}}'
+           title="<?= $escaper->escapeHtml(__('Track this shipment')) ?>"
+           class="action track">
+            <span><?= $escaper->escapeHtml(__('Track this shipment')) ?></span>
+        </a>
+    </div>
+    <?php $tracks = $_shipment->getTracksCollection(); ?>
+    <?php  if ($tracks->count()): ?>
+        <dl class="order-tracking" id="my-tracking-table-<?= (int) $_shipment->getId() ?>">
+            <dt class="tracking-title">
+                <?= $escaper->escapeHtml(__('Tracking Number(s):')) ?>
+            </dt>
+            <dd class="tracking-content">
+                <?php
+                $i = 1;
+                $_size = $tracks->count();
+                foreach ($tracks as $track): ?>
+                    <?php if ($track->isCustom()): ?>
+                        <?= $escaper->escapeHtml($track->getNumber()) ?>
+                    <?php else: ?>
+                        <a href="#"
+                            data-mage-init='{"popupWindow": {"windowURL":"
+                            <?= $escaper->escapeUrl($this->helper(\Magento\Shipping\Helper\Data::class)
+                                ->getTrackingPopupUrlBySalesModel($track)) ?>","windowName":"trackorder",
+                                "width":800,"height":600,"left":0,"top":0,"resizable":1,"scrollbars":1}}'
+                            class="action track"><span><?= $escaper->escapeHtml($track->getNumber()) ?></span>
+                            </a>
+                    <?php endif; ?>
+                    <?php if ($i != $_size): ?>, <?php endif; ?>
+                    <?php $i++;
+                endforeach; ?>
+            </dd>
+        </dl>
+    <?php  endif; ?>
+    <div class="table-wrapper order-items-shipment">
+        <table class="data table table-order-items shipment"
+               id="my-shipment-table-<?= (int) $_shipment->getId() ?>">
+            <caption class="table-caption"><?= $escaper->escapeHtml(__('Items Shipped')) ?></caption>
+            <thead>
+                <tr>
+                    <th class="col name"><?= $escaper->escapeHtml(__('Product Name')) ?></th>
+                    <th class="col sku"><?= $escaper->escapeHtml(__('SKU')) ?></th>
+                    <th class="col qty"><?= $escaper->escapeHtml(__('Qty Shipped')) ?></th>
+                </tr>
+            </thead>
+            <?php $_items = $_shipment->getAllItems(); ?>
+            <?php foreach ($_items as $_item): ?>
+                <?php if (!$_item->getOrderItem()->getParentItem()): ?>
+                    <tbody>
+                        <?= $block->getItemHtml($_item) ?>
+                    </tbody>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </table>
+    </div>
+    <?= $block->getCommentsHtml($_shipment) ?>
+<?php endforeach; ?>
+
+
+<?php
+$order = $block->getOrder(); // Get the order object
+$helper = $this->helper(\Vdcstore\CustomCheckoutFields\Helper\Data::class);
+$values1 = $helper->getCustomFieldValue('title_field_1');
+$showCustomField1 = $helper->isCustomFieldVisible1();
+$customFieldValue = $order ? $order->getCustomField() : '';
+?>
+
+<?php if ($order && $showCustomField1 && !empty($customFieldValue)) : ?>
+    <section class="admin__page-section order-additional-information">
+        <div class="admin__page-section-title">
+            <strong class="title"><?= $escaper->escapeHtml(__('Buyer Order Information')) ?></strong>
+        </div>
+
+        <div class="admin__page-section-content order-additional-information-container">
+            <div class="admin__page-section-item order-information">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                        <tr>
+                            <th><?= $escaper->escapeHtml($values1) ?></th>
+                            <td><?= $escaper->escapeHtml($customFieldValue) ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
+

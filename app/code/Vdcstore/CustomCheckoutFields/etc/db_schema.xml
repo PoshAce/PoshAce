@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote">
+        <column xsi:type="text" name="custom_field" nullable="false" comment="Custom Field"/>
+<!--         <column xsi:type="text" name="checkout_field" nullable="false" comment="Checkout Field"/>
+        <column xsi:type="text" name="custom_checkout" nullable="false" comment="Custom Checkout"/>
+        <column xsi:type="text" name="custom_config" nullable="false" comment="Custom Config"/>
+        <column xsi:type="text" name="custom_field_config" nullable="false" comment="Custom Field Config"/>
+        <column xsi:type="text" name="checkout_field_config" nullable="false" comment="Checkout Field Config"/>
+        <column xsi:type="text" name="store_custom_field" nullable="false" comment="Store Custom Field"/>
+        <column xsi:type="text" name="store_checkout_field" nullable="false" comment="Store Checkout Field"/> -->
+    </table>
+    <table name="sales_order">
+        <column xsi:type="text" name="custom_field" nullable="false" comment="Custom Field"/>
+<!--         <column xsi:type="text" name="checkout_field" nullable="false" comment="Checkout Field"/>
+        <column xsi:type="text" name="custom_checkout" nullable="false" comment="Custom Checkout"/>
+        <column xsi:type="text" name="custom_config" nullable="false" comment="Custom Config"/>
+        <column xsi:type="text" name="custom_field_config" nullable="false" comment="Custom Field Config"/>
+        <column xsi:type="text" name="checkout_field_config" nullable="false" comment="Checkout Field Config"/>
+        <column xsi:type="text" name="store_custom_field" nullable="false" comment="Store Custom Field"/>
+        <column xsi:type="text" name="store_checkout_field" nullable="false" comment="Store Checkout Field"/> -->
+    </table>
+</schema>
