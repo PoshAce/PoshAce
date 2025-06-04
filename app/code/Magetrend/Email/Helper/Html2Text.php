@@ -294,6 +294,10 @@ class Html2Text
             }
         }
 
+        if (empty($text)) {
+            $text = ' ';
+        }
+
         while(strpos($text, '  ') !== false) {
             $text = str_replace('  ', '', $text);
         }
@@ -318,6 +322,11 @@ class Html2Text
         $this->convertBlockquotes($text);
         $this->convertPre($text);
         $text = preg_replace($this->search, $this->replace, $text);
+
+        if (empty($text)) {
+            return $text;
+        }
+
         $text = preg_replace_callback($this->callbackSearch, [$this, 'pregCallback'], $text);
         $text = strip_tags($text);
         $text = preg_replace($this->entSearch, $this->entReplace, $text);

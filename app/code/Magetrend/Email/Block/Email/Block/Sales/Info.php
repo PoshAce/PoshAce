@@ -89,8 +89,7 @@ class Info extends \Magetrend\Email\Block\Email\Block\Template
         }
 
         $paymentHtml = '';
-        if (in_array($paymentCode, ['m2epropayment'])
-            && ($this->registry->registry('mt_editor_edit_mode') == 1 || $this->registry->registry('mt_editor_preview_mode') == 1)) {
+        if (in_array($paymentCode, ['m2epropayment'])) {
             $paymentHtml = $this->getPaymentTitle();
         } else {
             $paymentHtml = $infoBlock->toHtml();

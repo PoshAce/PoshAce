@@ -91,6 +91,10 @@ class Mteditor extends \Magento\Backend\Block\Template
     public function getFontFamilyOptionArray()
     {
         $fonts = $this->_scopeConfig->getValue('mtemail/mteditor/font');
+        if (empty($fonts)) {
+            return [];
+        }
+
         $fontsArray = explode("\n", $fonts);
         if (count($fontsArray) > 0) {
             foreach ($fontsArray as $key => $value) {
@@ -107,7 +111,7 @@ class Mteditor extends \Magento\Backend\Block\Template
         $config = [];
         $template = $this->getEmailTemplate();
         if ($template) {
-            $config['code'] = $template->getTemplateCode();
+            $config['code'] = mb_convert_encoding($template->getTemplateCode(), 'UTF-8');
             $config['subject'] = $template->getTemplateSubject();
             $config['store_id'] = $template->getStoreId();
         }

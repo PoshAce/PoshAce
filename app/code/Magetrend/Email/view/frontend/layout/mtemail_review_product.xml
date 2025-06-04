@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MB "Vienas bitas" (Magetrend.com)
+ *
+ * @category Magetrend
+ * @package  Magetrend/Review
+ * @author   Edvinas St. <edwin@magetrend.com>
+ * @license  http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link     http://www.magetrend.com/magento-2-review
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Email Order Items Grid" design_abstraction="custom">
+    <body>
+        <block class="Magetrend\Email\Block\Email\Block" name="block" template="Magetrend_Email::email/default/block.phtml">
+            <block class="Magetrend\Email\Block\Email\Block\Review\Items" name="items" template="Magetrend_Email::email/default/block/review/items.phtml" cacheable="false">
+                <block class="Magetrend\Email\Block\Email\Block\Review\DefaultRenderer" name="block.review_products.default" template="Magetrend_Email::email/default/block/review/product.phtml"/>
+            </block>
+        </block>
+    </body>
+</page>

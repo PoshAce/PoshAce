@@ -22,7 +22,7 @@
 
                             <!--[if mso]><table cellpadding="0" cellspacing="0" width="600"><tr><td width="300"><![endif]-->
 
-                            <table  class="column-half" width="100%" style="width: 100%; max-width: 300px" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
+                            <table  class="column-half" width="100%" style="width: 100%; max-width: 300px; float: left;" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
                                 <tr>
                                     <td class="mini-container-left">
                                         <center>
@@ -32,7 +32,7 @@
                                                         <table cellspacing="0" cellpadding="0" width="100%" style="border-collapse:separate !important;">
                                                             <tr>
                                                                 <td
-                                                                    <?php echo $var->getHtmlAttribute('style', 'order_info_billing_thead_style'); ?>
+                                                                    <?php echo $var->getHtmlAttribute('style', 'order_info_billing_thead_style_v2', 'padding: 12px 15px 15px;'); ?>
                                                                     <?php echo $var->getHtmlAttribute('bgcolor', 'order_info_billing_thead_style_bgcolor'); ?>
                                                                         class="mteditor-bgcolor mini-block" height="25" align="<?php echo $block->isRTL()?'right':'left';?>" >
                                                                         <span
@@ -62,7 +62,7 @@
                             <!--[if mso]><td width="300"><![endif]-->
 
                             <?php if ($_order->getIsNotVirtual()) : ?>
-                             <table  class="column-half" width="100%" style="width: 100%; max-width: 300px" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
+                             <table  class="column-half" width="100%" style="width: 100%; max-width: 300px; float: left;" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
                                     <tr>
                                         <td class="mini-container-right">
                                             <center>
@@ -73,7 +73,7 @@
                                                             <table cellspacing="0" cellpadding="0" width="100%" style="border-collapse:separate !important;">
                                                                 <tr>
                                                                     <td
-                                                                        <?php echo $var->getHtmlAttribute('style', 'order_info_shipping_thead_style'); ?>
+                                                                        <?php echo $var->getHtmlAttribute('style', 'order_info_shipping_thead_style_v2', 'padding: 12px 15px 15px;'); ?>
                                                                         <?php echo $var->getHtmlAttribute('bgcolor', 'order_info_shipping_thead_style_bgcolor'); ?>
                                                                             class="mteditor-bgcolor mini-block"  align="<?php echo $block->isRTL()?'right':'left';?>">
                                                                         <span
@@ -115,7 +115,7 @@
 
                             <?php endif; ?>
 
-                            <table  class="column-half" width="100%" style="width: 100%; max-width: 300px" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
+                            <table  class="column-half" width="100%" style="width: 100%; max-width: 300px; float: left;" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
                                 <tr>
                                     <td class="<?php if ($_order->getIsNotVirtual()) : ?>mini-container-left<?php else: ?>mini-container-right<?php endif; ?>">
                                         <center>
@@ -125,7 +125,7 @@
                                                         <table cellspacing="0" cellpadding="0" width="100%" style="border-collapse:separate !important;">
                                                             <tr>
                                                                 <td valign="top" <?php if (!$_order->getIsNotVirtual()) : ?> height="155px" <?php endif; ?>
-                                                                    <?php echo $var->getHtmlAttribute('style', 'order_info_payment_thead_style'); ?>
+                                                                    <?php echo $var->getHtmlAttribute('style', 'order_info_payment_thead_style_v2', 'padding: 12px 15px 15px;'); ?>
                                                                     <?php echo $var->getHtmlAttribute('bgcolor', 'order_info_payment_thead_style_bgcolor'); ?>
                                                                         class="mteditor-bgcolor mini-block" align="<?php echo $block->isRTL()?'right':'left';?>">
                                                                     <span
@@ -155,7 +155,7 @@
 
                             <!--[if mso]><td width="300"><![endif]-->
 
-                            <table  class="column-half" width="100%" style="width: 100%; max-width: 300px" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
+                            <table  class="column-half" width="100%" style="width: 100%; max-width: 300px; float: left;" border="0" cellspacing="0" cellpadding="0" align="<?php echo $block->isRTL()?'right':'left';?>">
                                 <tr>
                                     <td class="mini-container-right">
                                         <center>
@@ -165,7 +165,7 @@
                                                         <table cellspacing="0" cellpadding="0" width="100%" style="border-collapse:separate !important;">
                                                             <tr>
                                                                 <td
-                                                                    <?php echo $var->getHtmlAttribute('style', 'order_info_shipping_method_thead_style'); ?>
+                                                                    <?php echo $var->getHtmlAttribute('style', 'order_info_shipping_method_thead_style_v2', 'padding: 12px 15px 15px;'); ?>
                                                                     <?php echo $var->getHtmlAttribute('bgcolor', 'order_info_shipping_method_thead_style_bgcolor'); ?>
                                                                         class="mteditor-bgcolor mini-block" height="25"  align="<?php echo $block->isRTL()?'right':'left';?>">
                                                                     <span

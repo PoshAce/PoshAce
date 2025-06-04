@@ -512,7 +512,7 @@ var textEditHelper = (function($){
         var hexColor = mtEditor.toHex(rgbColor);
         var textColor = '#000000';
 
-        if (colorPicker.isDarkColor(rgbColor)) {
+        if (mtColorPicker.isDarkColor(rgbColor)) {
             textColor = '#ffffff';
         }
 

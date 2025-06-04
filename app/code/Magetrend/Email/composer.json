@@ -4,9 +4,9 @@
         "psr-4": {"Magetrend\\Email\\":""},
         "files": ["registration.php"]
     },
-    "description": "Responsive magento 2 templates with user friendly MTEditor for templates",
+    "description": "Responsive magento 2 templates with user friendly MTEditor for templates.",
     "type": "magento2-module",
-    "version": "1.4.6",
+    "version": "1.4.14",
     "support": {
         "email": "info@magetrend.com",
         "wiki": "http://wiki2.magetrend.com/responsive-emails/",

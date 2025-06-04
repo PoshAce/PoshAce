@@ -84,7 +84,7 @@ class Items extends \Magento\Sales\Block\Order\Email\Items
             return $this->getQuote()->getAllVisibleItems();
         }
 
-        return $this->getOrder()->getAllItems();
+        return $this->getOrder()->getAllVisibleItems();
     }
 
     public function hasParent($item)

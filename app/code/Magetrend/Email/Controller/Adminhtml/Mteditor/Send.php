@@ -21,6 +21,30 @@ class Send extends \Magetrend\Email\Controller\Adminhtml\Mteditor
         $css = $this->getRequest()->getParam('css');
         $template = $this->_initTemplate('id');
 
+
+$writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
+        $logger = new \Zend_Log();
+        $logger->addWriter($writer);
+
+         $logger->info('----------------- get templateId --------------- ');
+        $logger->info(print_r($templateId,true)); 
+
+        
+        $logger->info('----------------- get vars --------------- ');
+        $logger->info(print_r($vars,true)); 
+
+$logger->info('----------------- get email --------------- ');
+        $logger->info(print_r($email,true)); 
+
+
+$logger->info('----------------- get css --------------- ');
+        $logger->info(print_r($css,true)); 
+
+
+$logger->info('----------------- get template --------------- ');
+        $logger->info(print_r($template,true)); 
+
+
         $vars = $this->jsonHelper->jsonDecode($vars);
         $css = $this->jsonHelper->jsonDecode($css);
         $content = $this->jsonHelper->jsonDecode($content);

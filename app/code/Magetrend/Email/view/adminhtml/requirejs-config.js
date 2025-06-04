@@ -21,7 +21,7 @@ var config = {
             mtEditor_save_helper: 'Magetrend_Email/js/mteditor/helper/save',
             mtEditor_metis_menu: 'Magetrend_Email/js/mteditor/jquery.metisMenu',
             mtEditor_editor: 'Magetrend_Email/js/mteditor/editor',
-            emailImportForm: 'Magetrend_Email/js/import',
+            emailImportForm: 'Magetrend_Email/js/import'
         },
         shim: {
             'mtEditor_bootstrap': {

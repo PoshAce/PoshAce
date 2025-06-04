@@ -67,4 +67,16 @@ class Configurable extends \Magetrend\Email\Block\Email\Block\Sales\Items\Order\
 
         return $item->getOrderItem();
     }
+
+    public function getProductUrl($item)
+    {
+        try {
+            $product = $this->productRepository->getById($item->getProductId());
+        } catch (NoSuchEntityException $e) {
+            return '';
+        }
+
+        return $product->getProductUrl();
+    }
+
 }

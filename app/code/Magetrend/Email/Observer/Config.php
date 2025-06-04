@@ -117,7 +117,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
         }
     }
 
-    public function executeLoad(Observer $observer)
+    protected function executeLoad(Observer $observer)
     {
         $reqest = $observer->getRequest();
         if ($reqest->getParam('section') != Info::CONFIG_NAMESPACE) {
@@ -151,7 +151,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
         }
     }
 
-    public function executeSave(Observer $observer)
+    protected function executeSave(Observer $observer)
     {
         $response = $this->validateConfig();
         if ($response) {
@@ -175,7 +175,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
      * Get all urls of stores
      * @return array
      */
-    public function getUrlArray()
+    protected function getUrlArray()
     {
         $stores = $this->storeManager->getStores();
         $urlArray = [];
@@ -195,7 +195,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
      * Returns key
      * @return mixed
      */
-    public function getKey()
+    protected function getKey()
     {
         return $this->get('L2xpY2Vuc2Uva2V5');
     }
@@ -203,7 +203,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
     /**
      * @return null|string
      */
-    public function getModuleName()
+    protected function getModuleName()
     {
         return $this->reverseResolver->getModuleName(dirname(__FILE__));
     }
@@ -211,7 +211,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
     /**
      * @return bool|void
      */
-    public function checkVersion()
+    protected function checkVersion()
     {
         $lastUpdate = $this->get('L2NvbmZpZy9sYXN0dXBkYXRl');
         if (!empty($lastUpdate) && time() < $lastUpdate + 86400) {
@@ -221,8 +221,8 @@ class Config implements \Magento\Framework\Event\ObserverInterface
         $moduleName = $this->getModuleName();
         $info = $this->packageInfoFactory->create();
         try {
-            $this->curl->setOption(CURLOPT_CONNECTTIMEOUT, 1);
-            $this->curl->setOption(CURLOPT_TIMEOUT, 3);
+            $this->curl->setOption(CURLOPT_CONNECTTIMEOUT, 10);
+            $this->curl->setOption(CURLOPT_TIMEOUT, 10);
             //@codingStandardsIgnoreStart
             $this->curl->get(
                 base64_decode('aHR0cHM6Ly93d3cubWFnZXRyZW5kLmNvbS9yZXN0L1YxL2NvbmZpZy9pbmZvLw==').$moduleName.'/'.$info->getVersion($moduleName)
@@ -244,13 +244,13 @@ class Config implements \Magento\Framework\Event\ObserverInterface
     /**
      * @return bool|array
      */
-    private function validateConfig()
+    protected function validateConfig()
     {
         $moduleName = $this->getModuleName();
         $info = $this->packageInfoFactory->create();
         try {
-            $this->curl->setOption(CURLOPT_CONNECTTIMEOUT, 1);
-            $this->curl->setOption(CURLOPT_TIMEOUT, 3);
+            $this->curl->setOption(CURLOPT_CONNECTTIMEOUT, 10);
+            $this->curl->setOption(CURLOPT_TIMEOUT, 10);
             $this->curl->setOption(CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
             //@codingStandardsIgnoreStart
             $this->curl->post(
@@ -279,7 +279,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
      * @param $path
      * @param $value
      */
-    public function save($path, $value)
+    protected function save($path, $value)
     {
         $this->resourceConfig->saveConfig(
             Info::CONFIG_NAMESPACE . base64_decode($path),
@@ -293,7 +293,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
      * @param $path
      * @return mixed
      */
-    public function get($path)
+    protected function get($path)
     {
         return $this->scopeConfig->getValue(
             Info::CONFIG_NAMESPACE. base64_decode($path),
@@ -305,7 +305,7 @@ class Config implements \Magento\Framework\Event\ObserverInterface
     /**
      * Clean cache
      */
-    public function clean()
+    protected function clean()
     {
         $this->cacheManager->clean(['config', 'block_html']);
     }

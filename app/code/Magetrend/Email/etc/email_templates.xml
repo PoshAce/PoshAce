@@ -172,5 +172,8 @@
     <template id="mt_email_default_eop_success"                                 label="* Newsletter Subscription Success [ MTEmail/Default ][ Magetrend_Eop ]"                      file="default/mt/eop/success.html"                      type="html" module="Magetrend_Email"  area="frontend"/>
     <template id="mt_email_awesome_eop_success"                                 label="* Newsletter Subscription Success [ MTEmail/Awesome ][ Magetrend_Eop ]"                      file="awesome/mt/eop/success.html"                      type="html" module="Magetrend_Email"  area="frontend"/>
 
+    <!-- Magetrend Review Follow up -->
+    <template id="mt_email_awesome_review_followup"                             label="* Review Follow Up [ MTEmail/Awesome ][ Magetrend_Review ]"                                  file="awesome/mt/review/followup.html"                      type="html" module="Magetrend_Email"  area="frontend"/>
+
 </config>
 

@@ -132,6 +132,10 @@ class Data
      */
     public $productRepository;
 
+    /**
+     * @var null
+     */
+    public $currency = [];
 
     /**
      * Data constructor.
@@ -263,7 +267,8 @@ class Data
             'created_at_formatted' => $order->getCreatedAtFormatted(2),
             'order_data' => [
                 'customer_name' => $order->getCustomerName(),
-                'frontend_status_label' => $order->getStatusLabel()
+                'frontend_status_label' => $order->getStatusLabel(),
+                'email_customer_note' => 'Customer note placeholder'
             ],
             'subscriber_data' => [
                 'confirmation_link' => ''

@@ -366,7 +366,7 @@ var mtEditor = (function($) {
 
             $.each(classList, function(key, value) {
                 if (value.length > 0 && value != templateClass && !addedClass[value] && !ignoreClass[value]) {
-                    if (colorPicker.isDarkColor(rgbColor)) {
+                    if (mtColorPicker.isDarkColor(rgbColor)) {
                         cssColor = '#ffffff';
                     }
                     $('#'+listId+' ul').append('<li><span>'+value+'</span> <input class="color" name="'+value+'" value="'+color+'" style="background-color: '+color+'; color: '+cssColor+';"></li>');
@@ -470,7 +470,7 @@ var mtEditor = (function($) {
             }
         });
     };
-    
+
     var isSameFonts = function (fontA, fontB) {
         var fontATmp = fontA.split('"').join('').split('"').join('').split(' ').join('').split(',');
         var fontBTmp = fontB.split('"').join('').split('"').join('').split(' ').join('').split(',');
@@ -1050,7 +1050,7 @@ var mtEditor = (function($) {
     };
 
     var initColorPicker = function() {
-        colorPicker.init();
+        mtColorPicker.init();
     };
 
     var toHex = function(rgb) {
@@ -1061,6 +1061,11 @@ var mtEditor = (function($) {
         }
 
         rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+        if (rgb === null) {
+            return '#000000';
+        }
+
         return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
     };
 

@@ -54,12 +54,17 @@ class MimeMessage
             return $parts;
         }
 
+        if (version_compare($this->productMetadata->getVersion(), '2.4.6', '>=')) {
+            return $this->afterGetPartsLaminas($message, $parts);
+        }
+
+
         $htmlPartKey = false;
         foreach ($parts as $key => $part) {
             /**
              * @var \Magento\Framework\Mail\MimePart $part
              */
-            if (!$htmlPartKey && $part->getType() == \Laminas\Mime\Mime::TYPE_HTML) {
+            if (!$htmlPartKey && $part->getType() == 'text/html') {
                 $htmlPartKey = $key;
             }
 
@@ -83,7 +88,53 @@ class MimeMessage
         $textPart = $objectManager->create('Magento\Framework\Mail\MimePart', [
             'content' => $textVersion,
             'charset' => $charset,
-            'type' => \Laminas\Mime\Mime::TYPE_TEXT,
+            'type' => 'text/plain',
+        ]);
+
+        $alternatives = $objectManager->create('Zend\Mime\Message');
+        $alternatives->setParts([$textPart, $htmlPart]);
+
+        $alternativesPart = $objectManager->create('\Zend\Mime\Part', ['content' => $alternatives->generateMessage()]);
+        $alternativesPart->setType('multipart/alternative');
+        $alternativesPart->setBoundary($alternatives->getMime()->boundary());
+
+        $parts[$htmlPartKey] = $alternativesPart;
+        return $parts;
+    }
+
+
+    public function afterGetPartsLaminas($message, $parts)
+    {
+        $htmlPartKey = false;
+        foreach ($parts as $key => $part) {
+            /**
+             * @var \Magento\Framework\Mail\MimePart $part
+             */
+            if (!$htmlPartKey && $part->getType() == 'text/html') {
+                $htmlPartKey = $key;
+            }
+
+            if ($part->getType() == 'multipart/alternative') {
+                return $parts;
+            }
+        }
+
+        if ($htmlPartKey === false) {
+            return $parts;
+        }
+
+        $htmlPart = $parts[$htmlPartKey];
+
+        $this->html2Text->setHtml($htmlPart->getRawContent());
+        $textVersion = $this->html2Text->getText();
+        $charset = 'utf-8';
+        $encoding = 'quoted-printable';
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $textPart = $objectManager->create('Magento\Framework\Mail\MimePart', [
+            'content' => $textVersion,
+            'charset' => $charset,
+            'type' => 'text/plain',
         ]);
 
         $alternatives = $objectManager->create('Laminas\Mime\Message');

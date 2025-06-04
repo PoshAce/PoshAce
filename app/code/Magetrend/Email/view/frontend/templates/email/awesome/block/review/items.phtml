@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © 2016 MB Vienas bitas. All rights reserved.
+ * @website    www.magetrend.com
+ * @package    MT Email for M2
+ * @author     Edvinas Stulpinas <edwin@magetrend.com>
+ */
+
+//@codingStandardsIgnoreFile
+?>
+<?php $var = $block->getVarModel();?>
+<?php $items = $block->getItems(); ?>
+<?php if (count($items) > 0) : ?>
+    <table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
+        <tr
+            <?php echo $var->getHtmlAttribute('style', 'secondary-bg-color-review-product', 'background-color: #ffffff;  border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;'); ?>
+            <?php echo $var->getHtmlAttribute('bgcolor', 'secondary-bg-color-color-review-product', '#ffffff'); ?> class="mteditor-bgcolor light-block">
+            <td align="center" valign="top" width="100%" class="content-padding">
+                <center>
+                    <table cellpadding="0" cellspacing="0" width="600" class="w320">
+                        <tr>
+                            <td class="content-padding">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <td <?php echo $var->getTextEditAttribute('review_items_title_text');?>
+                                        <?php echo $var->getHtmlAttribute('style', 'review_items_title', ''); ?>
+                                            class="mteditor-color header-md">
+                                        <?php echo $var->getValue('review_items_title_text', "We would like to hear about", false);?>
+                                    </td>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 75px;">
+                                <table cellpadding="0" cellspacing="0" width="100%" style="border-collapse:separate !important;">
+                                    <tr>
+                                    <?php foreach ($items as $i => $item) : ?>
+                                        <td class="info-block">
+                                            <?php echo $block->getProductHtml($item, 0); ?>
+                                        </td>
+
+                                        <?php if ($i%2 == 1): ?>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" height="30px"></td>
+                                    </tr>
+
+                                        <?php endif; ?>
+
+                                    <?php endforeach; ?>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" height="30px"></td>
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </td>
+        </tr>
+    </table>
+<?php endif; ?>

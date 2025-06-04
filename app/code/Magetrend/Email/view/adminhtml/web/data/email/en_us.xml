@@ -4900,4 +4900,35 @@
     </row>
 
 
+    <!-- Review Email template -->
+
+    <row>
+        <block_id>4002</block_id>
+        <block_name>mtemail_text</block_name>
+        <var_key>text1_header_text</var_key>
+        <var_value>{{trans "Hello,"}}</var_value>
+        <global>0</global>
+        <is_default>1</is_default>
+        <template_code>mt_email_default_review_followup</template_code>
+    </row>
+    <row>
+        <block_id>4002</block_id>
+        <block_name>mtemail_text</block_name>
+        <var_key>text1_text</var_key>
+        <var_value><![CDATA[
+                 <p>
+                    {{trans "Thank you for shopping at our %store_name online store." store_name=$store.getFrontendName()}}
+                    {{trans "We would love to know your opinion about the products you picked from our store and we are trying to learn from your experience."}}
+                </p>
+                <p>
+                    {{trans "Would you be willing to share your expert advice?"}} {{trans "Here is the links to share a quick review!"}}
+                </p>
+                <p><br/></p>
+                ]]></var_value>
+        <global>0</global>
+        <is_default>1</is_default>
+        <template_code>mt_email_default_review_followup</template_code>
+    </row>
+
+
 </table>

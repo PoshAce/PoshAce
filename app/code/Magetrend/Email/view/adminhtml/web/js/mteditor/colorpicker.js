@@ -4,7 +4,7 @@
  * @package    MT Email for M2
  * @author     Edvinas Stulpinas <edwin@magetrend.com>
  */
-var colorPicker = (function($){
+var mtColorPicker = (function($){
     var config = {
         selector: '.color',
         color: {

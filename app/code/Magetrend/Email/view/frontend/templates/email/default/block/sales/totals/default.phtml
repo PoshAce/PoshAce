@@ -15,7 +15,12 @@
     </tr>
     <?php foreach ($block->getTotals() as $_code => $_total) : ?>
         <?php $label = $_total->getLabel();?>
-        <?php $code = $_total->getCode();?>
+        <?php
+            $code = $_total->getCode();
+            if ($code == 'grand_total' && $_total->getValue() == 0) {
+                $code = 'grand_total_zero';
+            }
+        ?>
         <?php  if ($_total->getBlockName()) : ?>
             <?php echo $block->getChildHtml($_total->getBlockName()); ?>
         <?php else :?>
