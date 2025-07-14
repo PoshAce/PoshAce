@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+$category = $block->getLayout()->getBlock('category.products.list')->getLayer()->getCurrentCategory();
+
+if ($category):
+    $categoryName = $category->getName();
+
+
+    // Check if meta description exists
+    $metaDescription = $category->getMetaDescription();
+    if (!$metaDescription) {
+        $customDescription = 'Find curated lifestyle essentials at PoshAce.com Shop premium products from ' . $categoryName . '. for modern living, from home decor to tech gadgets. Elevate your everyday experience. ';
+        echo '<meta name="description" content="' . $block->escapeHtml($customDescription) . '" />';
+    }
+endif;

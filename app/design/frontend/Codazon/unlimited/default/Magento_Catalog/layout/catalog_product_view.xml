@@ -12,6 +12,11 @@
         <remove src="Magefan_Blog::css/blog-custom.css" />
     </head>
     <body>
+        <referenceContainer name="head.additional">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="custom.product.meta"
+                   template="Magento_Catalog::product/custom-meta.phtml"/>
+        </referenceContainer>
         <referenceBlock name="breadcrumbs" template="Codazon_ThemeLayoutPro::catalog/product/breadcrumbs.phtml" />
         <referenceContainer name="content">
             <container name="product-static-text" htmlTag="div" htmlClass="product-static-text" label="Product View - Static Block" after="product.info.main" />

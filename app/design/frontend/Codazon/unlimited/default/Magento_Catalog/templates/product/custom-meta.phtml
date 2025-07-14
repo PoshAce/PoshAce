@@ -1,0 +1,23 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+// Get Object Manager
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+// Get Registry
+$registry = $objectManager->get(\Magento\Framework\Registry::class);
+
+// Get current product
+$product = $registry->registry('current_product');
+
+if ($product):
+    $productName = $product->getName();
+    $metaDescription = $product->getMetaDescription();
+
+    if (!$metaDescription):
+        $customDescription = 'Shop ' . $productName;
+?>
+    <meta name="description" content="<?= $block->escapeHtml($customDescription) ?>" />
+<?php
+    endif;
+endif;
