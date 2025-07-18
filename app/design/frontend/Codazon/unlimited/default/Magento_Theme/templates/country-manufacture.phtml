@@ -1,0 +1,24 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$registry = $objectManager->get('\Magento\Framework\Registry');
+$product = $registry->registry('current_product');
+
+$countryCode = $product ? $product->getCountryOfManufacture() : null;
+
+if ($countryCode):
+    $country = $objectManager->get('\Magento\Directory\Model\Country')->loadByCode($countryCode);
+    $countryName = $country->getName();
+
+    // Generate direct media URL
+    $mediaUrl = $objectManager->get('\Magento\Store\Model\StoreManagerInterface')
+                              ->getStore()
+                              ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
+                              $flagUrl = $mediaUrl . 'country-flags/svg/' . strtolower($countryCode) . '.svg';
+?>
+    <div class="product-country">
+    
+    <img src="<?= $flagUrl ?>" alt="<?= $countryName ?>" width="25" height="25" style="vertical-align: middle;" /> <?= $countryName ?> store
+
+    </div>
+<?php endif; ?>
