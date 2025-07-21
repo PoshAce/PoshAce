@@ -19,6 +19,15 @@
         </referenceContainer>
         <referenceBlock name="breadcrumbs" template="Codazon_ThemeLayoutPro::catalog/product/breadcrumbs.phtml" />
         <referenceContainer name="content">
+        <block class="Magento\Framework\View\Element\Template"
+                   name="algolia.looking.similar"
+                   template="Magento_Catalog::product/Recommend.phtml" after="product-static-text">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">
+                        Algolia\AlgoliaSearch\ViewModel\Recommend\ProductView
+                    </argument>
+                </arguments>
+            </block>
             <container name="product-static-text" htmlTag="div" htmlClass="product-static-text" label="Product View - Static Block" after="product.info.main" />
             <block class="Codazon\ThemeLayoutPro\Block\ProductTabs" name="cdz-codazon-product-custom-tabs" />
             <block class="Magento\Catalog\Block\Product\View" name="cdz-floating-addtocart" template="Magento_Catalog::product/view/floating-addtocart.phtml"  after="-" />

@@ -1,0 +1,33 @@
+<?php
+use Algolia\AlgoliaSearch\ViewModel\Recommend\ProductView;
+use Magento\Framework\View\Element\Template;
+
+/**
+ * @var ProductView $viewModel
+ * @var Template $block
+ */
+$viewModel = $block->getViewModel();
+$recommendConfig = $viewModel->getAlgoliaRecommendConfiguration();
+
+if (!empty($recommendConfig['isLookingSimilarEnabledInPDP'])):
+    $product = $viewModel->getProduct(); ?>
+    <div id="algoliaRecommend">
+        <div id="lookingSimilar" class="lookingSimilar recommend-component"></div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Algolia_AlgoliaSearch/js/recommend" : {
+                    "objectIDs" : ["<?= $product->getId() ?>"]
+                }
+            }
+        }
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form]": {
+                "catalogAddToCart": {}
+            }
+        }
+    </script>
+<?php endif; ?>
