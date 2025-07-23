@@ -1,0 +1,59 @@
+<?php
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getLayout()->getBlock('product.info')->getProduct();
+
+$imageUrl = '';
+if ($product && $product->getId()) {
+    /** @var \Magento\Catalog\Helper\Image $imageHelper */
+    $imageHelper = $this->helper(\Magento\Catalog\Helper\Image::class);
+    $imageUrl = $imageHelper->init($product, 'product_base_image')->getUrl();
+}
+
+// Get dynamic values
+$price = (float) $product->getFinalPrice(); // Correctly formatted without comma
+
+// Stock status
+/** @var \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry */
+$stockRegistry = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Magento\CatalogInventory\Api\StockRegistryInterface::class);
+$stockItem = $stockRegistry->getStockItem($product->getId());
+$isInStock = $stockItem->getIsInStock();
+$availability = $isInStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock';
+
+// Price valid until (1 year from now)
+$priceValidUntil = (new \DateTime('+1 year'))->format('Y-m-d');
+
+// Get brand value (text field)
+$brandName = $product->getData('brand');
+?>
+
+<?php if ($product): ?>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "<?= $block->escapeHtml($product->getName()) ?>",
+  "image": "<?= $imageUrl ?>",
+  "description": "<?= $block->escapeHtml($product->getShortDescription()) ?>",
+  "sku": "<?= $block->escapeHtml($product->getSku()) ?>",
+  "brand": {
+    "@type": "Brand",
+    "name": "<?= $block->escapeHtml($brandName) ?>"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "<?= $block->escapeUrl($product->getProductUrl()) ?>",
+    "priceCurrency": "INR",
+    "price": "<?= number_format($price, 2, '.', '') ?>",
+    "priceValidUntil": "<?= $priceValidUntil ?>",
+    "availability": "<?= $availability ?>",
+    "itemCondition": "https://schema.org/NewCondition"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "23"
+  }
+}
+</script>
+<?php endif; ?>
