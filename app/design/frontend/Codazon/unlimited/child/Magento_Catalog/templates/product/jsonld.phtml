@@ -24,7 +24,8 @@ $availability = $isInStock ? 'https://schema.org/InStock' : 'https://schema.org/
 $priceValidUntil = (new \DateTime('+1 year'))->format('Y-m-d');
 
 // Get brand value (text field)
-$brandName = $product->getData('brand');
+$brandName = trim((string)$product->getData('brand'));
+$hasBrand = !empty($brandName);
 ?>
 
 <?php if ($product): ?>
@@ -36,10 +37,12 @@ $brandName = $product->getData('brand');
   "image": "<?= $imageUrl ?>",
   "description": "<?= $block->escapeHtml($product->getShortDescription()) ?>",
   "sku": "<?= $block->escapeHtml($product->getSku()) ?>",
+  <?php if ($hasBrand): ?>
   "brand": {
     "@type": "Brand",
     "name": "<?= $block->escapeHtml($brandName) ?>"
   },
+  <?php endif; ?>
   "offers": {
     "@type": "Offer",
     "url": "<?= $block->escapeUrl($product->getProductUrl()) ?>",

@@ -11,14 +11,16 @@ $_product = $block->getProduct();
 $helper = $this->helper('Codazon\ThemeLayoutPro\Helper\Data');
 ?>
 <?php if ($helper->getConfig('pages/product_view/display_buy_now_button')) : ?>
+<div class="action primary buy-now">
 <button type="submit"
         data-mage-init='{"themewidgets": {"codazon.buyNow": {}}}'
         data-action="buynow"
         title="<?php echo $buttonTitle ?>"
-        class="action primary buy-now"
+        class="action primary buy-now new-inner-button"
         id="product-buy-now-button">
     <span><?php echo $buttonTitle ?></span>
 </button>
+</div>
 <?php endif ?>
 
 <style>
@@ -34,8 +36,10 @@ $helper = $this->helper('Codazon\ThemeLayoutPro\Helper\Data');
         class="action primary buy-now button"
         id="product-buy-now-buttonx">Buy From Amazon
 </a-->
-<a href="<?php echo $_product->getBuyFromAmazonIn()?>"><img src="https://poshace.com/media/oie_2175610av7hIRT4.png"></a>
+<a href="<?php echo $_product->getBuyFromAmazonIn()?>"><img src="https://poshace.vdcprojects.xyz/media/oie_2175610av7hIRT4.png"></a>
 <style>
+
+
 @media only screen and (max-width: 767px) {
 .product-view-style-04 .product-info-main .box-tocart .actions>* {
     order: 1 !important;
