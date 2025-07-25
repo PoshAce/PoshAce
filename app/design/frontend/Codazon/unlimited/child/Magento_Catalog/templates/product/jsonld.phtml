@@ -2,6 +2,7 @@
 /** @var \Magento\Catalog\Model\Product $product */
 $product = $block->getLayout()->getBlock('product.info')->getProduct();
 
+
 $imageUrl = '';
 if ($product && $product->getId()) {
     /** @var \Magento\Catalog\Helper\Image $imageHelper */
