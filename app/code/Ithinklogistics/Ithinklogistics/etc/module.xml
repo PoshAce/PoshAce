@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+ * Ithinklogistics
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ithinklogistics
+ * @package     Ithinklogistics_Ithinklogistics
+ * @copyright   Copyright (c) Ithinklogistics (https://www.ithinklogistics.com/)
+ */
+-->
+
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Ithinklogistics_Ithinklogistics" setup_version="1.0.2" schema_version="1.0.2" />
+</config>

@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<!--
+/**
+ * Ithinklogistics
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ithinklogistics
+ * @package     Ithinklogistics_Ithinklogistics
+ * @copyright   Copyright (c) Ithinklogistics (https://www.ithinklogistics.com/)
+ */
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="POST" url="/V1/order/count">
+	    <service class="Ithinklogistics\Ithinklogistics\Api\OrderInterface" method="OrderCount"/>
+	    <resources>
+	        <resource ref="anonymous"/>
+	    </resources>
+	</route>
+	<route method="POST" url="/V1/order/list">
+	    <service class="Ithinklogistics\Ithinklogistics\Api\OrderListInterface" method="OrderList"/>
+	    <resources>
+	        <resource ref="anonymous"/>
+	    </resources>
+	</route>
+	<route method="POST" url="/V1/order/addshipment">
+	    <service class="Ithinklogistics\Ithinklogistics\Api\AddShipmentInterface" method="AddShipment"/>
+	    <resources>
+	        <resource ref="anonymous"/>
+	    </resources>
+	</route>
+</routes>	

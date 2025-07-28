@@ -1,0 +1,26 @@
+{
+    "name": "ithinklogistics/module-ithinklogistics-popup",
+    "description": "Ithinklogistics",
+    "type": "magento2-module",
+    "version": "1.0.2",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {},
+    "authors": [
+        {
+          "name": "Ithinklogistics",
+          "email": "support@ithinklogistics.com",
+          "homepage": "https://www.ithinklogistics.com/"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ithinklogistics\\Ithinklogistics\\": ""
+        }
+    }
+}

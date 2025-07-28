@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<!--
+/**
+ * Ithinklogistics
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ithinklogistics
+ * @package     Ithinklogistics_Ithinklogistics
+ * @copyright   Copyright (c) Ithinklogistics (https://www.ithinklogistics.com/)
+ */
+-->
+
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Ithinklogistics\Ithinklogistics\Api\OrderInterface" type="Ithinklogistics\Ithinklogistics\Model\OrderCount"/>
+	<preference for="Ithinklogistics\Ithinklogistics\Api\OrderListInterface" type="Ithinklogistics\Ithinklogistics\Model\OrderList"/>
+	<preference for="Ithinklogistics\Ithinklogistics\Api\AddShipmentInterface" type="Ithinklogistics\Ithinklogistics\Model\AddShipment"/>
+</config>
