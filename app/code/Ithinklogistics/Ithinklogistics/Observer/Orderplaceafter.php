@@ -1,7 +1,6 @@
 <?php
 namespace Ithinklogistics\Ithinklogistics\Observer;
  
-
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
  
