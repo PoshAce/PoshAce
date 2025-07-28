@@ -1,3 +1,599 @@
+.block-minicart .cart-total .subtotal .amount .price-wrapper:first-child .price,
+.block-minicart .block-title,
+.minicart-items .product-item .price,
+.block-minicart .cart-total .subtotal .label {
+    color: #000;
+}
+
+.page-header .block-minicart .minicart-items-wrapper {
+    max-height: 100vh;
+    height: calc(100vh - 320px) !important;
+}
+
+.page-header .cdz-dropdown .cdz-dd-content .cdz-dd-content-inner {
+    max-height: 100vh;
+    height: 100vh;
+}
+
+.customer-login-popup .register {
+    background: #000;
+    font: 600 16px / 1.375 Poppins, sans-serif;
+    color: #fff;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.customer-login-popup .register a {
+    color: #fff;
+}
+
+.registratio-section .reg-form .field.verifyotp {
+    width: 100%;
+}
+
+.registratio-section .reg-form .field.verifyotp .otp-input {
+    width: 100% !important;
+}
+
+.registration-otp-generate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.registratio-section .reg-form .even.field {
+    margin-left: 0;
+}
+
+.registration-otp-generate .clear {
+    display: none;
+}
+
+.registratio-section .actions-toolbar {
+    width: 100%;
+    text-align: center;
+}
+
+.registratio-section .actions-toolbar .action.submit {
+    float: unset;
+    margin-left: 0;
+}
+
+.registratio-section .registration-otp-generate .actions-toolbar .action.submit:hover .btn-title,
+.registratio-section .registration-otp-generate .actions-toolbar .action.submit:focus .btn-title,
+.registratio-section .registration-otp-generate .actions-toolbar .action.submit:active .btn-title {
+    color: #000;
+}
+
+.registration-otp-generate .email .input-box {
+    margin-top: 0;
+}
+
+.modal-popup .modal-inner-wrap .modal-header .action-close {
+    width: 30px;
+    height: 30px;
+    margin: 0 !important;
+    z-index: 111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-popup .modal-inner-wrap .modal-header .action-close::after {
+    content: '+';
+    font-size: 30px;
+    color: #fff;
+    display: inline-block;
+    transform: rotate(45deg);
+}
+
+.page-header .features-links .minicart-wrapper {
+    position: static;
+}
+
+.page-header .features-links .cdz-dropdown {
+    position: static;
+}
+
+.page-header .sticky-menu.active .cdz-dropdown .cdz-dd-content {
+    top: 100%;
+    right: 0;
+    left: auto !important;
+    width: 100%;
+}
+
+.cart-container .cart.table-wrapper .actions-toolbar>.action.action-edit:before,
+.cart-container .cart.table-wrapper .actions-toolbar>.action.action-delete:before,
+.cart-container .cart.table-wrapper .actions-toolbar>.action.action-towishlist:before {
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+}
+
+.cart-container .cart.table-wrapper .actions-toolbar>.action {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.cart-container .cart.table-wrapper .actions-toolbar>.action.action-edit {
+    top: 0;
+}
+
+.page-header .features-links .minicart-wrapper .action.showcart {
+    position: relative;
+}
+
+.sb-chat .sb-chat-btn {
+    bottom: 130px;
+}
+
+
+
+.login-section .actions-links .register {
+    width: 100%;
+}
+
+.register,
+.forogotlink {
+    margin-top: 30px;
+}
+
+body .header {
+    margin-bottom: 0;
+}
+
+
+
+a#customer-popup-sign-in {
+    width: 100%;
+}
+
+.opt-verify-form button.submit.submit-btn-login{
+    margin-top: 30px!important;
+}
+.opt-verify-form button.submit.submit-btn-login,
+.registratio-section .actions-toolbar .action.submit {
+    background: black !important;
+    color: white !important;
+    padding: 14px !important;
+    border-radius: 10px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    border: none !important;
+    font-size: 16px !important;
+    transition: all 0.3s ease !important;
+    margin: 0 auto!important;
+    height: unset !important;
+    
+}
+.registratio-section .actions-toolbar .action.submit .btn-title {
+    font-size: 16px;
+}
+body .registratio-section .registration-otp-generate .actions-toolbar .action.submit:hover .btn-title{
+    color: white ;
+}
+.header.features-links .link.wishlist{
+    position: relative;
+}
+.cdz-dropdown .cdz-dd-content {
+    top: calc(100% + 20px);
+}
+
+.reg-form .registration-otp-generate .createlinking .register { margin-top: 10px; }
+.page-header .sticky-menu.active { min-height: 70.59px; }
+
+body {
+    max-width: unset!important;
+}
+
+
+
+
+/* Responsive */
+@media only screen and (min-width: 768px) {
+    .page-header .sticky-menu.active .header-menu-wrap {
+        position: relative;
+        top: 7px;
+    }
+    .cms-codazon-home-page .page-header .sticky-menu.active .header-menu-wrap {
+        position: static;
+    }
+}
+@media screen and (min-width:320px) and (max-width:350px){
+    body .cdz-opc-wrapper .shipping-policy-block.field-tooltip {
+        font-size: 10px;
+    }
+        body .opc-wrapper .step-title,
+        body .opc-block-shipping-information .shipping-information-title,
+        body .opc-block-summary>.title,
+        body .checkout-agreements-items .checkout-agreements-item-title {
+            font-size: 12px;
+    }
+}
+@media screen and (min-width:320px) and (max-width:767px) {
+
+    ul#login-type li {
+        width: 100%;
+    }
+
+    .modal-popup.customer-login-popup .modal-inner-wrap {
+        max-width: 100%;
+    }
+
+    .registratio-section .reg-form .field {
+        width: 100%;
+    }
+
+    .nav-sections .header.links li.greet.welcome,
+    .nav-sections .header.links li .cdz-dropdown>a,
+    .nav-sections .header.links li>a {
+        text-align: left;
+    }
+    .header-search-wrap {
+        top: 50%;
+        padding-top: 0;
+        transform: translateY(-50%);
+    }
+    .page-header .sticky-menu.active .header.panel {
+        padding: 0;
+    }
+    .page-header .nav-toggle {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .cdz-dropdown .cdz-dd-content {
+        top: calc(100% + 23px);
+        position: absolute;
+        right: 0;
+        left: auto!important;
+    }
+    .page-header .sticky-menu.active .cdz-dropdown .cdz-dd-content {
+        position: fixed;
+    }
+    .nav-open .nav-toggle:after {
+        display: none;
+    }
+    .cart.table-wrapper .product-item-photo {
+        max-width: 50px;
+    }
+    .cdz-opc-wrapper .shipping-policy-block.field-tooltip {
+        top: 3px;
+        font-size: 11px;
+        right: 10px;
+    }
+    body .page-wrapper {
+        overflow-x: hidden;
+    }
+    .page-header .sticky-menu.active .cdz-dropdown .cdz-dd-content {
+        top: 56px;
+    }
+    .modal-popup.modal-slide .modal-inner-wrap,
+    .modal-popup.modal-slide._inner-scroll._show {
+        overflow-y: unset;
+    }
+    .wishlist-index-index .form-wishlist-items .products-grid.wishlist .product-image-container {
+        width: 240px;
+    }
+    .header-search.input-opened .search-form {
+        right: 0;
+        left: auto;
+        width: auto;
+        min-width: 300px;
+    }
+    body input[type="password"]{
+        font-size: 16px;
+    }
+
+}
+@media only screen and (min-width: 768px) {
+    .page-header .sticky-menu.active .header-panel-right,
+    .page-header .sticky-menu.active .header-panel-center {
+        top: 20px;
+    }
+    .checkout-index-index .page-header .sticky-menu.active .header-panel-right,.checkout-index-index .page-header .sticky-menu.active .header-panel-center { top: 10px; }
+}
+
+
+
+/* ----------------------------  */
+
+
+/* --------- GENERAL STYLES ---------- */
+.logo {
+    width: 170px !important;
+    margin-bottom: 15px;
+}
+.sticky-menu.active .header-sections form .aa-InputWrapper input{
+    margin-right: 160px !important;
+}
+@media only screen and (max-width: 768px) {
+    .nav-open .nav-sections {
+        z-index: 900 !important;
+    }
+}
+
+.modal-custom .action-close,
+.modal-popup .action-close,
+.modal-slide .action-close {
+    right: 0 !important;
+    top: 0 !important;
+}
+
+.sticky-menu.active .panel.wrapper,
+.breadcrumbs .items,
+.page-main:not(.page-main-full) > div,
+.container {
+    width: 100%;
+    max-width: 1600px !important;
+}
+
+@media only screen and (min-width: 1400px) {
+    .container {
+        /* max-width: 1920px !important;
+        margin: 0px auto !important;
+        width: 90%; */
+    }
+}
+
+.products .owl-carousel:not(.owl-loaded),
+.blog-post-grid .owl-carousel:not(.owl-loaded),
+.cdz-transparent {
+    opacity: 1 !important;
+}
+
+#algoliaFooter {
+    display: none;
+}
+
+/* --------- ALGOLIA SEARCH INPUT ---------- */
+.header-sections form .aa-InputWrapper input {
+    height: 100%;
+    border: 0;
+    border-radius: 25px;
+    padding-left: 20px;
+}
+
+.header-sections form .aa-InputWrapper {
+    height: 48px;
+}
+
+.header-sections form label .aa-SubmitButton {
+    height: 40px !important;
+    line-height: 100%;
+    border-radius: 50%;
+    width: 40px;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 4px 5px 0 0;
+}
+
+/* --------- ALGOLIA AUTOCOMPLETE PANEL ---------- */
+.aa-Panel.productColumn1 ul.aa-List li.aa-Item {
+    width: 100%;
+}
+
+.aa-Panel.productColumn1 {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    min-width: 100% !important;
+    left: unset !important;
+    right: unset !important;
+    scrollbar-width: thin;
+    overflow-y: auto;
+}
+
+.sticky-menu.active .header-sections form .aa-InputWrapper input {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    margin-right: 100px;
+}
+
+.sticky-menu.active .header-sections form:focus-within .aa-InputWrapper input,
+.sticky-menu.active .aa-SubmitButton:focus + .aa-InputWrapper input,
+.sticky-menu.active .aa-SubmitButton:active ~ .aa-InputWrapper input {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-header .sticky-menu.active .header-panel-right {
+    top: 50% !important;
+    transform: translateY(50%) !important;
+}
+
+.page-header .sticky-menu.active .header-panel-right ul {
+    margin-bottom: 0 !important;
+}
+
+.aa-Panel.productColumn1 .aa-SourceFooter #autocomplete-products-footer {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+.aa-Panel.productColumn1 .aa-SourceFooter {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+.aa-Panel.productColumn1 section:nth-child(1) .aa-List {
+    columns: 3 !important;
+}
+
+.aa-Source .aa-SourceFooter {
+    margin-top: 25px !important;
+}
+
+.ais-Panel .ais-Panel-header {
+    color: #fff;
+    background: #000;
+    font: 500 15px / 1.35 Questrial, sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 0;
+    min-width: 100%;
+    border-bottom: 0px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px 5px 0 0;
+}
+
+/* --------- STICKY HEADER ---------- */
+.page-header .sticky-menu.active .header-panel-center {
+    position: absolute;
+    right: 115px !important;
+    top: 13px !important;
+    width: auto;
+}
+
+.aa-InputWrapperPrefix .aa-SubmitButton .aa-SubmitIcon {
+    width: 30px !important;
+    height: 25px !important;
+}
+
+/* --------- MOBILE RESPONSIVE FIXES ---------- */
+@media (max-width: 768px) {
+    .header-panel-center.header-search-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .aa-InputWrapperPrefix .aa-SubmitButton .aa-SubmitIcon {
+        color: #fff;
+    }
+
+    #algoliaAutocomplete {
+        flex: 1;
+    }
+
+    #mobil_cart-wrapper {
+        flex-shrink: 0;
+        width: auto;
+    }
+
+    
+    .aa-Item .algoliasearch-autocomplete-hit {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        display: block !important;
+        width: 100% !important;
+        line-height: 1.4 !important;
+        font-size: 14px !important;
+    }
+
+    .aa-Item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+    }
+
+    .aa-Panel .aa-PanelLayout {
+        flex-direction: column !important;
+    }
+
+    .aa-Item .algoliasearch-autocomplete-price {
+        display: block !important;
+        margin-top: 4px;
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 768px) {
+.aa-Panel.productColumn1{
+ width: 100% !important;
+ top: 118px !important;
+}
+
+    .aa-Panel .aa-List {
+        padding-left: 0;
+        width: 100% !important;
+        columns: 1 !important;
+    }
+
+    .aa-Panel.productColumn1 section:nth-child(1) .aa-List {
+        columns: 1 !important;
+        width: 100% !important;
+    }
+.page-header .sticky-menu.active .header-panel-center{
+    position: absolute;
+    top: 50px !important;
+    right: 15px !important;
+    width: auto;
+}
+
+.page-header {
+    min-height: 130px !important;
+}
+
+#algoliaAutocomplete .aa-SubmitButton {
+    margin: 0 !important;
+}
+
+/* .page-header .sticky-menu.active {
+    height: 125px;
+} */
+
+.page-header .sticky-menu.active form .aa-InputWrapper input {
+    margin-top: 25px !important;
+}
+
+.page-header .sticky-menu.active .header-panel-center.header-search-wrap {
+    align-items: flex-start;
+}
+
+.page-header .sticky-menu.active #algoliaAutocomplete form label .aa-SubmitButton {
+    margin: -15px 5px 0 0 !important;
+}
+
+.header-sections form .aa-InputWrapper {
+    height: 40px;
+    width: 72vw;
+}
+
+.header-sections form .aa-InputWrapper input {
+    margin-top: 48px !important;
+    background: #fff;
+}
+
+.auc-Recommend-container .auc-Recommend-list{
+    padding: 0 !important;
+}
+
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .header-search-wrap {
+        top: 34% !important;
+        padding-top: 0;
+        transform: translateY(-50%);
+    }
+}
+
+
+.auc-Recommend-title{
+font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+
+
+
+
+/*-------------------------------*/
 
 .col-sm-16 .price-box.price-final_price{
     display: flex !important;
@@ -147,3 +743,4 @@ body.product-view-style-04 .product-info-main .price-box .price-wrapper .price {
   font-size: 12px !important;
 }
 }
+
