@@ -1,9 +1,10 @@
 <?php
 namespace Ithinklogistics\Ithinklogistics\Observer;
- 
+
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\Event\Observer;
 use Psr\Log\LoggerInterface;
- 
+
 class Orderplaceafter implements ObserverInterface
 {
     protected $logger;
@@ -13,25 +14,22 @@ class Orderplaceafter implements ObserverInterface
         $this->logger = $logger;
     }
 
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    public function execute(Observer $observer)
     {
-        try 
-        {
+        try {
             $order = $observer->getEvent()->getOrder();
-            var_dump($order);
-            $writer = new \Laminas\Log\Writer\Stream(BP . '/var/log/test.log');
-            $logger = new  \Laminas\Log\Logger();
-            $logger->addWriter($writer);
-            $logger->info($order);
-        } 
-        catch (\Exception $e) 
-        {
-            $error_message = $this->logger->info($e->getMessage());
-            $writer = new \Laminas\Log\Writer\Stream(BP . '/var/log/test.log');
-            $logger = new  \Laminas\Log\Logger();
-            $logger->addWriter($writer);
-            $logger->info($error_message);
+
+            // Log specific order data to var/log/your_custom_log.log
+            $logData = [
+                'Order ID' => $order->getIncrementId(),
+                'Customer Email' => $order->getCustomerEmail(),
+                'Grand Total' => $order->getGrandTotal(),
+                'Shipping Method' => $order->getShippingMethod()
+            ];
+
+            $this->logger->info('Order Placed Data: ' . json_encode($logData));
+        } catch (\Exception $e) {
+            $this->logger->error('Error in Orderplaceafter Observer: ' . $e->getMessage());
         }
     }
 }
-?>
