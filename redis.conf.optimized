@@ -1,0 +1,78 @@
+# Redis configuration optimized for Magento 2.4.7
+# Save this as /etc/redis/redis.conf or your Redis config location
+
+# Basic Configuration
+bind 127.0.0.1
+port 6379
+protected-mode yes
+
+# Performance optimizations
+maxmemory 2gb
+maxmemory-policy allkeys-lru
+
+# Enable persistence but optimize for performance
+save 900 1
+save 300 10
+save 60 10000
+
+# Disable disk syncing for better performance (use with caution in production)
+appendonly yes
+appendfsync everysec
+no-appendfsync-on-rewrite yes
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+# TCP settings
+tcp-keepalive 300
+tcp-backlog 511
+
+# Timeout settings
+timeout 0
+client-output-buffer-limit normal 0 0 0
+client-output-buffer-limit replica 256mb 64mb 60
+client-output-buffer-limit pubsub 32mb 8mb 60
+
+# Memory optimization
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+list-max-ziplist-size -2
+list-compress-depth 0
+set-max-intset-entries 512
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+
+# Enable compression
+rdbcompression yes
+rdbchecksum yes
+
+# Logging
+loglevel notice
+logfile /var/log/redis/redis-server.log
+
+# Working directory
+dir /var/lib/redis
+
+# Databases (Magento uses 0, 1, 2 by default)
+databases 16
+
+# Performance tuning
+slowlog-log-slower-than 10000
+slowlog-max-len 128
+
+# Memory usage reporting
+latency-monitor-threshold 100
+
+# Network optimizations
+tcp-backlog 511
+tcp-keepalive 300
+
+# Security
+requirepass ""  # Set a password if needed
+
+# Disable dangerous commands in production
+rename-command FLUSHDB ""
+rename-command FLUSHALL ""
+rename-command DEBUG ""
+
+# Lua scripting
+lua-time-limit 5000

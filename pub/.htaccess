@@ -54,7 +54,7 @@
 ############################################
 ## Enable resulting html compression
 
-    #php_flag zlib.output_compression on
+    php_flag zlib.output_compression on
 
 ###########################################
 # Disable user agent verification to not break multiple image upload
@@ -95,25 +95,23 @@
 ## Enable apache served files compression
 ## http://developer.yahoo.com/performance/rules.html#gzip
 
-    # Insert filter on all content
-    ###SetOutputFilter DEFLATE
-    # Insert filter on selected content types only
-    #AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml
+    # Enable compression for text-based files
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml application/xml+rss application/atom+xml
 
     # Netscape 4.x has some problems...
-    #BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
 
     # Netscape 4.06-4.08 have some more problems
-    #BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
 
     # MSIE masquerades as Netscape, but it is fine
-    #BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 
     # Don't compress images
-    #SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
 
     # Make sure proxies don't deliver the wrong content
-    #Header append Vary User-Agent env=!dont-vary
+    Header append Vary User-Agent env=!dont-vary
 
 </IfModule>
 
@@ -287,4 +285,49 @@ ErrorDocument 403 /errors/404.php
 
     ## Prevent clickjacking
     Header set X-Frame-Options SAMEORIGIN
+</IfModule>
+
+############################################
+## Browser Caching and Performance Headers
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    
+    # Other static content
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Add security headers
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Cache control for static assets
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
 </IfModule>
