@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <poshace_performance>
+            <general>
+                <enabled>1</enabled>
+                <enable_gzip>1</enable_gzip>
+                <enable_browser_caching>1</enable_browser_caching>
+                <enable_image_optimization>1</enable_image_optimization>
+                <enable_font_optimization>1</enable_font_optimization>
+                <enable_critical_css>1</enable_critical_css>
+                <enable_js_optimization>1</enable_js_optimization>
+            </general>
+            <cache>
+                <enable_redis>1</enable_redis>
+                <redis_host>127.0.0.1</redis_host>
+                <redis_port>6379</redis_port>
+                <redis_database>0</redis_database>
+                <redis_compression>1</redis_compression>
+            </cache>
+            <images>
+                <enable_webp>1</enable_webp>
+                <enable_lazy_loading>1</enable_lazy_loading>
+                <enable_responsive_images>1</enable_responsive_images>
+                <quality>85</quality>
+            </images>
+            <fonts>
+                <enable_preloading>1</enable_preloading>
+                <enable_display_swap>1</enable_display_swap>
+                <preload_fonts>Inter,Roboto,Open Sans</preload_fonts>
+            </fonts>
+        </poshace_performance>
+    </default>
+</config>
