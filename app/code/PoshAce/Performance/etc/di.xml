@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Performance optimizations -->
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="poshace_performance_page_config" type="PoshAce\Performance\Plugin\PageConfigPlugin"/>
+    </type>
+    
+    <type name="Magento\Framework\View\Asset\Repository">
+        <plugin name="poshace_performance_asset_repository" type="PoshAce\Performance\Plugin\AssetRepositoryPlugin"/>
+    </type>
+    
+    <type name="Magento\Framework\View\Layout\Reader\Block">
+        <plugin name="poshace_performance_layout_reader" type="PoshAce\Performance\Plugin\LayoutReaderPlugin"/>
+    </type>
+    
+    <!-- Console commands -->
+    <virtual_types>
+        <type name="PoshAce\Performance\Console\Command\DeployOptimized"/>
+    </virtual_types>
+    
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="poshace_deploy_optimized" xsi:type="object">PoshAce\Performance\Console\Command\DeployOptimized</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
