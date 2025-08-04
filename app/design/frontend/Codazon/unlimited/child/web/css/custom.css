@@ -734,3 +734,105 @@ body.product-view-style-04 .product-info-main .price-box .price-wrapper .price {
 }
 }
 
+
+
+/*banner section in product page */
+
+  /* Layout: Dynamic Banner */
+.dynamic-banner { display: flex; flex-direction: column; gap: 20px;  border-radius: 14.4px; background: #fff; font-family: Inter, Arial, sans-serif;     margin-bottom: 30px; }
+@media (min-width:992px) {
+    .dynamic-banner { flex-direction: row; align-items: stretch; gap: 24px; }
+}
+
+/* Banner Image */
+.banner-img { flex: 0 0 350px; width: 210px; border-radius: 14.4px; object-fit: cover; box-shadow: 0 2px 8px rgba(0, 0, 0, .06);    box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.08);
+    
+}
+@media (min-width:992px) {
+    .banner-img { width: 260px; }
+}
+
+/* Banner Content */
+.banner-content { flex: 1; display: flex; flex-direction: column; gap: 12px; text-align: center;     box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.08);
+padding: 10px;
+    border-radius: 12px; }
+@media (min-width:992px) {
+    .banner-content { text-align: left; }
+}
+
+/* Price Card */
+.price-card { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; background: #F9FAFB; border: 1px solid #D1D5DB; border-radius: 11.2px; padding: 9.6px 16px; }
+@media (min-width:992px) {
+    .price-card { justify-content: flex-start; }
+}
+.price-block { min-width: 95px; text-align: center; }
+.price-label { font-size: 15px; font-weight: 700; color: #374151; margin: 0 0 2.4px; }
+.price-value { font-size: 22px; font-weight: 800; color: #000; }
+.save-chip { background: #FFD600; color: #000; font-size: 13.6px; font-weight: 700; padding: 4.8px 12.8px; border-radius: 8px; align-self: center; }
+
+/* Headline */
+.headline { font-family: Poppins, Arial, sans-serif; font-size: 24px; font-weight: 700; color: #000; margin: 0; }
+@media (min-width:992px) {
+    .headline { font-size: 28px; }
+}
+
+/* Badges */
+.badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+@media (min-width:992px) {
+    .badges { justify-content: flex-start; }
+}
+.badge { display: inline-flex; align-items: center; gap: 4px; background: #000; color: #fff; border-radius: 7.2px; padding: 4px 10.4px; font-size: 11.5px; font-weight: 600; }
+.badge.accent-yellow { background: #FFD600; color: #000; }
+
+/* CTA Group & Buttons */
+.cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 6.4px; }
+.cta-btn { display: inline-flex; align-items: center; gap: 7.2px; border-radius: 9.6px; font-size: 14px; font-weight: 800; padding: 9px 20px; text-decoration: none; cursor: pointer; transition: box-shadow 0.25s, transform 0.12s; box-shadow: 0 4px 10px rgba(0, 0, 0, .15);    min-height: 44px; }
+.cta-btn:active { transform: scale(0.96); }
+.direct-btn { background: #000; color: #fff; border: 2px solid #000; }
+.direct-btn:hover { background: #222; color: #fff; }
+.amazon-btn { background: #fff; color: #FF9900; border: 2px solid #FF9900; }
+.amazon-btn:hover { background: #FF9900; color: #fff; }
+.amazon-logo { width: 22px; height: 22px; object-fit: contain; vertical-align: middle; }
+
+/* Trust Icons */
+.trust-icons { display: flex; gap: 32px; justify-content: center; margin-top: 9.6px; flex-wrap: wrap; }
+.trust-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; font-weight: 700; color: #000; text-align: center; }
+.trust-item svg { width: 30px; height: 30px; fill: #FFD600; margin-bottom: 4px; }
+
+/* Bundle Arrow */
+.bundle-arrow { margin-top: 9.6px; font-size: 12.5px; font-weight: 700; color: #000; display: flex; flex-direction: column; align-items: center; animation: arrow-pulse 2s infinite; }
+.bundle-arrow span { font-size: 17px; line-height: 1; }
+@keyframes arrow-pulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+}
+
+/* Testimonials */
+.testimonials {  width: 210px; border-radius: 14.4px; background: #000; box-shadow: 0 2px 8px rgba(0, 0, 0, .06); overflow: hidden; position: relative; color: #fff; }
+.dynamic-banner .testimonials { border: 0; border-image: unset; overflow: hidden; border-radius: 0; padding: 4px; background: linear-gradient(90deg, #00ff99, #ffff66, #9966ff, #ff6699, #00ff99); background-size: 300% 300%; animation: animateBorder 6s linear infinite; box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.08); }
+.dynamic-banner .AnimationBorderWrapper { background: #000; background-color: #000; position: relative; z-index: 5; padding: 10px; margin-top: 0; height: 100%; display: block; overflow: hidden; }
+@media (min-width:992px) {
+    .testimonials { width: 21.56%;
+        border-radius: 0;
+      margin-right: 0.5px; }
+}
+.testi-inner { position: absolute; top: 0; left: 0; right: 0; animation: scrollTesti 18s linear infinite; }
+.testimonial { padding: 16px 19.2px; font-size: 12.5px; line-height: 1.4; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; gap: 6.4px; }
+.testimonial span { font-weight: 600; color: #FFD600; }
+@keyframes scrollTesti {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+@media screen and (min-width:320px) and (max-width:767px) {
+    .dynamic-banner .banner-img { width: 100%; }
+    .dynamic-banner .testimonials { width: 100%; }
+  .dynamic-banner .AnimationBorderWrapper {min-height: 400px;}
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+    .dynamic-banner .banner-img { width: 100%; max-width: 50%; }
+    .testimonials { width: 100%; }
+  .dynamic-banner .BannerImageWr {text-align: center;}
+  .dynamic-banner .AnimationBorderWrapper {min-height: 300px;}
+}
+
+

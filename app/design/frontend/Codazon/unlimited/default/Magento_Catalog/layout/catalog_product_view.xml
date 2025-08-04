@@ -12,25 +12,35 @@
         <remove src="Magefan_Blog::css/blog-custom.css" />
     </head>
     <body>
-        <referenceContainer name="head.additional">
+         <referenceContainer name="head.additional">
             <block class="Magento\Framework\View\Element\Template"
                    name="custom.product.meta"
                    template="Magento_Catalog::product/custom-meta.phtml"/>
         </referenceContainer>
+
+        
         <referenceBlock name="breadcrumbs" template="Codazon_ThemeLayoutPro::catalog/product/breadcrumbs.phtml" />
         <referenceContainer name="content">
-        <block class="Magento\Framework\View\Element\Template"
+            <container name="product-static-text" htmlTag="div" htmlClass="product-static-text" label="Product View - Static Block" after="product.info.main" />
+            <block class="Magento\Catalog\Block\Product\View"
+           name="custom.banner.block"
+           template="Magento_Catalog::product/banner.phtml"
+           before="algolia.looking.similar" />
+            <block class="Magento\Framework\View\Element\Template"
                    name="algolia.looking.similar"
-                   template="Magento_Catalog::product/Recommend.phtml" after="product-static-text">
+                   template="Magento_Catalog::product/custom-text.phtml" after="product-static-text">
                 <arguments>
                     <argument name="view_model" xsi:type="object">
                         Algolia\AlgoliaSearch\ViewModel\Recommend\ProductView
                     </argument>
                 </arguments>
             </block>
-            <container name="product-static-text" htmlTag="div" htmlClass="product-static-text" label="Product View - Static Block" after="product.info.main" />
+
+
+            <!-- <block class="Magento\Framework\View\Element\Template" name="custom.text.before.details" template="Magento_Catalog::product/custom-text.phtml" after="product-static-text"/> -->
             <block class="Codazon\ThemeLayoutPro\Block\ProductTabs" name="cdz-codazon-product-custom-tabs" />
             <block class="Magento\Catalog\Block\Product\View" name="cdz-floating-addtocart" template="Magento_Catalog::product/view/floating-addtocart.phtml"  after="-" />
         </referenceContainer>
+
     </body>
 </page>
