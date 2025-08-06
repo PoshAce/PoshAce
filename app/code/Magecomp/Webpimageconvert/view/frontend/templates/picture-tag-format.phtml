@@ -1,0 +1,7 @@
+<picture>
+    <source type="image/webp" srcset="<?= $block->getWebpImage() ?>">
+    <source type="<?= $block->getOriginalImageType() ?>" srcset="<?= $block->getOriginalImage() ?>">
+    <?= $block->getOriginalTag() ?>
+</picture>
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magecomp" translate="label" sortOrder="100" class="magecomp-logo">
+            <label><![CDATA[]]></label>
+        </tab>
+        <section id="webpimage" sortOrder="150" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Webp Image Convert</label>
+            <tab>magecomp</tab>
+            <resource>Magecomp_Webpimageconvert::webpconfig</resource>
+            <group id="general" translate="label" sortOrder="10" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configuration</label>
+                <field id="enable" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Webp Image Convert</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="quality" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Webp Image Quality (0-100)</label>
+                    <validate>required-entry validate-number validate-not-negative-number validate-digits-range digits-range-0-100</validate>
+                    <depends>
+                        <field id="*/*/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="deletewebp" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <depends>
+                <field id="webpimage/general/enable">0</field>
+            </depends>
+            <label>Delete Webp Images</label>
+              <field id="button_id" translate="label" type="button" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Delete Webp Images</label>
+                  <comment><![CDATA[Please Disable extension and Save the Configuration First then click Delete Webp Images and Save again.]]></comment>
+                  <frontend_model>Magecomp\Webpimageconvert\Block\Systemconfig\Button</frontend_model>
+              </field>
+            </group>
+        </section>
+    </system>
+</config>

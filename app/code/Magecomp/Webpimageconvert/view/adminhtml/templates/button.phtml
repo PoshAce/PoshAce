@@ -1,0 +1,27 @@
+<?php
+echo $block->getButtonHtml();
+?>
+<div class="result" style="display: none"></div>
+<script type="text/javascript">
+    require(['jquery'],function($){
+        $(document).ready(function(){
+            $("#btn_id").click(function(){
+                $.ajax({
+                    type: "POST",
+                    asynchronous: true,
+                    url: '<?php echo $block->getAjaxUrl() ?>',
+                    data:{'deletewebp':"yes"},
+                    success: function(data)
+                    {
+                        $(".result").css("display","block");
+                        $(".result").text(data.message).css("color","green");
+                    },
+                    error: function(data) {
+                        $(".result").text(data.message).css("color","red");
+                    }
+                });
+            });
+        });
+    });
+
+</script>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="mc-webpimages-product-view-gallery" type="Magecomp\Webpimageconvert\Plugin\Product\View\GalleryPlugin" sortOrder="5"/>
+    </type>
+    <type name="Magento\Framework\View\LayoutInterface">
+        <plugin name="mc-webpimages-replace-image-tag" type="Magecomp\Webpimageconvert\Plugin\ReplaceImageTag"/>
+    </type>
+</config>
